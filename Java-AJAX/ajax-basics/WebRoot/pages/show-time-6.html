@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Ajax: Time</title>
+<link rel="stylesheet"
+      href="../css/styles.css"
+      type="text/css"/>
+<script src="../scripts/parse-xml.js"
+        type="text/javascript"></script>
+</head>
+<body>
+<center>
+<table border="5">
+  <tr><th class="title">Ajax: Time</th></tr>
+</table>
+<p/>
+<form action="#">
+ Timezone: <select id="timezone"/>
+             <option value="eastern">Eastern</option>
+             <option value="central">Central</option>
+             <option value="mountain">Mountain</option>
+             <option value="pacific">Pacific</option>
+           </select>
+ <br/>
+ <input type="button" value="Display Times in Zone"
+        onclick="sendRequest()"/>
+</form>
+<p/>
+<div id="resultText"></div>
+</center></body></html>

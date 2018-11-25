@@ -1,0 +1,47 @@
+<html>
+ <head>
+  <title>Magic Hat</title>
+  <script language="JavaScript">
+
+    function showRabbit() 
+	{
+      var hatImage = document.getElementById("topHat");
+      hatImage.setAttribute("src", "rabbit-hat.gif");
+      var button = document.getElementById("magic");
+      button.setAttribute("value", "Hide magic!");
+      button.onclick = hideRabbit;
+    }
+ 
+    function hideRabbit()
+	{	
+      var hatImage = document.getElementById("topHat");
+      hatImage.setAttribute("src", "topHat.gif");
+      var button = document.getElementById("magic");
+      button.setAttribute("value", "Show magic");
+      button.onclick = showRabbit;
+    }
+  </script>
+ </head>
+
+ <body>
+  <h1 align="center">Welcome to the Ajax Magic </h1>
+  <form name="magic-hat" >
+   <p align="center">
+    <img src="topHat.gif" id="topHat" />
+    <br /><br />
+    <input id="magic" type="button" value="Show magic" 
+           onClick="showRabbit();" />
+   </p>
+  </form>
+<!--
+	Personal Information
+-->
+		<table>
+			<tr>
+				<td width="350"></td>
+				<td>Developed by <a href="mailTo:debadattamishra@aol.com">Debadatta Mishra</a></td>
+			</tr>
+		</table>
+
+ </body>
+</html>

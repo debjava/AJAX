@@ -1,0 +1,13 @@
+<web-app>
+
+  <servlet>
+    <description>AutoCompletes Form Input using XmlHttpRequest Objects</description>
+    <servlet-name> AutocompleteServlet </servlet-name>
+    <servlet-class>com.ajax.rnd.test.AutocompleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutocompleteServlet</servlet-name>
+    <url-pattern>/autocomplete</url-pattern>
+  </servlet-mapping>
+</web-app>
+

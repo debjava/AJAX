@@ -1,0 +1,26 @@
+<?ml version="1.0"?> 
+<rss version="2.0">
+<channel>
+
+	<item>
+		<title>PPPP</title>
+		<link>http://PPP.com</link>
+		<description>Terri Schiavo</description>
+	</item>
+
+
+	<item>
+		<title>QQQQQQ</title>
+		<link>http://www.qqq.com</link>
+		<description>ABCD</description>
+	</item>
+
+
+	<item>
+		<title>RRRRRR</title>
+		<link>http://www.rrr.com</link>
+		<description>ZZZZZZZ</description>
+	</item>
+
+</channel>
+</rss>
