@@ -1,0 +1,17 @@
+<web-app>
+
+  <servlet>
+    <description>AutoCompletes Form Input using XmlHttpRequest Objects</description>
+    <servlet-name> AutocompleteServlet </servlet-name>
+    <servlet-class>com.ajax.rnd.test.AutocompleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutocompleteServlet</servlet-name>
+    <url-pattern>/ajaxproj_v14</url-pattern>
+  </servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>page1.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>
+

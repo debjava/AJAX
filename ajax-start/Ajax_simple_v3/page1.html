@@ -1,0 +1,94 @@
+<!--
+	This is a very simple ajax application which has no
+	java in the application. It can be considered as a 
+	Hello World application. This application is an 
+	outcome of the RnD division run Debadatta Mishra.
+	Very shortly you will find several java and other
+	related articles in the internet.
+
+	It is a learning application, please do not integrate
+	in your application. It has been made open source.
+	It is not for any commercial purpose.
+	Please enjoy it at your own convenience.
+
+	@auther Debadatta Mishra
+-->
+
+<html>
+	<head>
+		<title>Simple Ajax Application</title>
+
+		<script>
+			/*
+			* First obtain an XmlHttpRequest object
+			* specif to your browser.
+			*/
+			function getXmlHttpRequestObject() 
+			{
+				if (window.XMLHttpRequest) 
+				{
+					//For others except for Microsoft Internet Explorer IE
+					return new XMLHttpRequest(); 
+				}
+				else if(window.ActiveXObject) 
+				{
+					//Object specific to Microsoft Internet Explorer IE
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				else 
+				{
+					alert("Your current browser doesn't support the Ajax application.");
+				}
+			}			
+			//Declare a variable for XmlHttpRequest object.
+			var receiveReq = getXmlHttpRequestObject();		
+			//Initiate the asyncronous request.
+
+			/*
+			* This is the main java script function called by the 
+			* corresponding jsp or html file.
+			*/
+			function sayHello() 
+			{
+				//If our XmlHttpRequest object is not in the middle of a request, start the new asyncronous call.
+				if (receiveReq.readyState == 4 || receiveReq.readyState == 0) 
+				{
+					//Setup the connection as a GET call to SayHello.html.
+					//This is an asynchronous request to the server.
+					receiveReq.open("GET", 'page2.html', true);
+					//Set the function that will be called when the XmlHttpRequest objects state changes.
+					receiveReq.onreadystatechange = handleRequest; 
+					//Make the actual request.
+					receiveReq.send(null);
+				}			
+			}
+			//Called every time our XmlHttpRequest objects state changes.
+			function handleRequest() 
+			{
+				//Check to see if the XmlHttpRequests state is finished.
+				if (receiveReq.readyState == 4) 
+				{
+					//Set the contents of our span element to the result of the asyncronous call.
+					document.getElementById('span_result').innerHTML = receiveReq.responseText;
+				}
+			}
+			</script>
+	</head>
+	<body>
+		
+		<a href="javascript:sayHello();">Say Hello</a><br />
+		<!-- used to display the results of the asyncronous request -->
+		<span id="span_result"></span>
+
+<!--
+	Personal Information
+-->
+		<table>
+			<tr>
+				<td width="350"></td>
+				<td>Developed by <a href="mailTo:debadattamishra@aol.com">Debadatta Mishra</a></td>
+			</tr>
+		</table>
+
+	</body>
+</html>

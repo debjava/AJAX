@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="src/|config/|dist/|lib/|pages/" kind="src" path=""/>
+	<classpathentry kind="lib" path="lib/javax.servlet.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="E:/AJAX/ajaxproj_v7/lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="E:/AJAX/ajaxproj_v7/lib/commons-codec.jar"/>
+	<classpathentry kind="lib" path="E:/AJAX/ajaxproj_v7/lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="E:/AJAX/ajaxproj_v7/lib/commons-digester.jar"/>
+	<classpathentry kind="lib" path="E:/AJAX/ajaxproj_v7/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="E:/AJAX/ajaxproj_v7/lib/struts.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?> 
+<rss version="2.0">
+<channel>
+
+	<item>
+		<title>XXXXXXX</title>
+		<link>http://xxx.com</link>
+		<description>Terri Schiavo</description>
+	</item>
+
+
+	<item>
+		<title>YYYYYYYY</title>
+		<link>http://www.YYY.com</link>
+		<description>ABCD</description>
+	</item>
+
+
+	<item>
+		<title>ZZZZZZ</title>
+		<link>http://www.ZZZ.com</link>
+		<description>ZZZZZZZ</description>
+	</item>
+
+</channel>
+</rss>
