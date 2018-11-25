@@ -1,0 +1,9 @@
+<action path="/getSalaryAction"
+name="EmployeeSalaryDetailsForm"
+type="com.timesheet.action.GetSalaryDetailsAction"
+input= "employeesalarydetails.jsp"
+scope="request"
+validate="false">
+<forward name= "success" path= "/salary.jsp" />
+<forward name= "failed" path= "/employeesalarydetails.jsp" />
+</action>

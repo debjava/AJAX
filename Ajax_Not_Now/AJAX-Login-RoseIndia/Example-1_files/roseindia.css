@@ -1,0 +1,15 @@
+H1 {
+	FONT-SIZE: 20pt; COLOR: #000080
+}
+BODY {
+	COLOR: #000080
+}
+A:link {
+	COLOR: #00a
+}
+A:visited {
+	COLOR: #009
+}
+A:hover {
+	COLOR: #000; BACKGROUND-COLOR: pink
+}

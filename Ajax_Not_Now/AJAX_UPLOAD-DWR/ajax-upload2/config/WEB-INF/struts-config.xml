@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"  "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="UploadForm" type="net.kencochrane.form.UploadForm"/>
+    </form-beans>
+    <global-forwards>
+    </global-forwards>
+    <action-mappings>
+     <action path="/home"
+         type="net.kencochrane.action.HomeAction"
+         scope="request"
+         name="UploadForm"
+         parameter="index"
+         validate="false" >
+    	<forward name="valid" path="/index.jsp"/>
+    </action>
+    <action path="/upload"
+        type="net.kencochrane.action.HomeAction"
+        scope="request"
+        name="UploadForm"
+        parameter="doUpload"
+        validate="false">
+    	<forward name="valid" path="/uploadForm.jsp"/>
+    </action>
+  <action path="/showUploadForm"
+        type="net.kencochrane.action.HomeAction"
+        scope="request"
+        name="UploadForm"
+        parameter="showUploadForm"
+        validate="false">
+    	<forward name="valid" path="/uploadForm.jsp"/>
+    </action>
+    </action-mappings>
+    <controller multipartClass="net.kencochrane.upload.ExtendedMultiPartRequestHandler" />
+</struts-config>

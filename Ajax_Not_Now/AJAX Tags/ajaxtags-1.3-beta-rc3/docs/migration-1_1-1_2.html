@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+<html>
+  <head>
+    <title>AjaxTags - AjaxTags: Migrating from 1.1 to 1.2</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Darren L. Spurgeon" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="" id="bannerLeft">
+    
+            AjaxTags
+    
+            </a>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+            <div class="xleft">
+        Last Published: 06/21/2007
+                      </div>
+            <div class="xright">      <a href="">site under construction</a>
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+                   <h5>Overview</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="index.html">Home</a>
+        </li>
+              
+    <li class="none">
+              <a href="quickstart.html">Quick Start</a>
+        </li>
+              
+    <li class="none">
+              <a href="screenshots.html">Screenshots</a>
+        </li>
+              
+    <li class="none">
+              <a href="faq.html">FAQ</a>
+        </li>
+              
+    <li class="none">
+              <a href="ajaxlinks.html">Ajax Links & Resources</a>
+        </li>
+          </ul>
+          <h5>Reference</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="install.html">Installation</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_0-1_1.html">Migrating to 1.1</a>
+        </li>
+              
+    <li class="none">
+              <strong>Migrating to 1.2</strong>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_2-1_3.html">Migrating to 1.3</a>
+        </li>
+              
+    <li class="none">
+              <a href="usage.html">Tag Reference</a>
+        </li>
+              
+    <li class="none">
+              <a href="advanced.html">Advanced Usage</a>
+        </li>
+          </ul>
+          <h5>Support</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/projects/ajaxtags/">SourceForge Project Page</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/forum/forum.php?forum_id=471271">Forums</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/tracker/?group_id=140499">Issue Tracking</a>
+        </li>
+          </ul>
+          <h5>Downloads</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Binaries</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Source</a>
+        </li>
+              
+    <li class="none">
+              <a href="release-notes.txt">Release Notes</a>
+        </li>
+          </ul>
+          <h5>Project Documentation</h5>
+        <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+              <a href="project-info.html">Project Information</a>
+              </li>
+          </ul>
+                                             
+                        
+                        
+            <a href="http://www.sourceforge.net/" title="sourceforge.net" id="poweredBy">
+                            <img alt="sourceforge.net" src="http://sflogo.sourceforge.net/sflogo.php?group_id=140499&type=1" />
+            </a>
+                                
+                        
+                        
+            <a href="http://maven.apache.org/" title="http://maven.apache.org/" id="poweredBy">
+                            <img alt="http://maven.apache.org/" src="./images/logos/maven-feather.png" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Migrating from 1.1 to 1.2</h2><p>Version 1.2 is a significant jump from 1.1. Primary changes surround the autocomplete and callout tags, which now rely on Scriptaculous and OverLIB for a good portion of the JavaScript, and the toggle tag, which has been significantly reworked. It's an added dependency, but it helps us reduce code on our end while increasing the capability and flexibility afforded the user. Also, we've added a way for users to attach their own response parsers and handlers to both parse the XML response and replace the default handlers for the main JavaScript function for each tag.</p><p>What follows is a list of the steps you'll need to take to move to the 1.2 release if you're currently using 1.0 or 1.1.</p><div class="section"><h3>Serverside Response</h3><p>The biggest change here is the ability to customize AjaxTags to accept more than just XML as the response content. You may use XML, plain text, HTML, or any other fortat as long as you define the appropriate clientside (JavaScript) response parser. We're providing the following standard parsers: text, XML, HTML, XML-to-HTML, and XML-to-HTML-list. These were developed simply based on our needs while building the example application. You're free to write your own.</p><div class="section"><h4>XML Response</h4><p>You should notice two things. The structure of the XML is fundamentally different. We're no longer using the <tt>value</tt> attribute, replacing it with a <tt>value</tt> element. This is simply a matter of flexibility. For instance, you can't put a CDATA element inside an attribute.</p><p>The second thing you'll notice is not necessarily a requirement, but a recommendation. Notice the <tt>encoding</tt> attribute of the XML declaration. You should get into the habit of specifying the encoding for the XML returned to the client. We talk about this in our <a href="faq.html">FAQ</a>.</p><p>The exception to this is that the <tt>ajax:htmlContent</tt> tag does not require an XML response. It expects an HTML response instead and the AJAX function will not parse it as XML; it will simply insert the content of the response as is.</p><p><b>Note: There is a helper class to assist in building the XML if you don't want to do it by hand...see the <a href="advanced.html">Advanced Usage section</a> for more information.</b></p><div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;ajax-response&gt;
+  &lt;response&gt;
+    &lt;item&gt;
+      &lt;name&gt;Record 1&lt;/name&gt;
+      &lt;value&gt;1&lt;/value&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;name&gt;Record 2&lt;/name&gt;
+      &lt;value&gt;2&lt;/value&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;name&gt;Record 3&lt;/name&gt;
+      &lt;value&gt;3&lt;/value&gt;
+    &lt;/item&gt;
+  &lt;/response&gt;
+&lt;/ajax-response&gt;</pre></div></div><div class="section"><h4>XML Format</h4><p>The default (JavaScript) <tt>ResponseXmlParser</tt> handles XML-based parsing according to the following formats.</p><div class="section"><h5>Version 1.0</h5><div class="source"><pre>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;list&gt;
+  &lt;item value=&quot;1&quot;&gt;Record 1&lt;/item&gt;
+  &lt;item value=&quot;2&quot;&gt;Record 2&lt;/item&gt;
+  &lt;item value=&quot;3&quot;&gt;Record 3&lt;/item&gt;
+&lt;/list&gt;</pre></div></div><div class="section"><h5>Version 1.1/1.2</h5><div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;ajax-response&gt;
+  &lt;response&gt;
+    &lt;item&gt;
+      &lt;name&gt;Record 1&lt;/name&gt;
+      &lt;value&gt;1&lt;/value&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;name&gt;Record 2&lt;/name&gt;
+      &lt;value&gt;2&lt;/value&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;name&gt;Record 3&lt;/name&gt;
+      &lt;value&gt;3&lt;/value&gt;
+    &lt;/item&gt;
+  &lt;/response&gt;
+&lt;/ajax-response&gt;</pre></div></div></div><div class="section"><h4>Text Response</h4><p>This is simply a comma-delimited response, handled by the (JavaScript) <tt>ResponseTextParser</tt>.</p><div class="source"><pre>Record 1,1
+Record 2,2
+Record 3,3</pre></div></div></div><div class="section"><h3>JSP View Changes</h3><p>Since 1.1, AjaxTags relies on the Prototype framework. It is recommended that you include the prototype.js file in all pages using AjaxTags.</p><p>Since 1.2, AjaxTags relies on Scriptaculous for the autocomplete tag. It is recommended that you include the scriptaculous.js file in all pages using AjaxTags. You MUST include all of Scriptaculous' JavaScript files in your project, though you only need to reference the main scriptaculous.js file in your JSPs.</p><p>Since 1.2, AjaxTags relies on OverLibMWS for the callout tag. It is recommended that you include the overlibmws.js file in all pages using AjaxTags. OverLibMWS contains more than one JavaScript file in its package. Most of the time, you will only need the overlibmws.js file. If you plan on using more advanced callouts, you may be required to include OverLibMWS' other files. See <a href="http://www.macridesweb.com/oltest/">http://www.macridesweb.com/oltest/</a> for complete instructions on using OverLIBMWS.</p><div class="source"><pre>&lt;script type=&quot;text/javascript&quot; src=&quot;prototype-1.4.0.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;scriptaculous.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;overlibmws.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;ajaxtags-1.2.js&quot;&gt;&lt;/script&gt;</pre></div></div><div class="section"><h3>Tag Attribute Changes</h3><p>The following tables will help you map attribute changes between versions of each tag. Those attributes in <i>italics</i> have been removed in 1.1.</p><p><i>Note: in all cases, the emptyFunction has been removed. Use the errorFunction to handle both empty and erroneous cases.</i></p><div class="section"><h4>ajax:anchors</h4><p>There is NO CHANGE between 1.1 and 1.2.</p></div><div class="section"><h4>ajax:area</h4><p>There is NO CHANGE between 1.1 and 1.2.</p></div><div class="section"><h4>ajax:autocomplete</h4><p>Since 1.2, AjaxTags uses Scriptaculous to handle most of the JavaScript surrounding the autocomplete's display. Therefore, it is important that you include a reference to the Scriptaculous JavaScript files in your JSP.</p><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>1.0</b></td><td align="left"><b>1.1</b></td><td align="left"><b>1.2</b></td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">var</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">attachTo</td></tr><tr class="b"><td align="left">baseUrl</td><td align="left">baseUrl</td><td align="left">baseUrl</td></tr><tr class="a"><td align="left">fieldId</td><td align="left">source</td><td align="left">source</td></tr><tr class="b"><td align="left">targetId</td><td align="left">target</td><td align="left">target</td></tr><tr class="a"><td align="left">actionId</td><td align="left">action</td><td align="left">--</td></tr><tr class="b"><td align="left">paramName</td><td align="left">parameters</td><td align="left">parameters</td></tr><tr class="a"><td align="left">className</td><td align="left">className</td><td align="left">className</td></tr><tr class="b"><td align="left">progressStyle</td><td align="left">progressStyle</td><td align="left"><i>(no longer necessary; use indicator<br />to point to area on page that will<br />shown/hidden)</i></td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">indicator</td></tr><tr class="b"><td align="left">--</td><td align="left">forceSelection</td><td align="left">--</td></tr><tr class="a"><td align="left">--</td><td align="left">minimumCharacters</td><td align="left">minimumCharacters</td></tr><tr class="b"><td align="left">--</td><td align="left">appendValue</td><td align="left"><i>(no longer necessary; if<br />appendSeparator is defined, it will<br />be used)</i></td></tr><tr class="a"><td align="left">--</td><td align="left">appendSeparator</td><td align="left">appendSeparator</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">preFunction</td></tr><tr class="a"><td align="left">postFunc</td><td align="left">postFunction</td><td align="left">postFunction</td></tr><tr class="b"><td align="left">errorFunc</td><td align="left">errorFunction</td><td align="left">errorFunction</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">parser</td></tr><tr class="b"><td align="left">emptyFunc</td><td align="left">emptyFunction</td><td align="left">--</td></tr><tr class="a"><td align="left"><i>popupId</i></td><td align="left"><i>(no longer necessary;<br />handled by JavaScript)</i></td><td align="left">--</td></tr></tbody></table></div><div class="section"><h4>ajax:callout</h4><p>There is no longer any need to define an empty DIV tag on the page. This is now handled by the JavaScript code. The ajax:callout tag now depends on the OverLIBMWS JavaScript library. Remember to include a reference to the overlibmws.js file in your JSP. See <a href="http://www.macridesweb.com/oltest/">http://www.macridesweb.com/oltest/</a> for complete instructions on using OverLIBMWS.</p><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>1.0</b></td><td align="left"><b>1.1</b></td><td align="left"><b>1.2</b></td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">var</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">attachTo</td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">baseUrl</td><td align="left">baseUrl</td></tr><tr class="b"><td align="left">anchorId</td><td align="left">source <i>(a specific element by ID)</i><br />sourceClass <i>(one or more elements</i><br />specified by CSS class name)&gt;</td><td align="left">source <i>(a specific element by ID)</i><br />sourceClass <i>(one or more elements<br />specified by CSS class name)</i></td></tr><tr class="a"><td align="left">paramName</td><td align="left">parameters</td><td align="left">parameters</td></tr><tr class="b"><td align="left">paramValue</td><td align="left">parameters</td><td align="left">parameters</td></tr><tr class="a"><td align="left">title</td><td align="left">title</td><td align="left">title</td></tr><tr class="b"><td align="left">classNamePrefix</td><td align="left">classNamePrefix</td><td align="left"><i>(use overlib to set OverLIB properties)</i></td></tr><tr class="a"><td align="left">boxPosition</td><td align="left">boxPosition</td><td align="left"><i>(use overlib to set OverLIB properties)</i></td></tr><tr class="b"><td align="left">useTitleBar</td><td align="left">useTitleBar</td><td align="left"><i>(use overlib to set OverLIB properties)</i></td></tr><tr class="a"><td align="left">timeout</td><td align="left">timeout</td><td align="left"><i>(use overlib to set OverLIB properties)</i></td></tr><tr class="b"><td align="left">--</td><td align="left">eventType</td><td align="left"><i>(use overlib to set OverLIB properties)</i></td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">overlib</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">preFunction</td></tr><tr class="a"><td align="left">postFunc</td><td align="left">postFunction</td><td align="left">postFunction</td></tr><tr class="b"><td align="left">errorFunc</td><td align="left">errorFunction</td><td align="left">errorFunction</td></tr><tr class="a"><td align="left">emptyFunc</td><td align="left">emptyFunction</td><td align="left">--</td></tr><tr class="b"><td align="left"><i>popupId</i></td><td align="left"><i>(no longer necessary;<br />handled by JavaScript)</i></td><td align="left">--</td></tr></tbody></table></div><div class="section"><h4>ajax:displayTag</h4><p>There is NO CHANGE between 1.1 and 1.2.</p></div><div class="section"><h4>ajax:htmlContent</h4><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>1.0</b></td><td align="left"><b>1.1</b></td><td align="left"><b>1.2</b></td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">var</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">attachTo</td></tr><tr class="b"><td align="left">--</td><td align="left">baseUrl</td><td align="left">baseUrl</td></tr><tr class="a"><td align="left">--</td><td align="left">source</td><td align="left">source</td></tr><tr class="b"><td align="left">--</td><td align="left">sourceClass</td><td align="left">sourceClass</td></tr><tr class="a"><td align="left">--</td><td align="left">target</td><td align="left">target</td></tr><tr class="b"><td align="left">--</td><td align="left">contentXmlName</td><td align="left"><i>(now only handles HTML responses)</i></td></tr><tr class="a"><td align="left">--</td><td align="left">parameters</td><td align="left">parameters</td></tr><tr class="b"><td align="left">--</td><td align="left">eventType</td><td align="left">eventType</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">preFunction</td></tr><tr class="b"><td align="left">--</td><td align="left">postFunction</td><td align="left">postFunction</td></tr><tr class="a"><td align="left">--</td><td align="left">errorFunction</td><td align="left">errorFunction</td></tr><tr class="b"><td align="left">--</td><td align="left">emptyFunction</td><td align="left">--</td></tr></tbody></table></div><div class="section"><h4>ajax:portlet</h4><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>1.0</b></td><td align="left"><b>1.1</b></td><td align="left"><b>1.2</b></td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">var</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">attachTo</td></tr><tr class="b"><td align="left">--</td><td align="left">baseUrl</td><td align="left">baseUrl</td></tr><tr class="a"><td align="left">--</td><td align="left">source</td><td align="left">source</td></tr><tr class="b"><td align="left">--</td><td align="left">parameters</td><td align="left">parameters</td></tr><tr class="a"><td align="left">--</td><td align="left">classNamePrefix</td><td align="left">classNamePrefix</td></tr><tr class="b"><td align="left">--</td><td align="left">title</td><td align="left">title</td></tr><tr class="a"><td align="left">--</td><td align="left">imageClose</td><td align="left">imageClose</td></tr><tr class="b"><td align="left">--</td><td align="left">imageMaximize</td><td align="left">imageMaximize</td></tr><tr class="a"><td align="left">--</td><td align="left">imageMinimize</td><td align="left">imageMinimize</td></tr><tr class="b"><td align="left">--</td><td align="left">imageRefresh</td><td align="left">imageRefresh</td></tr><tr class="a"><td align="left">--</td><td align="left">refreshPeriod</td><td align="left">refreshPeriod</td></tr><tr class="b"><td align="left">--</td><td align="left">executeOnLoad</td><td align="left">executeOnLoad</td></tr><tr class="a"><td align="left">--</td><td align="left">expireDays</td><td align="left">expireDays</td></tr><tr class="b"><td align="left">--</td><td align="left">expireHours</td><td align="left">expireHours</td></tr><tr class="a"><td align="left">--</td><td align="left">expireMinutes</td><td align="left">expireMinutes</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">preFunction</td></tr><tr class="a"><td align="left">--</td><td align="left">postFunction</td><td align="left">postFunction</td></tr><tr class="b"><td align="left">--</td><td align="left">errorFunction</td><td align="left">errorFunction</td></tr><tr class="a"><td align="left">--</td><td align="left">emptyFunction</td><td align="left">--</td></tr></tbody></table></div><div class="section"><h4>ajax:select</h4><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>1.0</b></td><td align="left"><b>1.1</b></td><td align="left"><b>1.2</b></td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">var</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">attachTo</td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">baseUrl</td><td align="left">baseUrl</td></tr><tr class="b"><td align="left">fieldId</td><td align="left">source</td><td align="left">source</td></tr><tr class="a"><td align="left">targetId</td><td align="left">target</td><td align="left">target</td></tr><tr class="b"><td align="left">paramName</td><td align="left">parameters</td><td align="left">parameters</td></tr><tr class="a"><td align="left">--</td><td align="left">eventType</td><td align="left">eventType</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">executeOnLoad</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">defaultOptions</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">preFunction</td></tr><tr class="a"><td align="left">postFunc</td><td align="left">postFunction</td><td align="left">postFunction</td></tr><tr class="b"><td align="left">--</td><td align="left">errorFunction</td><td align="left">errorFunction</td></tr><tr class="a"><td align="left">--</td><td align="left">emptyFunction</td><td align="left">--</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">parser</td></tr><tr class="a"><td align="left"><i>emptyLabel</i></td><td align="left"><i>(use emptyFunction instead)</i></td><td align="left">--</td></tr><tr class="b"><td align="left"><i>emptyValue</i></td><td align="left"><i>(use emptyFunction instead)</i></td><td align="left">--</td></tr></tbody></table></div><div class="section"><h4>ajax:tab</h4><p>There is NO CHANGE between 1.1 and 1.2.</p></div><div class="section"><h4>ajax:tabPanel</h4><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>1.0</b></td><td align="left"><b>1.1</b></td><td align="left"><b>1.2</b></td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">var</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">attachTo</td></tr><tr class="b"><td align="left">--</td><td align="left">panelStyleId</td><td align="left">panelStyleId</td></tr><tr class="a"><td align="left">--</td><td align="left">contentStyleId</td><td align="left">contentStyleId</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">panelStyleClass</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">contentStyleClass</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">currentStyleClass</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">preFunction</td></tr><tr class="b"><td align="left">--</td><td align="left">postFunction</td><td align="left">postFunction</td></tr><tr class="a"><td align="left">--</td><td align="left">errorFunction</td><td align="left">errorFunction</td></tr><tr class="b"><td align="left">--</td><td align="left">emptyFunction</td><td align="left">--</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">parser</td></tr></tbody></table></div><div class="section"><h4>ajax:toggle</h4><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>1.0</b></td><td align="left"><b>1.1</b></td><td align="left"><b>1.2</b></td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">var</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">attachTo</td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">baseUrl</td><td align="left">baseUrl</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">source</td></tr><tr class="a"><td align="left">imageId</td><td align="left">image</td><td align="left">--</td></tr><tr class="b"><td align="left">stateId</td><td align="left">state</td><td align="left">state</td></tr><tr class="a"><td align="left">paramName</td><td align="left">parameters</td><td align="left">parameters</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">ratings</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">defaultRating</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">onOff</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">containerClass</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">messageClass</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">selectedClass</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">selectedLessClass</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">selectedOverClass</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">overClass</td></tr><tr class="a"><td align="left">--</td><td align="left">stateXmlName</td><td align="left">--</td></tr><tr class="b"><td align="left">--</td><td align="left">imagePattern</td><td align="left">--</td></tr><tr class="a"><td align="left">--</td><td align="left">eventType</td><td align="left">--</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">preFunction</td></tr><tr class="a"><td align="left">postFunc</td><td align="left">postFunction</td><td align="left">postFunction</td></tr><tr class="b"><td align="left">errorFunc</td><td align="left">errorFunction</td><td align="left">errorFunction</td></tr><tr class="a"><td align="left">emptyFunc</td><td align="left">emptyFunction</td><td align="left">--</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">parser</td></tr><tr class="a"><td align="left"><i>imageOn</i></td><td align="left"><i>(use imagePattern instead)</i></td><td align="left">--</td></tr><tr class="b"><td align="left"><i>imageOff</i></td><td align="left"><i>(use imagePattern instead)</i></td><td align="left">--</td></tr></tbody></table></div><div class="section"><h4>ajax:updateField</h4><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>1.0</b></td><td align="left"><b>1.1</b></td><td align="left"><b>1.2</b></td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">var</td></tr><tr class="a"><td align="left">--</td><td align="left">--</td><td align="left">attachTo</td></tr><tr class="b"><td align="left">baseUrl</td><td align="left">baseUrl</td><td align="left">baseUrl</td></tr><tr class="a"><td align="left">sourceId</td><td align="left">source</td><td align="left">source</td></tr><tr class="b"><td align="left">targetId</td><td align="left">target</td><td align="left">target</td></tr><tr class="a"><td align="left">actionId</td><td align="left">action</td><td align="left">action</td></tr><tr class="b"><td align="left">paramName</td><td align="left">parameters</td><td align="left">parameters</td></tr><tr class="a"><td align="left">--</td><td align="left">eventType</td><td align="left">eventType</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">preFunction</td></tr><tr class="a"><td align="left">postFunc</td><td align="left">postFunction</td><td align="left">postFunction</td></tr><tr class="b"><td align="left">errorFunc</td><td align="left">errorFunction</td><td align="left">errorFunction</td></tr><tr class="a"><td align="left">emptyFunc</td><td align="left">emptyFunction</td><td align="left">--</td></tr><tr class="b"><td align="left">--</td><td align="left">--</td><td align="left">parser</td></tr></tbody></table></div></div></div>
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2005-2007
+    
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

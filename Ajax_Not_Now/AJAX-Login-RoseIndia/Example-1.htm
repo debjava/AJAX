@@ -1,0 +1,1221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0073)http://www.roseindia.net/struts/struts2/struts2ajax/ajax-login-form.shtml -->
+<HTML><HEAD><TITLE>Struts 2 Ajax Example,Struts 2 Ajax,Login Form Using Ajax</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+title=compact href="Example-1_files/roseindia.css" type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2900.3157" name=GENERATOR></HEAD>
+<BODY><!-- Top -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=middle colSpan=2><FONT face=arial size=1><A 
+      style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/">Home</A> | <A 
+      style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/jsp/index.shtml">JSP</A> | <A 
+      style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/ejb/">EJB</A> | <A 
+      style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/jdbc/index.shtml">JDBC</A> | <A 
+      style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/servlets/index.shtml">Java Servlets</A> | 
+      <A style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/wap/index.htm">WAP</A>&nbsp; | <A 
+      style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/freehosting/freejsphosting.htm">Free JSP 
+      Hosting</A>&nbsp; | <A 
+      style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/spring/index.shtml">Spring Framework</A> | 
+      <A style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/webservices/">Web Services</A> | <A 
+      style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/bioinformatics/bioinformatics_resources.shtml">BioInformatics</A> 
+      | <A style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://roseindia.net/jsf">Java Server Faces</A> | <A 
+      style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/jboss/index.htm">Jboss 3.0 tutorial</A> | 
+      <A style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/hibernate/index.shtml">Hibernate 3.0</A> | 
+      <A style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/xml/dom/">XML</A> </FONT></TD></TR><!--
+  <tr>
+    <td width="234" valign="top">
+			<p align="left"><a href="http://www.roseindia.net"><img border="0" src="/images/logoroseindiasmall.gif"></a>
+    </td>
+    <td  valign="middle">
+	&nbsp;
+    </td>
+  </tr>
+  --></TBODY></TABLE><!-- Top --><!-- Left -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width="1%">
+      <TABLE 
+      style="BORDER-RIGHT: #d4d5d6 1px solid; BORDER-TOP: #d4d5d6 1px solid; BORDER-LEFT: #d4d5d6 1px solid; BORDER-BOTTOM: #d4d5d6 1px solid" 
+      cellSpacing=0 cellPadding=0 width=120 bgColor=#ffffff>
+        <TBODY>
+        <TR>
+          <TD align=middle><A 
+            href="http://www.roseindia.net/struts/struts-projects.shtml" 
+            target=_blank><IMG src="Example-1_files/struts-project.gif" 
+            border=0></A>
+            <P></P></TD></TR>
+        <TR>
+          <TD align=middle height=140><A 
+            href="http://www.roseindiahosting.com/"><IMG 
+            src="Example-1_files/roseindiahosting.gif" border=0> </A></TD></TR>
+        <TR>
+          <TD align=middle width="100%">
+            <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-0714075272818912";
+google_ad_width = 120;
+google_ad_height = 90;
+google_ad_format = "120x90_0ads_al_s";
+google_ad_channel = "";
+google_color_border = "D4D5D7";
+google_color_bg = "FFFFFF";
+google_color_link = "000080";
+google_color_text = "000080";
+google_color_url = "000080";
+//-->
+</SCRIPT>
+
+            <SCRIPT src="Example-1_files/show_ads.js" 
+            type=text/javascript>
+</SCRIPT>
+            <BR>&nbsp; </TD></TR>
+        <TR>
+          <TD align=middle height=140><A 
+            href="http://www.roseindia.net/struts/struts2/"><IMG 
+            src="Example-1_files/struts2.gif" border=0> </A></TD></TR>
+        <TR>
+          <TD align=middle bgColor=#ffcc00><STRONG>Struts 
+        Tutorials</STRONG></TD></TR>
+        <TR>
+          <TD align=left><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A href="http://www.roseindia.net/struts">Stuts 
+            TOC</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/strutsguide.shtml">Apache 
+            Struts Introduction</A></FONT> <FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/understanding_struts_controller.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT> <FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/understanding_struts_controller.shtml">Struts 
+            Controller</A><A 
+            href="http://www.roseindia.net/struts/understandingstruts_action_class.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT> <FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/understandingstruts_action_class.shtml">Struts 
+            Action Class</A><A 
+            href="http://www.roseindia.net/struts/strutsActionForms.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT> <FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/strutsActionForms.shtml">Struts 
+            ActionFrom Class</A><A 
+            href="http://www.roseindia.net/struts/strutsHtmlTags.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT> <FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/strutsHtmlTags.shtml">Using 
+            Struts HTML Tags</A><A 
+            href="http://www.roseindia.net/struts/struts_validator_framework.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT><FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts_validator_framework.shtml">Struts 
+            Validator Framework</A>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.roseindia.net/struts/address_struts_validator.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT><FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/address_struts_validator.shtml">Client 
+            Side Address Validation</A>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+            href="http://www.roseindia.net/struts/struts_tiles.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT><FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts_tiles.shtml">Struts 
+            Tiles</A><A 
+            href="http://www.roseindia.net/struts/using-tiles-defs-xml.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT><FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/using-tiles-defs-xml.shtml">tiles-defs.xml</A></FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/DynaActionForm.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT><FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/DynaActionForm.shtml">Struts 
+            DynaActionForm</A></FONT><FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/strutsfileupload.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT><FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/strutsfileupload.shtml">Struts 
+            File Upload</A><A 
+            href="http://www.roseindia.net/struts/strutsdatasourcemanagerontomcat5.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT><FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/strutsdatasourcemanagerontomcat5.shtml">Struts 
+            DataSource</A><A 
+            href="http://www.roseindia.net/struts/struts-action-aggregating-actions.shtml"><BR></A></FONT><FONT 
+            color=#ff0000 size=2>*</FONT><FONT color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-action-aggregating-actions.shtml">AGGREGATING 
+            ACTIONS</A></FONT><FONT color=#000080><A 
+            href="http://www.roseindia.net/struts/strutsinternationalization.shtml"><FONT 
+            size=2><BR></FONT></A></FONT><FONT color=#ff0000 
+            size=2>*</FONT><FONT color=#000080><A 
+            href="http://www.roseindia.net/struts/strutsinternationalization.shtml"><FONT 
+            size=2>Internationalization</FONT></A><BR></FONT></TD></TR>
+        <TR>
+          <TD align=middle bgColor=#ffcc00><STRONG>Struts 
+        Resources</STRONG></TD></TR>
+        <TR>
+          <TD align=left><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-books.shtml">Struts 
+            Books</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-articles.shtml">Struts 
+            Articles</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-frameworks.shtml">Struts 
+            Frameworks</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-ides.shtml">Struts 
+            IDE</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-alternative.shtml">Struts 
+            Alternative</A></FONT> <BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-links.shtml">Struts 
+            Links</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-presentations.shtml">Struts 
+            Presentations</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-projects.shtml">Struts 
+            Projects</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-software.shtml">Struts 
+            Software</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-reference.shtml">Struts 
+            Reference</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-resources.shtml">Struts 
+            Resources</A></FONT><BR><FONT color=#ff0000 size=2>*</FONT><FONT 
+            color=#000080 size=2><A 
+            href="http://www.roseindia.net/struts/struts-tutorials.shtml">Other 
+            Struts Tutorial</A></FONT><BR></TD></TR>
+        <TR>
+          <TD align=middle><A 
+            href="http://www.roseindia.net/javatutorials/index.shtml"><IMG 
+            src="Example-1_files/javatutorials.gif" border=0></A> </TD></TR>
+        <TR>
+          <TD align=middle><A 
+            href="http://www.roseindia.net/software-tutorials/directory/ratings/1"><IMG 
+            src="Example-1_files/BrowseTutorials.gif" border=0></A> </TD></TR>
+        <TR>
+          <TD align=middle><A href="http://www.roseindia.net/forum/">
+            <MARQUEE style="FONT-SIZE: 14pt; COLOR: #ff0000">Visit Forum! Post 
+            Questions!</MARQUEE></A></TD></TR>
+        <TR>
+          <TD align=middle><A 
+            href="http://roseindia.net/jobs/jobs_at_roseindia.shtml"><B>Jobs At 
+            RoseIndia.net!</B> </A></TD></TR>
+        <TR>
+          <TD width="100%">
+            <P align=center><FONT face="Times New Roman" color=#ff0000 
+            size=5>Have tutorials?</FONT><FONT size=1><BR></FONT><A 
+            href="http://www.roseindia.net/subscription/addsite.shtml">Add your 
+            tutorial to our Java Resource and get tons of hits.</A> 
+            <P align=center><FONT size=2>We offer <B>free hosting</B> for your 
+            tutorials. and exposure for thousands of readers. drop a 
+            mail</FONT><FONT face="MS Sans serif" size=-2><A 
+            href="mailto:roseindia_net@yahoo.com"><FONT 
+            color=maroon><BR>roseindia_net@yahoo.com</FONT></A><FONT 
+            color=maroon>&nbsp;</FONT><BR>&nbsp;&nbsp;&nbsp;</FONT></P></TD></TR>
+        <TR>
+          <TD align=middle width="100%" bgColor=#cccc00>&nbsp;</TD></TR>
+        <TR>
+          <TD align=middle width="100%" bgColor=#cccc00>
+            <FORM action=http://groups.yahoo.com/subscribe/parisonz method=get 
+            target=_blank>
+            <TABLE cellSpacing=0 cellPadding=2 width="100%" bgColor=#ffffcc 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle><B><FONT color=#ff0000>Join For 
+                  Newsletter</FONT></B></TD></TR>
+              <TR>
+                <TD align=middle><INPUT size=18 value=E-Mail name=user></TD></TR>
+              <TR align=middle>
+                <TD><INPUT type=image height=52 alt="Join News Group" width=91 
+                  src="Example-1_files/join.gif" border=0 name=I3><BR>Powered by 
+                  <A href="http://groups.yahoo.com/">groups.yahoo.com</A> <BR><A 
+                  href="http://groups.yahoo.com/group/parisonz/" 
+                  target=_blank>Visit Group! Post Questions!</A> 
+            </TD></TR></TBODY></TABLE></FORM></TD></TR>
+        <TR>
+          <TD width="100%" bgColor=#ffffff height=130><A 
+            href="http://www.allcoolloans.com/" target=_blank><IMG 
+            src="Example-1_files/ln.gif" border=0></A> </TD></TR>
+        <TR>
+          <TD align=middle>
+            <SCRIPT type=text/javascript><!--
+		google_ad_client = "pub-0714075272818912";
+		google_ad_width = 120;
+		google_ad_height = 600;
+		google_ad_format = "120x600_as";
+		google_cpa_choice = "CAEaCNXjUImIBItJUC9QBFAFUANQB1AIUC1QtwNQNFBD";
+		google_ad_channel = "";
+		google_color_border = "FFFFFF";
+		google_color_bg = "FFFFFF";
+		google_color_link = "000080";
+		google_color_text = "000080";
+		google_color_url = "000080";
+		//-->
+		</SCRIPT>
+
+            <SCRIPT src="Example-1_files/show_ads.js" 
+            type=text/javascript>
+		</SCRIPT>
+          </TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top width="99%">
+      <DIV align=center>
+      <CENTER>
+      <TABLE width="98%">
+        <TBODY>
+        <TR>
+          <TD align=left width="100%">
+            <H1 align=left><FONT color=#000080>Login Form using Ajax</FONT></H1>
+            <DIV 
+            style="BORDER-RIGHT: white 0px solid; PADDING-RIGHT: 0px; BORDER-TOP: white 0px solid; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: white 0px solid; PADDING-TOP: 0px; BORDER-BOTTOM: white 0px solid; BACKGROUND-COLOR: white">
+            <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-0714075272818912";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "000080";
+google_color_text = "000080";
+google_color_url = "000080";
+//--></SCRIPT>
+
+            <SCRIPT src="Example-1_files/show_ads.js" 
+            type=text/javascript>
+</SCRIPT>
+            </DIV>
+            <P align=center><A 
+            href="http://www.roseindia.net/struts/struts2/struts2ajax/index.shtml"><IMG 
+            src="Example-1_files/previous.gif" 
+            border=0></A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            &nbsp;<A 
+            href="http://www.roseindia.net/struts/struts2/struts2ajax/index.shtml"><IMG 
+            src="Example-1_files/bt_home.gif" 
+            border=0></A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <A 
+            href="http://www.roseindia.net/struts/struts2/struts2ajax/ajax-login-cancel.shtml"><IMG 
+            src="Example-1_files/next.gif" border=0></A></P>
+            <P><FONT color=#000080>This section provides you an easy and 
+            complete implementation of login form using the Ajax 
+            (DOJO).&nbsp;</FONT></P>
+            <P><FONT color=#000080>Lets, develop a login application using 
+            <B>ajax</B>. This login application first authenticates a user, it 
+            asks for a login name and password (Both the login name and password 
+            is "<B>Admin</B>"). It displays a welcome page, when both fields are 
+            correctly filled by the user. Otherwise it shows an error and DEBUG 
+            message (<I>Invalid user name and password! Please try again! and 
+            DEBUG: widget ID collision on ID: ajaxLogin_0</I>).</FONT></P>
+            <P><FONT color=#000080>Create an action mapping in the struts.xml 
+            file. Here is the code to be added in the 
+            <B>struts.xml</B>:</FONT></P>
+            <TABLE width="40%" bgColor=#ffffcc border=1>
+              <TBODY>
+              <TR>
+                <TD width="100%">&lt;action 
+                  name="showAjaxLoginForm"&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                  &lt;result&gt;/pages/ajaxlogin.jsp&lt;/result&gt;<BR>&lt;/action&gt;<BR><BR>&lt;action 
+                  name="ajaxLogin" 
+                  class="net.roseindia.Login"&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                  &lt;result 
+                  name="input"&gt;/pages/ajaxlogin.jsp&lt;/result&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                  &lt;result 
+                  name="error"&gt;/pages/ajaxlogin.jsp&lt;/result&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                  &lt;result&gt;/pages/ajaxloginsuccess.jsp&lt;/result&gt;<BR>&lt;/action&gt;</TD></TR></TBODY></TABLE>
+            <P><FONT color=#000080><B>Develop a Login Form Using Ajax :</B> The 
+            GUI of the application consists of a login form (</FONT><B><FONT 
+            color=#000080>ajaxlogin.jsp</FONT></B><FONT color=#000080>). The 
+            "</FONT><B><FONT color=#000080>ajaxlogin.jsp</FONT></B><FONT 
+            color=#000080>" displays the login page to the user. This jsp page 
+            uses the &lt;<B>s:div</B>&gt; tag, this tag creates a content area 
+            that can load its content using Ajax tags, optionally refreshing. 
+            Here we also use the &lt;<B>s:submit</B>&gt; tag that is used to 
+            update element (s) or submit a form with the help of 
+Ajax.</FONT></P>
+            <P><FONT color=#000080>Whenever an error occurs&nbsp; then the 
+            &lt;<B>s:actionerror</B>&gt; and &lt;<B>s:fielderror</B>&gt; tags 
+            execute and display an error message the login form is 
+            submitted.</FONT></P>
+            <P><FONT color=#000080>Here is the code of </FONT><B><FONT 
+            color=#000080>ajaxlogin.jsp</FONT></B><FONT color=#000080> 
+            file:</FONT></P>
+            <DIV class=java style="WIDTH: 444px; HEIGHT: 472px" align=left>
+            <TABLE cellSpacing=0 cellPadding=3 bgColor=#ffffcc border=0>
+              <TBODY>
+              <TR><!-- start source code -->
+                <TD vAlign=top noWrap align=left><CODE><FONT 
+                  color=#000000>&lt;%</FONT><FONT 
+                  color=#646464>@&nbsp;</FONT><FONT 
+                  color=#000000>taglib&nbsp;prefix=</FONT><FONT 
+                  color=#2a00ff>"s"&nbsp;</FONT><FONT 
+                  color=#000000>uri=</FONT><FONT 
+                  color=#2a00ff>"/struts-tags"</FONT><FONT 
+                  color=#000000>%&gt;</FONT><BR><FONT 
+                  color=#000000>&lt;html&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;head&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;s:head&nbsp;theme=</FONT><FONT 
+                  color=#2a00ff>"ajax"&nbsp;</FONT><FONT 
+                  color=#000000>debug=</FONT><FONT 
+                  color=#2a00ff>"true"</FONT><FONT 
+                  color=#000000>/&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/script&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/head&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;body&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;s:div&nbsp;id=</FONT><FONT 
+                  color=#2a00ff>"loginDiv"&nbsp;</FONT><FONT 
+                  color=#000000>theme=</FONT><FONT 
+                  color=#2a00ff>"ajax"</FONT><FONT 
+                  color=#000000>&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;div&nbsp;style=</FONT><FONT 
+                  color=#2a00ff>"width:&nbsp;300px;border-style:&nbsp;solid"</FONT><FONT 
+                  color=#000000>&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;s:form&nbsp;action=</FONT><FONT 
+                  color=#2a00ff>"ajaxLogin"&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>validate=</FONT><FONT 
+                  color=#2a00ff>"true"</FONT><FONT 
+                  color=#000000>&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;tr&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;td&nbsp;colspan=</FONT><FONT 
+                  color=#2a00ff>"2"</FONT><FONT 
+                  color=#000000>&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>Login</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/td&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/tr&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;tr&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;td&nbsp;colspan=</FONT><FONT 
+                  color=#2a00ff>"2"</FONT><FONT 
+                  color=#000000>&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;s:actionerror&nbsp;/&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;s:fielderror&nbsp;/&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/td&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/tr&gt;&nbsp;&nbsp;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;s:textfield&nbsp;name=</FONT><FONT 
+                  color=#2a00ff>"username"&nbsp;</FONT><FONT 
+                  color=#000000>label=</FONT><FONT 
+                  color=#2a00ff>"Login&nbsp;name"</FONT><FONT 
+                  color=#000000>/&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;s:password&nbsp;name=</FONT><FONT 
+                  color=#2a00ff>"password"&nbsp;</FONT><FONT 
+                  color=#000000>label=</FONT><FONT 
+                  color=#2a00ff>"Password"</FONT><FONT 
+                  color=#000000>/&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;s:submit&nbsp;theme=</FONT><FONT 
+                  color=#2a00ff>"ajax"&nbsp;</FONT><FONT 
+                  color=#000000>targets=</FONT><FONT 
+                  color=#2a00ff>"loginDiv"&nbsp;</FONT><FONT 
+                  color=#000000>notifyTopics=</FONT><FONT 
+                  color=#2a00ff>"/ajaxLogin"</FONT><FONT 
+                  color=#000000>/&gt;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/s:form&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/div&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/s:div&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/body&gt;</FONT><BR><FONT 
+                  color=#000000>&lt;/html&gt;</FONT></CODE> </TD><!-- end source code --></TR></TBODY></TABLE></DIV>
+            <P><FONT color=#000080>Develop an action class that handles the 
+            login request and checks for the user authentication. If the user 
+            name and password is "Admin" then it returns SUCCESS otherwise ERROR 
+            object.&nbsp;</FONT></P>
+            <P><FONT color=#000080>Here is the code of "</FONT><B><FONT 
+            color=#000080>Login.java</FONT></B><FONT color=#000080><B>" 
+            </B>action class:</FONT></P>
+            <TABLE cellSpacing=0 cellPadding=3 bgColor=#ffffcc border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top noWrap align=left><CODE><FONT 
+                  color=#7f0055><B>package&nbsp;</B></FONT><FONT 
+                  color=#000000>net.roseindia;</FONT><BR><FONT 
+                  color=#7f0055><B>import&nbsp;</B></FONT><FONT 
+                  color=#000000>com.opensymphony.xwork2.ActionSupport;</FONT><BR><FONT 
+                  color=#7f0055><B>import&nbsp;</B></FONT><FONT 
+                  color=#000000>java.util.Date;</FONT><BR><BR><BR><FONT 
+                  color=#3f5fbf>/**</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;p&gt;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>Validate&nbsp;a&nbsp;user&nbsp;login.&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;/p&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*/</FONT><BR><FONT 
+                  color=#7f0055><B>public&nbsp;&nbsp;class&nbsp;</B></FONT><FONT 
+                  color=#000000>Login&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>extends&nbsp;</B></FONT><FONT 
+                  color=#000000>ActionSupport&nbsp;{</FONT><BR><BR><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>public&nbsp;</B></FONT><FONT 
+                  color=#000000>String&nbsp;execute()&nbsp;</FONT><FONT 
+                  color=#7f0055><B>throws&nbsp;</B></FONT><FONT 
+                  color=#000000>Exception&nbsp;{</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>System.out.println(</FONT><FONT 
+                  color=#2a00ff>"Validating&nbsp;login"</FONT><FONT 
+                  color=#000000>);</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>if</B></FONT><FONT 
+                  color=#000000>(!getUsername().equals(</FONT><FONT 
+                  color=#2a00ff>"Admin"</FONT><FONT 
+                  color=#000000>)&nbsp;||&nbsp;!getPassword().equals(</FONT><FONT 
+                  color=#2a00ff>"Admin"</FONT><FONT 
+                  color=#000000>)){</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>addActionError(</FONT><FONT 
+                  color=#2a00ff>"Invalid&nbsp;user&nbsp;name&nbsp;or&nbsp;password!&nbsp;Please&nbsp;try&nbsp;again!"</FONT><FONT 
+                  color=#000000>);</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>return&nbsp;</B></FONT><FONT 
+                  color=#000000>ERROR;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>}</FONT><FONT 
+                  color=#7f0055><B>else</B></FONT><FONT 
+                  color=#000000>{</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>return&nbsp;</B></FONT><FONT 
+                  color=#000000>SUCCESS;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>}</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>}</FONT><BR><BR><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f7f5f>//&nbsp;----&nbsp;Username&nbsp;property&nbsp;----</FONT><BR><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>/**</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;p&gt;</FONT><FONT 
+                  color=#3f5fbf>Field&nbsp;to&nbsp;store&nbsp;User&nbsp;username.</FONT><FONT 
+                  color=#7f7f9f>&lt;/p&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;p/&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*/</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>private&nbsp;</B></FONT><FONT 
+                  color=#000000>String&nbsp;username&nbsp;=&nbsp;</FONT><FONT 
+                  color=#7f0055><B>null</B></FONT><FONT 
+                  color=#000000>;</FONT><BR><BR><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>/**</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;p&gt;</FONT><FONT 
+                  color=#3f5fbf>Provide&nbsp;User&nbsp;username.</FONT><FONT 
+                  color=#7f7f9f>&lt;/p&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f9fbf>@return&nbsp;</FONT><FONT 
+                  color=#3f5fbf>Returns&nbsp;the&nbsp;User&nbsp;username.</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*/</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>public&nbsp;</B></FONT><FONT 
+                  color=#000000>String&nbsp;getUsername()&nbsp;{</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>return&nbsp;</B></FONT><FONT 
+                  color=#000000>username;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>}</FONT><BR><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>/**</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;p&gt;</FONT><FONT 
+                  color=#3f5fbf>Store&nbsp;new&nbsp;User&nbsp;username</FONT><FONT 
+                  color=#7f7f9f>&lt;/p&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f9fbf>@param&nbsp;</FONT><FONT 
+                  color=#3f5fbf>value&nbsp;The&nbsp;username&nbsp;to&nbsp;set.</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*/</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>public&nbsp;void&nbsp;</B></FONT><FONT 
+                  color=#000000>setUsername(String&nbsp;value)&nbsp;{</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>username&nbsp;=&nbsp;value;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>}</FONT><BR><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f7f5f>//&nbsp;----&nbsp;Username&nbsp;property&nbsp;----</FONT><BR><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>/**</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;p&gt;</FONT><FONT 
+                  color=#3f5fbf>Field&nbsp;to&nbsp;store&nbsp;User&nbsp;password.</FONT><FONT 
+                  color=#7f7f9f>&lt;/p&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;p/&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*/</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>private&nbsp;</B></FONT><FONT 
+                  color=#000000>String&nbsp;password&nbsp;=&nbsp;</FONT><FONT 
+                  color=#7f0055><B>null</B></FONT><FONT 
+                  color=#000000>;</FONT><BR><BR><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>/**</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;p&gt;</FONT><FONT 
+                  color=#3f5fbf>Provide&nbsp;User&nbsp;password.</FONT><FONT 
+                  color=#7f7f9f>&lt;/p&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f9fbf>@return&nbsp;</FONT><FONT 
+                  color=#3f5fbf>Returns&nbsp;the&nbsp;User&nbsp;password.</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*/</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>public&nbsp;</B></FONT><FONT 
+                  color=#000000>String&nbsp;getPassword()&nbsp;{</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>return&nbsp;</B></FONT><FONT 
+                  color=#000000>password;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>}</FONT><BR><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>/**</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f7f9f>&lt;p&gt;</FONT><FONT 
+                  color=#3f5fbf>Store&nbsp;new&nbsp;User&nbsp;password</FONT><FONT 
+                  color=#7f7f9f>&lt;/p&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*&nbsp;</FONT><FONT 
+                  color=#7f9fbf>@param&nbsp;</FONT><FONT 
+                  color=#3f5fbf>value&nbsp;The&nbsp;password&nbsp;to&nbsp;set.</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#3f5fbf>*/</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#7f0055><B>public&nbsp;void&nbsp;</B></FONT><FONT 
+                  color=#000000>setPassword(String&nbsp;value)&nbsp;{</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>password&nbsp;=&nbsp;value;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>}</FONT><BR><BR><FONT 
+                  color=#000000>}</FONT></CODE> </TD></TR></TBODY></TABLE>
+            <P><FONT color=#000080>The "</FONT><B><FONT 
+            color=#000080>ajaxloginsuccess.jsp</FONT></B><FONT color=#000080>" 
+            page displays the Login Success message (<I>Welcome to Admin</I>) 
+            when the user is successfully authenticated.&nbsp;</FONT></P>
+            <P><FONT color=#000080>Here is the code of 
+            "<B>ajaxloginsuccess.jsp</B>"</FONT><FONT color=#000080> 
+            file:</FONT></P>
+            <DIV class=java style="WIDTH: 373px; HEIGHT: 152px" align=left>
+            <TABLE cellSpacing=0 cellPadding=3 bgColor=#ffffcc border=0>
+              <TBODY>
+              <TR><!-- start source code -->
+                <TD vAlign=top noWrap align=left><CODE><FONT 
+                  color=#000000>&lt;html&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;head&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;title&gt;Login&nbsp;Success&lt;/title&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/head&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;body&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;p&nbsp;align=</FONT><FONT 
+                  color=#2a00ff>"center"</FONT><FONT 
+                  color=#000000>&gt;&lt;font&nbsp;color=</FONT><FONT 
+                  color=#2a00ff>"#000080"&nbsp;</FONT><FONT 
+                  color=#000000>size=</FONT><FONT color=#2a00ff>"5"</FONT><FONT 
+                  color=#000000>&gt;Login&nbsp;Successful&nbsp;!&lt;/font&gt;&lt;/p&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;h1&gt;&nbsp;Welcome&nbsp;to&nbsp;&lt;%=request.getParameter</FONT><FONT 
+                  color=#000000>(</FONT><FONT 
+                  color=#2a00ff>"username"</FONT><FONT 
+                  color=#000000>)</FONT><FONT 
+                  color=#000000>%&gt;&nbsp;&nbsp;&lt;/h1&gt;</FONT><BR><FONT 
+                  color=#ffffff>&nbsp;&nbsp;</FONT><FONT 
+                  color=#000000>&lt;/body&gt;</FONT><BR><FONT 
+                  color=#000000>&lt;/html&gt;</FONT></CODE> </TD><!-- end source code --></TR></TBODY></TABLE></DIV>
+            <P><B><FONT color=#000080>Output of the ajax login 
+            application:</FONT></B></P>
+            <P><FONT color=#000080>When this application executes you get a 
+            login page:</FONT></P>
+            <TABLE width="45%" border=1>
+              <TBODY>
+              <TR>
+                <TD width="100%"><IMG height=298 
+                  src="Example-1_files/ajaxlogin.gif" width=411 
+              border=0></TD></TR></TBODY></TABLE>
+            <P><FONT color=#000080>If you leave the "Login name" field empty and 
+            just fills the "Password" field in the login page then a message is 
+            displayed as shown below:</FONT></P>
+            <TABLE width="46%" border=1>
+              <TBODY>
+              <TR>
+                <TD width="100%"><IMG height=304 
+                  src="Example-1_files/ajaxlogin1.gif" width=412 
+              border=0></TD></TR></TBODY></TABLE>
+            <P><FONT color=#000080>If you fills the "Login name" field empty and 
+            just leaves the "Password" field empty in the login page then a 
+            message is displayed as shown below:</FONT></P>
+            <TABLE width="44%" border=1>
+              <TBODY>
+              <TR>
+                <TD width="100%"><IMG height=303 
+                  src="Example-1_files/ajaxlogin2.gif" width=412 
+              border=0></TD></TR></TBODY></TABLE>
+            <P><FONT color=#000080>If you enter the wrong login name and 
+            password in the login page then it displays a&nbsp; message as shown 
+            below::</FONT></P>
+            <TABLE width="49%" border=1>
+              <TBODY>
+              <TR>
+                <TD width="100%"><IMG height=413 
+                  src="Example-1_files/ajaxlogin3.gif" width=446 
+              border=0></TD></TR></TBODY></TABLE>
+            <P><FONT color=#000080>When you enter the correct login name and 
+            password to the login page, it shows a success message as shown 
+            :</FONT></P>
+            <TABLE width="47%" border=1>
+              <TBODY>
+              <TR>
+                <TD width="100%"><IMG height=374 
+                  src="Example-1_files/ajaxlogin4.gif" width=411 
+              border=0></TD></TR></TBODY></TABLE>
+            <P align=center><A 
+            href="http://www.roseindia.net/struts/struts2/struts2ajax/index.shtml"><IMG 
+            src="Example-1_files/previous.gif" 
+            border=0></A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            &nbsp;<A 
+            href="http://www.roseindia.net/struts/struts2/struts2ajax/index.shtml"><IMG 
+            src="Example-1_files/bt_home.gif" 
+            border=0></A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <A 
+            href="http://www.roseindia.net/struts/struts2/struts2ajax/ajax-login-cancel.shtml"><IMG 
+            src="Example-1_files/next.gif" 
+      border=0></A>&nbsp;</P></TD></TR></TBODY></TABLE></CENTER></DIV><!-- Bottom -->
+      <STYLE>.postedby {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 18px; BACKGROUND: url(images/abullet.gif) no-repeat 0px 4px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+H3.formtitle {
+	PADDING-BOTTOM: 8px; MARGIN: 0px; BORDER-BOTTOM: #ccc 1px dotted
+}
+.commentbody {
+	BORDER-TOP: #ccc 1px dotted
+}
+.submitcomment {
+	BORDER-RIGHT: #ccc 1px dotted; PADDING-RIGHT: 5px; BORDER-TOP: #ccc 1px dotted; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 20px 0px 0px; BORDER-LEFT: #ccc 1px dotted; PADDING-TOP: 5px; BORDER-BOTTOM: #ccc 1px dotted; BACKGROUND-COLOR: #f5f5f5
+}
+#submitcomment {
+	BORDER-RIGHT: #ccc 1px dotted; PADDING-RIGHT: 5px; BORDER-TOP: #ccc 1px dotted; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 20px 0px 0px; BORDER-LEFT: #ccc 1px dotted; PADDING-TOP: 5px; BORDER-BOTTOM: #ccc 1px dotted; BACKGROUND-COLOR: #f5f5f5
+}
+#currentcomments {
+	BORDER-RIGHT: #ccc 1px dotted; PADDING-RIGHT: 5px; BORDER-TOP: #ccc 1px dotted; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 20px 0px 0px; BORDER-LEFT: #ccc 1px dotted; PADDING-TOP: 5px; BORDER-BOTTOM: #ccc 1px dotted; BACKGROUND-COLOR: #f5f5f5
+}
+#rating {
+	BORDER-RIGHT: #ccc 1px dotted; PADDING-RIGHT: 5px; BORDER-TOP: #ccc 1px dotted; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 20px 0px 0px; BORDER-LEFT: #ccc 1px dotted; PADDING-TOP: 5px; BORDER-BOTTOM: #ccc 1px dotted; BACKGROUND-COLOR: #f5f5f5
+}
+.textad {
+	BORDER-RIGHT: #ccc 1px dotted; PADDING-RIGHT: 5px; BORDER-TOP: #ccc 1px dotted; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 20px 0px 0px; BORDER-LEFT: #ccc 1px dotted; PADDING-TOP: 5px; BORDER-BOTTOM: #ccc 1px dotted; BACKGROUND-COLOR: #f5f5f5
+}
+.form {
+	BORDER-RIGHT: #c6c6c6 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #c6c6c6 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 70%; PADDING-BOTTOM: 2px; BORDER-LEFT: #c6c6c6 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #c6c6c6 1px solid; BACKGROUND-COLOR: #fafafa
+}
+.formtext {
+	BORDER-RIGHT: #c6c6c6 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #c6c6c6 1px solid; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; BORDER-LEFT: #c6c6c6 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ccc 1px dotted; BACKGROUND-COLOR: #fafafa
+}
+.form:hover {
+	BACKGROUND: white
+}
+.formtext:hover {
+	BACKGROUND: white
+}
+.form:unknown {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BACKGROUND: white; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid
+}
+.formtext:unknown {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BACKGROUND: white; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid
+}
+.submit {
+	BORDER-RIGHT: #9a9a9a 1px solid; BORDER-TOP: #c6c6c6 1px solid; BORDER-LEFT: #c6c6c6 1px solid; BORDER-BOTTOM: #9a9a9a 1px solid; BACKGROUND-COLOR: #d3d3d3
+}
+.submit:hover {
+	BACKGROUND: #ededed
+}
+.submit:unknown {
+	BACKGROUND: #ededed
+}
+</STYLE>
+
+      <SCRIPT language=JavaScript src="Example-1_files/roseindia.js" 
+      type=text/javascript></SCRIPT>
+
+      <SCRIPT language=JavaScript type=text/javascript>
+var addtoMethod=1;
+var AddURL = document.location.href;
+var AddTitle = escape(document.title);
+</SCRIPT>
+
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=add2head colSpan=4 height=20><B>Add This Tutorial 
+          To:</B></TD></TR>
+        <TR bgColor=#ffffcc>
+          <TD vAlign=center height=20>&nbsp;<SPAN 
+            title="Add this page to Delicious" onclick=addto(2)><IMG height=16 
+            src="Example-1_files/AddTo_Delicious.gif" width=16 align=absMiddle 
+            border=0> <U>Del.icio.us</U></SPAN></TD>
+          <TD vAlign=center>&nbsp;<SPAN title="Add this page to Digg" 
+            onclick=addto(3)><IMG height=16 src="Example-1_files/AddTo_Digg.gif" 
+            width=16 align=absMiddle border=0> <U>Digg</U></SPAN></TD>
+          <TD vAlign=center>&nbsp;<SPAN title="Add this page to Google" 
+            onclick=addto(5)><IMG height=16 
+            src="Example-1_files/AddTo_Google.gif" width=16 align=absMiddle 
+            border=0> <U>Google</U></SPAN></TD>
+          <TD vAlign=center>&nbsp;<SPAN title="Add this page to Spurl" 
+            onclick=addto(8)><IMG height=16 
+            src="Example-1_files/AddTo_Spurl.gif" width=16 align=absMiddle 
+            border=0> <U>Spurl</U></SPAN></TD>
+          <TD vAlign=center height=20>&nbsp;<SPAN 
+            title="Add this page to Blink" onclick=addto(1)><IMG height=16 
+            src="Example-1_files/AddTo_Blink.gif" width=16 align=absMiddle 
+            border=0> <U>Blink</U></SPAN></TD>
+          <TD vAlign=center>&nbsp;<SPAN title="Add this page to Furl" 
+            onclick=addto(4)><IMG height=16 src="Example-1_files/AddTo_Furl.gif" 
+            width=16 align=absMiddle border=0> <U>Furl</U></SPAN></TD>
+          <TD vAlign=center>&nbsp;<SPAN title="Add this page to Simpy" 
+            onclick=addto(6)><IMG height=16 
+            src="Example-1_files/AddTo_Simpy.gif" width=16 align=absMiddle 
+            border=0> <U>Simpy</U></SPAN></TD>
+          <TD vAlign=center>&nbsp;<SPAN title="Add this page to Yahoo! MyWeb" 
+            onclick=addto(7)><IMG height=16 
+            src="Example-1_files/AddTo_Yahoo.gif" width=16 align=absMiddle 
+            border=0> <U>Y! MyWeb</U></SPAN>&nbsp;</TD></TR></TBODY></TABLE>
+      <DIV class=submitcomment id=currentcomments align=left>
+      <P align=center><B>Current Comments</B></P>3 comments so far (<A 
+      href="http://www.roseindia.net/struts/struts2/struts2ajax/ajax-login-form.shtml#post">post 
+      your own</A>) <A 
+      href="http://www.roseindia.net/tutorialhelp/allcomments/4902">View All 
+      Comments</A> Latest 10 Comments:
+      <DIV class=commentbody id=23493>
+      <P>Good Example I Like this example</P>
+      <P class=postedby>Posted by <A 
+      href="http://www.roseindia.net/struts/struts2/struts2ajax/ajax-login-form.shtml">Mahesha 
+      p</A> on Thursday, 08.16.07 @ 11:49am | #23493</P></DIV>
+      <DIV>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.roseindia.net/tutorialhelp/comment/23493">View This 
+      Comment Separately</A></DIV>
+      <DIV class=commentbody id=23443>
+      <P>Hi, can anyone tell me where can i find the strtus tag libraray for 
+      ajax used in the above sample. Is there any more ajax 
+      tlds?<BR><BR>Thanks.<BR>tfr.</P>
+      <P class=postedby>Posted by <A 
+      href="http://www.roseindia.net/struts/struts2/struts2ajax/ajax-login-form.shtml">tfr</A> 
+      on Wednesday, 08.15.07 @ 11:26am | #23443</P></DIV>
+      <DIV>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.roseindia.net/tutorialhelp/comment/23443">View This 
+      Comment Separately</A></DIV>
+      <DIV class=commentbody id=23154>
+      <P>javax.servlet.ServletException: Cannot find ActionMappings or 
+      ActionFormBeans 
+      collection<BR>org.apache.jasper.runtime.PageContextImpl.doHandlePageException(PageContextImpl.java:867)<BR>org.apache.jasper.runtime.PageContextImpl.handlePageException(PageContextImpl.java:800)<BR>org.apache.jsp.login_jsp._jspService(login_jsp.java:73)<BR>org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:133)<BR>javax.servlet.http.HttpServlet.service(HttpServlet.java:856)<BR>org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:311)<BR>org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:301)<BR>org.apache.jasper.servlet.JspServlet.service(JspServlet.java:248)<BR>javax.servlet.http.HttpServlet.service(HttpServlet.java:856)<BR><BR></P>
+      <P class=postedby>Posted by <A 
+      href="http://www.roseindia.net/struts/struts2/struts2ajax/ajax-login-form.shtml">javax.servlet.ServletException: 
+      Cannot find ActionMappings or ActionFormBeans collection</A> on Saturday, 
+      08.11.07 @ 10:47am | #23154</P></DIV>
+      <DIV>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.roseindia.net/tutorialhelp/comment/23154">View This 
+      Comment Separately</A></DIV></DIV>
+      <SCRIPT language=javascript>
+
+function form_Validator(form)
+{
+
+  if (form.name.value == "")
+  {
+    alert("Please enter your name.");
+    form.name.focus();
+	return (false);
+     }
+
+  if (form.title.value == "")
+  {
+    alert("Please enter title.");
+    form.title.focus();
+	return (false);
+  }
+
+
+
+
+  if (form.message.value == "")
+  {
+    alert("Please enter your message.");
+    form.message.focus();
+    return (false);
+  }
+  
+    if (form.validationid.value == "")
+  {
+    alert("Please enter validation code.");
+    form.validationid.focus();
+	return (false);
+     }
+
+  return (true);
+  }
+  //-->
+  </SCRIPT>
+      <A name=post>
+      <DIV class=submitcomment id=submitcomment>
+      <FORM name=submitcomment onsubmit=" return form_Validator(this)" 
+      action=/usercomments/submitcomment.php method=post>
+      <TABLE width="80%">
+        <TBODY>
+        <TR>
+          <TH colSpan=2>
+            <P align=center><B>Leave your comment:</B></P></TH></TR>
+        <TR>
+          <TH scope=row>
+            <P class=req>Name:</P></TH>
+          <TD><INPUT class=form id=name tabIndex=1 name=name></TD></TR>
+        <TR>
+          <TH scope=row>
+            <P class=opt>Email:</P></TH>
+          <TD><INPUT class=form id=email tabIndex=2 name=email></TD></TR>
+        <TR>
+          <TH scope=row>
+            <P class=opt>URL:</P></TH>
+          <TD><INPUT class=form id=url tabIndex=3 
+            value=http://www.roseindia.net/struts/struts2/struts2ajax/ajax-login-form.shtml 
+            name=url></TD></TR>
+        <TR>
+          <TH scope=row>
+            <P class=opt>Title:</P></TH>
+          <TD><INPUT class=form id=title tabIndex=4 maxLength=50 size=55 
+            name=title></TD></TR>
+        <TR vAlign=top>
+          <TH scope=row>
+            <P class=req>Comments:</P><BR></TH>
+          <TD><TEXTAREA class=formtext id=message tabIndex=5 name=message rows=10 cols=50></TEXTAREA></TD></TR>
+        <TR>
+          <TH scope=row>
+            <P class=opt>Enter Code:</P></TH>
+          <TD><INPUT class=form id=validationid tabIndex=6 
+            name=validationid><IFRAME border=0 
+            src="Example-1_files/CAMRGHMV.htm" width=150 scrolling=no 
+            height=29></IFRAME></TD></TR>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD><INPUT class=submit type=submit value="Submit Comment" name=post><BR>
+            <P>Note: Emails will not be visible or used in any way, and are not 
+            required. Please keep comments relevant. Any content deemed 
+            inappropriate or offensive may be edited and/or deleted. </P>
+            <P>No HTML code is allowed. Line breaks will be converted 
+            automatically. URLs will be auto-linked. Please use BBCode to format 
+            your text.</P></TD></TR></TBODY></TABLE><INPUT type=hidden name=tuturl> 
+      <INPUT type=hidden value=4902 name=tutid2> </FORM></DIV></A></TD>
+    <TD vAlign=top width=122>
+      <TABLE 
+      style="BORDER-RIGHT: #d4d5d6 1px solid; BORDER-TOP: #d4d5d6 1px solid; BORDER-LEFT: #d4d5d6 1px solid; BORDER-BOTTOM: #d4d5d6 1px solid" 
+      cellSpacing=0 cellPadding=4 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=left bgColor=#d4d5d7><B><FONT 
+            color=#000080>Useful Links</FONT></B> </TD></TR>
+        <TR>
+          <TD vAlign=top align=left><FONT size=2>&nbsp;&nbsp;<A 
+            style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+            href="http://www.roseindia.net/jdotutorials">JDO 
+            Tutorials</A><BR>&nbsp;&nbsp;<A 
+            style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+            href="http://www.roseindia.net/eai">EAI 
+            Articles</A><BR>&nbsp;&nbsp;<A 
+            style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+            href="http://www.roseindia.net/struts/index.shtml">Struts 
+            Tutorials</A><BR>&nbsp;&nbsp;<A 
+            style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+            href="http://www.roseindia.net/java">Java 
+            Tutorials</A><BR>&nbsp;&nbsp;<A 
+            style="FONT-SIZE: 8pt; COLOR: #000080; FONT-FAMILY: Arial" 
+            href="http://www.roseindia.net/javacertification/">Java 
+            Certification</A> </FONT></TD></TR>
+        <TR>
+          <TD width="100%">
+            <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-0714075272818912";
+google_ad_width = 120;
+google_ad_height = 600;
+google_ad_format = "120x600_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "000080";
+google_color_text = "000080";
+google_color_url = "000080";
+//--></SCRIPT>
+
+            <SCRIPT src="Example-1_files/show_ads.js" 
+            type=text/javascript>
+</SCRIPT>
+          </TD></TR>
+        <TR>
+          <TD vAlign=top align=middle><!-- SiteSearch Google -->
+            <FORM action=http://www.google.com/custom method=get 
+            target=google_window>
+            <TABLE bgColor=#ffffff border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top noWrap align=left height=32><BR><INPUT 
+                  type=hidden value=www.roseindia.net name=domains></INPUT> 
+                  <LABEL style="DISPLAY: none" for=sbi>Enter your search 
+                  terms</LABEL> <INPUT id=sbi maxLength=255 size=15 
+                  name=q></INPUT> </TD></TR>
+              <TR>
+                <TD noWrap>
+                  <TABLE>
+                    <TBODY>
+                    <TR>
+                      <TD><INPUT id=ss0 type=radio value="" 
+                        name=sitesearch></INPUT> <LABEL title="Search the Web" 
+                        for=ss0><FONT color=#000000 
+size=-1>Web</FONT></LABEL></TD>
+                      <TD><INPUT id=ss1 type=radio CHECKED 
+                        value=www.roseindia.net name=sitesearch></INPUT> <LABEL 
+                        title="Search www.roseindia.net" for=ss1><FONT 
+                        color=#000000 
+                    size=-1>www.roseindia.net</FONT></LABEL></TD></TR></TBODY></TABLE><LABEL 
+                  style="DISPLAY: none" for=sbb>Submit search form</LABEL> <INPUT id=sbb type=submit value="Google Search" name=sa></INPUT> 
+                  <INPUT type=hidden value=pub-0714075272818912 
+                  name=client></INPUT> <INPUT type=hidden value=1 
+                  name=forid></INPUT> <INPUT type=hidden value=ISO-8859-1 
+                  name=ie></INPUT> <INPUT type=hidden value=ISO-8859-1 
+                  name=oe></INPUT> <INPUT type=hidden 
+                  value=GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;LH:26;LW:100;L:http://www.roseindia.net/images/logoroseindiasmall.gif;S:http://;FORID:1 
+                  name=cof></INPUT> <INPUT type=hidden value=en name=hl></INPUT> 
+                </TD></TR></TBODY></TABLE></FORM><!-- SiteSearch Google --></TD></TR>
+        <TR>
+          <TD vAlign=top align=middle>
+            <SCRIPT language=javascript>
+function validateName(objForm){
+
+   if(objForm.name.value.length==0)
+   {
+     alert("Please Enter your Friend Name!");
+	 objForm.name.focus();
+	 return false;
+   }
+
+   return true;
+}
+
+</SCRIPT>
+
+            <FORM onsubmit="return validateName(this)" 
+            action=/sendlink/mailForm.php method=post>
+            <CENTER>
+            <TABLE border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle colSpan=2><B><FONT color=#000080>Tell A 
+                  Friend</FONT></B></TD></TR>
+              <TR>
+                <TD align=middle><FONT color=#000080>Your Friend 
+              Name</FONT></TD></TR>
+              <TR>
+                <TD><INPUT size=17 name=name></TD></TR>
+              <TR>
+                <TD align=middle colSpan=2><INPUT type=submit value="  OK  " name=btnOK></TD></TR></TBODY></TABLE></CENTER></FORM></TD></TR>
+        <TR>
+          <TD align=middle>
+            <FORM action=http://roseindia.net/info/advancesearch/results.jsp 
+            method=get><FONT 
+            style="FONT-SIZE: 11pt; COLOR: #000080; FONT-FAMILY: Arial"><B>Search 
+            Tutorials</B><BR></FONT><INPUT type=hidden value=search name=todo> 
+            <INPUT size=10 value="Java Tutorial" name=query><INPUT type=hidden 
+            size=4 value=20 name=maxresults><INPUT type=submit value=GO name=Submit> 
+        </FORM></TD></TR>
+        <TR>
+          <TD align=middle height=80><A 
+            href="http://www.roseindia.net/solution/index.shtml"><IMG height=60 
+            src="Example-1_files/haveproject.gif" width=120 border=0></A> </TD></TR>
+        <TR>
+          <TD align=middle height=200><A 
+            href="http://www.roseindia.net/linux/distributions/alllinuxdistributions.shtml"><IMG 
+            src="Example-1_files/alllinux.gif" border=0></A> </TD></TR>
+        <TR>
+          <TD align=middle>
+            <SCRIPT type=text/javascript><!--
+						google_ad_client = "pub-0714075272818912";
+						google_ad_width = 120;
+						google_ad_height = 600;
+						google_ad_format = "120x600_as";
+						google_cpa_choice = "CAEaCNXjUImIBItJUC9QBFAFUANQB1AIUC1QtwNQNFBD";
+						google_ad_channel = "";
+						google_color_border = "FFFFFF";
+						google_color_bg = "FFFFFF";
+						google_color_link = "000080";
+						google_color_text = "000080";
+						google_color_url = "000080";
+						//-->
+						</SCRIPT>
+
+            <SCRIPT src="Example-1_files/show_ads.js" type=text/javascript>
+						</SCRIPT>
+          </TD></TR></TBODY></TABLE><BR>&nbsp;<BR><BR>&nbsp;<BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle width="100%">
+      <SCRIPT type=text/javascript><!--
+			google_ad_client = "pub-0714075272818912";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			google_ad_format = "728x90_as";
+			google_ad_type = "text_image";
+			google_ad_channel ="";
+			google_color_border = "FFFFFF";
+			google_color_bg = "FFFFFF";
+			google_color_link = "FF0000";
+			google_color_url = "0000FF";
+			google_color_text = "FF0000";
+			//--></SCRIPT>
+
+      <SCRIPT src="Example-1_files/show_ads.js" 
+      type=text/javascript>
+			</SCRIPT>
+    </TD></TR>
+  <TR>
+    <TD align=middle width="100%">
+      <SCRIPT type=text/javascript><!--
+						google_ad_client = "pub-0714075272818912";
+						google_ad_width = 468;
+						google_ad_height = 60;
+						google_ad_format = "468x60_as";
+						google_cpa_choice = "CAEaCAhSbuWEpbizUENQBVADUAdQR1AIUC1QDFC3A1CdAg";
+						google_ad_channel = "";
+						google_color_border = "FFFFFF";
+						google_color_bg = "FFFFFF";
+						google_color_link = "000080";
+						google_color_text = "000080";
+						google_color_url = "000080";
+						//-->
+						</SCRIPT>
+
+      <SCRIPT src="Example-1_files/show_ads.js" 
+      type=text/javascript>
+						</SCRIPT>
+    </TD></TR>
+  <TR>
+    <TD align=middle><A name=book>&nbsp;</A> </TD></TR>
+  <TR>
+    <TD align=middle width="100%" colSpan=3>
+      <P align=center><FONT face=arial size=1><A 
+      style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/">Home</A> | <A 
+      style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/jsp/jsp.shtml">JSP</A> | <A 
+      style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/javabeans/javabeans.shtml">EJB</A> | <A 
+      style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/jdbc/jdbc.shtml">JDBC</A> | <A 
+      style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/servlets/servlets.htm">Java Servlets</A> | 
+      <A style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/wap/index.htm">WAP</A>&nbsp; | <A 
+      style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/freehosting/freejsphosting.htm">Free JSP 
+      Hosting</A>&nbsp; | <A style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/sourcecode/searchengine/index.htm">Search 
+      Engine</A> | <A style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/newsletter/">News Archive</A> | <A 
+      style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/jboss/index.htm">Jboss 3.0 tutorial</A> | 
+      <A style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/linux/">Free Linux CD's</A> | <A 
+      style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/forum/">Forum</A> </FONT></P>
+      <P align=center><FONT face=arial size=1><A 
+      style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/businesssolutions/aboutroseindia.shtml">About 
+      Us</A> | <A style="FONT-SIZE: 8pt; FONT-FAMILY: Arial" 
+      href="http://www.roseindia.net/advertisewithus/advertisewithroseindia.shtml">Advertising 
+      On RoseIndia.net</A> </P></FONT></TD></TR></TBODY></TABLE></TD></TR><TR><TD 
+width="100%" align="middle">
+<DIV align=center>
+<TABLE cellSpacing=1 cellPadding=0 width="50%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="25%"><A href="http://www.javajazzup.com/"><IMG height=52 
+      src="Example-1_files/java_jazzup.gif" width=91 border=0></A></TD>
+    <TD width="25%"><A href="http://www.roseindia.net/listjobs/"><IMG 
+      height=52 src="Example-1_files/latest-job.gif" width=91 border=0></A></TD>
+    <TD width="25%"><A href="http://www.allcooljobs.com/"><IMG height=52 
+      src="Example-1_files/allcooljobsbanner.gif" width=91 border=0></A></TD>
+    <TD width="25%"><A href="http://www.allcoolloans.com/"><IMG height=52 
+      src="Example-1_files/loansbanner.gif" width=91 border=0></A></TD>
+    <TD width="25%"><A href="http://www.newstrackindia.com/"><IMG height=52 
+      src="Example-1_files/newstrackindiabanner.gif" width=91 border=0></A></TD>
+    <TD width="25%"><A href="http://www.onlinefreetrading.com/"><IMG height=52 
+      src="Example-1_files/freetradingbanner.gif" width=91 
+  border=0></A></TD></TR></TBODY></TABLE></DIV></TD></TR><TR><TD width="100%" 
+align="middle">
+<P align=center><FONT color=#000080>Send your comments, Suggestions or Queries 
+regarding this site at <A 
+href="mailto:roseindia_net@yahoo.com">mailto:roseindia_net@yahoo.com</A></FONT></P></TD></TR><TR><TD 
+width="100%" align="middle">
+<P align=center><FONT color=#000080>Copyright © 2007. All rights 
+reserved.</FONT></P></TD></TR><TR><TD width="100%" 
+align="middle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD> 
+</TR></TBODY></TABLE>
+<SCRIPT src="Example-1_files/urchin.js" type=text/javascript>
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+_uacct = "UA-287488-1";
+urchinTracker();
+</SCRIPT>
+<IFRAME src="Example-1_files/CA81NDKJ.htm" width=0 height=0>
+</IFRAME><!-- Bottom --></BODY></HTML>

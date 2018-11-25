@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+<html>
+  <head>
+    <title>AjaxTags - AjaxTags: Advanced Usage</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Darren L. Spurgeon
+Jens Kapitza" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="" id="bannerLeft">
+    
+            AjaxTags
+    
+            </a>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+            <div class="xleft">
+        Last Published: 06/21/2007
+                      </div>
+            <div class="xright">      <a href="">site under construction</a>
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+                   <h5>Overview</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="index.html">Home</a>
+        </li>
+              
+    <li class="none">
+              <a href="quickstart.html">Quick Start</a>
+        </li>
+              
+    <li class="none">
+              <a href="screenshots.html">Screenshots</a>
+        </li>
+              
+    <li class="none">
+              <a href="faq.html">FAQ</a>
+        </li>
+              
+    <li class="none">
+              <a href="ajaxlinks.html">Ajax Links & Resources</a>
+        </li>
+          </ul>
+          <h5>Reference</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="install.html">Installation</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_0-1_1.html">Migrating to 1.1</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_1-1_2.html">Migrating to 1.2</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_2-1_3.html">Migrating to 1.3</a>
+        </li>
+              
+    <li class="none">
+              <a href="usage.html">Tag Reference</a>
+        </li>
+              
+    <li class="none">
+              <strong>Advanced Usage</strong>
+        </li>
+          </ul>
+          <h5>Support</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/projects/ajaxtags/">SourceForge Project Page</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/forum/forum.php?forum_id=471271">Forums</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/tracker/?group_id=140499">Issue Tracking</a>
+        </li>
+          </ul>
+          <h5>Downloads</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Binaries</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Source</a>
+        </li>
+              
+    <li class="none">
+              <a href="release-notes.txt">Release Notes</a>
+        </li>
+          </ul>
+          <h5>Project Documentation</h5>
+        <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+              <a href="project-info.html">Project Information</a>
+              </li>
+          </ul>
+                                             
+                        
+                        
+            <a href="http://www.sourceforge.net/" title="sourceforge.net" id="poweredBy">
+                            <img alt="sourceforge.net" src="http://sflogo.sourceforge.net/sflogo.php?group_id=140499&type=1" />
+            </a>
+                                
+                        
+                        
+            <a href="http://maven.apache.org/" title="http://maven.apache.org/" id="poweredBy">
+                            <img alt="http://maven.apache.org/" src="./images/logos/maven-feather.png" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Advanced Techniques</h2><div class="section"><h3>Chaining</h3><p>Multiple fields can be hooked together in a way that implies dependencies between fields. The most common use case is when using multiple select or dropdown fields. For example, let's say we want to have the user select a make, model, and year of car. The form may look like this:</p><div class="source"><pre>&lt;form&gt;
+  Make:
+  &lt;select id=&quot;make&quot; name=&quot;make&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Select make&lt;/option&gt;
+    &lt;c:forEach items=&quot;${makes}&quot; var=&quot;make&quot;&gt;
+      &lt;option value=&quot;${make}&quot;&gt;${make}&lt;/option&gt;
+    &lt;/c:forEach&gt;
+  &lt;/select&gt;
+
+  Model:
+  &lt;select id=&quot;model&quot; name=&quot;model&quot; disabled=&quot;true&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Select make&lt;/option&gt;
+  &lt;/select&gt;
+
+  Year:
+  &lt;select id=&quot;year&quot; name=&quot;year&quot; disabled=&quot;true&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Select model&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/form&gt;</pre></div><p>In this case, we're not defining any values for model or year because we'll have our AJAX component populate them when the user selects a make and model, respectively.</p><p>Now, we need to define two ajax:select tags. The first will link the make and model fields. The second will link the model and year fields.</p><div class="source"><pre>&lt;ajax:select
+  fieldId=&quot;make&quot;
+  targetId=&quot;model&quot;
+  baseUrl=&quot;${pageContext.request.contextPath}/GetCarModel.view&quot;
+  paramName=&quot;make&quot;
+  postFunc=&quot;doOtherThings&quot;/&gt;
+
+&lt;ajax:select
+  fieldId=&quot;model&quot;
+  targetId=&quot;year&quot;
+  baseUrl=&quot;${pageContext.request.contextPath}/GetCarYear.view&quot;
+  paramName=&quot;model&quot;
+  postFunc=&quot;doOtherThings&quot;/&gt;</pre></div></div><div class="section"><h3>Pre- and Post-Functions</h3><p>Let's face it, every framework has limitations. So, in order to provide you with some way to incorporate your existing JavaScript with these tags, the concept of pre- and post-functions was developed. A pre-function is a JavaScript function that is called <i>before</i> the XMLHttpRequest (i.e., to your backend action servlet) is executed. A post-function is, naturally, one called <i>after</i> the XMLHttpRequest (and AJAX tag's base function) is completed. So, for those of you only reading bullets:</p><ul><li><b>Pre-Function:</b> JavaScript executed <i>before</i> AJAX executes.</li><li><b>Post-Function:</b> JavaScript executed <i>after</i> AJAX tag's base function completes.</li></ul><p>Let's say we're using the ajax:select tag to help populate a list of automobile model names when the user selects an automobile make. This is the same example used in the demo application. However, we want to take it a step further and display an image of the auto maker's logo when that first selection is made.</p><p>For instance, if the user selects &quot;Ford&quot; from the list of makes, we not only populate the second dropdown field with names of Ford models but we also get that classic Ford emblem displayed on the page. This second action merely requires a bit of JavaScript to replace a blank placeholder image with that of the auto maker's. Because we AJAX JSP Tag authors didn't anticipate such fantastic uses for web interfaces, we provided the means to attach a post-function to the AJAX tags so that you more creative developers could tackle these harsh, real-world problems. Observe...</p><div class="source"><pre>&lt;div&gt;
+  &lt;img id=&quot;makerEmblem&quot; src=&quot;images/placeholder.gif&quot; width=&quot;76&quot; height=&quot;29&quot; /&gt;
+&lt;/div&gt;
+
+&lt;form name=&quot;carForm&quot;&gt;
+  &lt;label&gt;Make:&lt;/label&gt;
+  &lt;select id=&quot;make&quot; name=&quot;make&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Select make&lt;/option&gt;
+    &lt;c:forEach items=&quot;${makes}&quot; var=&quot;make&quot;&gt;
+      &lt;option value=&quot;${make}&quot;&gt;${make}&lt;/option&gt;
+    &lt;/c:forEach&gt;
+  &lt;/select&gt;
+
+  &lt;label&gt;Model&lt;/label&gt;
+  &lt;select id=&quot;model&quot; name=&quot;model&quot; disabled=&quot;true&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Select make&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/form&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+function showMakerEmblem() {
+  var index = document.forms[&quot;carForm&quot;].make.selectedIndex;
+  if (index &gt; 0) {
+    var automaker = document.forms[&quot;carForm&quot;].make.options[index].text;
+    var imgTag = document.getElementById(&quot;makerEmblem&quot;);
+    imgTag.src = &quot;images/&quot; + automaker.toLowerCase() + &quot;_logo.gif&quot;;
+  }
+}
+&lt;/script&gt;
+
+&lt;ajax:select
+  fieldId=&quot;make&quot;
+  targetId=&quot;model&quot;
+  baseUrl=&quot;${contextPath}/GetCarModel.view&quot;
+  paramName=&quot;make&quot;
+  postFunc=&quot;showMakerEmblem&quot;/&gt;</pre></div></div><div class="section"><h3>Helper Classes</h3><div class="section"><h4>org.ajaxtags.helpers.AjaxXmlBuilder</h4><p>The AjaxXmlBuilder class will help you construct a valid, well-formed XML string to pass back to the client. You can either add items selectively or add an entire collections.</p><div class="section"><h5>Passing a Collection</h5><div class="source"><pre>// Get maker from your service bean
+CarService service = new CarService();
+List list = service.getModelsByMake(make);
+
+return new AjaxXmlBuilder().addItems(list, &quot;model&quot;, &quot;make&quot;).toString();</pre></div><p>...returns...</p><div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;ajax-response&gt;
+  &lt;response&gt;
+    &lt;item&gt;
+      &lt;name&gt;Expedition&lt;/name&gt;
+      &lt;value&gt;Ford&lt;/value&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;name&gt;Focus&lt;/name&gt;
+      &lt;value&gt;Ford&lt;/value&gt;
+    &lt;/item&gt;
+    ...
+  &lt;/response&gt;
+&lt;/ajax-response&gt;</pre></div></div><div class="section"><h5>Adding Individual Items</h5><div class="source"><pre>// Get maker from your service bean
+CarService service = new CarService();
+List list = service.getModelsByMake(make);
+
+AjaxXmlBuilder builder = new AjaxXmlBuilder();
+for (Iterator iter = list.iterator(); iter.hasNext();) {
+  Car car = (Car) iter.next();
+  builder.addItem(car.getModel(), car.getMake());
+}
+
+return builder.toString();</pre></div><p>...returns the same as in the collections example above.</p></div></div></div><div class="section"><h3>BaseAjaxServlet and BaseAjaxAction</h3><div class="section"><h4>org.ajaxtags.servlets.BaseAjaxServlet</h4><p>AJAX functions require a backend resource to handle and respond to requests. We've created an abstract class to help you with that task. Simply extend the BaseAjaxServlet and implement the <tt>getXmlContent(HttpServletRequest, HttpServletResponse)</tt> method.</p></div><div class="section"><h4>org.ajaxtags.servlets.BaseAjaxAction</h4><p>This is very similar to the BaseAjaxServlet, providing a Struts-based implementation.</p></div></div><div class="section"><h3>Cascading StyleSheets</h3><p>While most of the features in AjaxTags comes from JavaScript, there is a heavy reliance on CSS for the visual parts. This is both a blessing and curse. On the one hand, you have a great range of flexibility to create your own visual appearance for the tags. However, if you forget to set up the CSS (either with your own definitions or via our handy sample ones), you may get quite an unexpected look.</p><p>We don't claim to be CSS experts. <b>If *you* happen to be a CSS guru, we'd love to have you join the project!</b> Anyway, it should be easy enough to start with the sample CSS that's included in both the distribution and demo application. We would like to provide more examples or skins, so please submit them and we'll consider adding them to the samples.</p></div><div class="section"><h3>Custom Response Parsers</h3><p>One of the latest additions to the AjaxTags is the delegation of response parsing to separate JavaScript functions. What this means to you is that you have the ability of write your own parser to suit the needs of any formatted response you decide to send from the backend. We provide several default ones for you.</p><div class="section"><h4>Generic Structure</h4><p>Your parser should extend the AbstractResponseParser (JavaScript) class. You can do this using the Protoype framework's Object.extend method as shown in the example below.</p><div class="source"><pre>ResponseTextParser = Class.create();
+ResponseTextParser.prototype = Object.extend(new AbstractResponseParser(), {
+});</pre></div><p>You must implement at least two methods: initialize and load. Think of the initialize method as a pseudo-constructor. The load method is called by each AjaxTag to perform the parsing of the response. It takes the XMLHttpRequest object as the only parameter.</p><div class="source"><pre>ResponseTextParser = Class.create();
+ResponseTextParser.prototype = Object.extend(new AbstractResponseParser(), {
+  initialize: function() {
+  },
+
+  load: function(request) {
+  }
+});</pre></div><p>In the default parsers, the intialize function only serves to set a type property to a meaningful descriptor for the parser. For example:</p><div class="source"><pre>ResponseTextParser = Class.create();
+ResponseTextParser.prototype = Object.extend(new AbstractResponseParser(), {
+  initialize: function() {
+    this.type = &quot;text&quot;;
+  },
+
+  load: function(request) {
+  }
+});</pre></div><p>The load method pulls the response content and parses it. In the case of the ResponseTextParser shown below, we call a separate function called split to parse the comma-delimited text response.</p><div class="source"><pre>ResponseTextParser = Class.create();
+ResponseTextParser.prototype = Object.extend(new AbstractResponseParser(), {
+  initialize: function() {
+    this.type = &quot;text&quot;;
+  },
+
+  load: function(request) {
+    this.content = request.responseText;
+    this.split();
+  },
+
+  split: function() {
+    this.itemList = new Array();
+    var lines = this.content.split('\n');
+    for (var i=0; i&lt;lines.length; i++) {
+      this.itemList.push(lines[i].split(','));
+    }
+  }
+});</pre></div><p>In the JSP itself, you simply define the parser you want to use. Of course, you must (1) write that custom parser and include the JavaScript code in your page, and (2) ensure that you send back the appropriate response format you expect to the page.</p><div class="source"><pre>&lt;ajax:updateField
+  baseUrl=&quot;${contextPath}/formupdate.view&quot;
+  source=&quot;mph&quot;
+  target=&quot;kph,mps&quot;
+  action=&quot;action&quot;
+  parameters=&quot;mph={mph}&quot;
+  parser=&quot;new ResponseTextParser()&quot; /&gt;</pre></div></div></div></div>
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2005-2007
+    
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

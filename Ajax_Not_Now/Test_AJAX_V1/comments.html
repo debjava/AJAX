@@ -1,0 +1,122 @@
+<html>
+<head>
+	<title> Simple AJAX Example </title>
+<script>
+
+	function Ajax_query() 
+	{
+		 var subject = document.getElementById("subject").value;
+		 var message = document.getElementById("content").value;
+		 var div = document.getElementById("processing");
+		 div.className="disp";
+		 var url="PostMessage.do?subject="+subject+"&messsage="+message;
+		 if(url !="")
+			 {
+				if(window.XMLHttpRequest)
+					{
+					// Non-IE browsers                
+					req =new XMLHttpRequest();
+					req.onreadystatechange = processMessage;
+					try 
+					{
+						req.open("GET", url, true);
+					}
+					catch (e)
+					{
+
+					}
+					 req.send(null);
+					}          
+				elseif(window.ActiveXObject)
+				{
+					// IE
+					req =new ActiveXObject("Microsoft.XMLHTTP");
+					if(req)
+					{
+						req.onreadystatechange = processMessage;
+						req.open("POST", url, true);
+						req.send(null);
+					}
+				}
+			}
+		}
+			
+	function processMessage()
+	{
+		if(req.readyState ==4)
+		{// Complete
+			if(req.status ==200)
+				{// OK response
+					document.getElementById("returnMessage").innerHTML=req.responseText;
+					document.getElementById("subject").value ="";
+					document.getElementById("content").value =""; 
+				}
+		}  
+	}
+
+
+	</script>
+
+</head>
+
+	<body>
+	<table width="60%"  border="0" cellspacing="3" cellpadding="0"class="tab-page">
+		<tr>
+			<td colspan="5"> </td>
+		</tr>
+		<tr>
+			<td colspan="2" valign="top" class="blue_medium">Subject</td>
+			<td colspan="2" class="blue_small">
+				<input name="subject" type="text" id="subject">
+			</td>
+			<td></td>
+			
+		</tr>
+		<tr>
+			<td colspan="2" valign="top" class="blue_medium">Content</td>
+			<td colspan="2" valign="top" class="blue_small">
+				<p>
+				<textarea name="content" cols="40" rows="7" id="content"></textarea>
+				</p>
+			</td>
+			<td width="1%">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+	
+			<td> </td> 
+			<td colspan="2" class="blue_small">Max 500 Charactes only </td>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td width="4%">
+			</td>
+			<td width="13%">
+			</td>
+			<td colspan="2">
+			</td>
+			<td> 
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			
+			<td></td>
+	
+			<td width="30%">
+				<input name="Submit2" type="button" onClick="Ajax_query();" value="Submit">
+			</td>
+			<td width="52%">
+				<input name="Submit22" type="reset" value="Reset">
+			</td>
+			<td></td>
+			
+		</tr>
+	</table>
+	<div id="returnMessage">
+	</div>
+	</body>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+<html>
+  <head>
+    <title>AjaxTags - AjaxTags: Installation</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Darren L. Spurgeon" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="" id="bannerLeft">
+    
+            AjaxTags
+    
+            </a>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+            <div class="xleft">
+        Last Published: 06/21/2007
+                      </div>
+            <div class="xright">      <a href="">site under construction</a>
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+                   <h5>Overview</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="index.html">Home</a>
+        </li>
+              
+    <li class="none">
+              <a href="quickstart.html">Quick Start</a>
+        </li>
+              
+    <li class="none">
+              <a href="screenshots.html">Screenshots</a>
+        </li>
+              
+    <li class="none">
+              <a href="faq.html">FAQ</a>
+        </li>
+              
+    <li class="none">
+              <a href="ajaxlinks.html">Ajax Links & Resources</a>
+        </li>
+          </ul>
+          <h5>Reference</h5>
+        <ul>
+              
+    <li class="none">
+              <strong>Installation</strong>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_0-1_1.html">Migrating to 1.1</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_1-1_2.html">Migrating to 1.2</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_2-1_3.html">Migrating to 1.3</a>
+        </li>
+              
+    <li class="none">
+              <a href="usage.html">Tag Reference</a>
+        </li>
+              
+    <li class="none">
+              <a href="advanced.html">Advanced Usage</a>
+        </li>
+          </ul>
+          <h5>Support</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/projects/ajaxtags/">SourceForge Project Page</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/forum/forum.php?forum_id=471271">Forums</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/tracker/?group_id=140499">Issue Tracking</a>
+        </li>
+          </ul>
+          <h5>Downloads</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Binaries</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Source</a>
+        </li>
+              
+    <li class="none">
+              <a href="release-notes.txt">Release Notes</a>
+        </li>
+          </ul>
+          <h5>Project Documentation</h5>
+        <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+              <a href="project-info.html">Project Information</a>
+              </li>
+          </ul>
+                                             
+                        
+                        
+            <a href="http://www.sourceforge.net/" title="sourceforge.net" id="poweredBy">
+                            <img alt="sourceforge.net" src="http://sflogo.sourceforge.net/sflogo.php?group_id=140499&type=1" />
+            </a>
+                                
+                        
+                        
+            <a href="http://maven.apache.org/" title="http://maven.apache.org/" id="poweredBy">
+                            <img alt="http://maven.apache.org/" src="./images/logos/maven-feather.png" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Installation</h2><div class="section"><h3>Requirements</h3><p>To use the tag library, you'll need the following:</p><ul><li>JDK 1.5+</li><li>Servlet container running Servlets 2.3+ and JSP 1.0+ (Note: sample application requires Servlet 2.4 and JSP 2.0)</li><li>Copy of the <a href="http://prototype.conio.net/">Prototype framework</a>. Currently, we depend upon version 1.5.0.</li><li>Copy of the <a href="http://script.aculo.us/">Scriptaculous library</a>. Currently, we depend upon version 1.7.0.</li><li>Copy of the <a href="http://www.macridesweb.com/oltest/">OverLIBMWS library</a>.</li></ul><p>If you intend to build from the source, you'll need the following:</p><ul><li>Maven 2</li><li><a href="dependencies.html">source dependencies</a></li></ul></div><div class="section"><h3>Installation and Set Up</h3><div class="section"><h4>Step 1: Copy AjaxTags jar file</h4><p>Copy the <tt>ajaxtags-1.3.jar</tt> into your <tt>WEB-INF/lib</tt> directory. </p></div><div class="section"><h4>Step 2: Define TLD Reference</h4><p><b>Note: This step is not necessary for Servlet 2.4 containers.</b></p><p>For JSP 1.x users, copy the <tt>ajaxtags.tld</tt> file to your <tt>WEB-INF</tt> directory and include a taglib reference in your <tt>web.xml</tt> file. ajaxtags.tld is located inside the META-INF folder in ajaxtags-1.3.jar</p><div class="source"><pre>&lt;taglib&gt;
+  &lt;uri&gt;http://ajaxtags.org/tags/ajax&lt;/uri&gt;
+  &lt;location&gt;/WEB-INF/ajaxtags.tld&lt;/location&gt;
+&lt;/taglib&gt;</pre></div></div><div class="section"><h4>Step 3: Create Server-side Handler</h4><p>There must be a server-side handler that will process the AJAX request. This could be a servlet, Struts action, another JSP, or even a non-Java, server-side component. The only requirement of this component is that it return an XML file that represents a list of results based on the query passed to it from the client-side AJAX functions.</p><p>There is a helper class to assist in building the XML if you don't want to do it by hand...see the <a href="advanced.html">Advanced Usage section</a> for more information.</p><p><b>XML Format</b></p><div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;ajax-response&gt;
+  &lt;response&gt;
+    &lt;item&gt;
+      &lt;name&gt;Record 1&lt;/name&gt;
+      &lt;value&gt;1&lt;/value&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;name&gt;Record 2&lt;/name&gt;
+      &lt;value&gt;2&lt;/value&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;name&gt;Record 3&lt;/name&gt;
+      &lt;value&gt;3&lt;/value&gt;
+    &lt;/item&gt;
+  &lt;/response&gt;
+&lt;/ajax-response&gt;</pre></div></div><div class="section"><h4>Step 4: Declare TLD Reference on JSP</h4><p>For each JSP in which you wish to use the AJAX tag, simply define it as with any other tag library.</p><div class="source"><pre>&lt;%@ taglib uri=&quot;http://ajaxtags.org/tags/ajax&quot; prefix=&quot;ajax&quot; %&gt;</pre></div></div><div class="section"><h4>Step 5: Include JavaScript Core</h4><p>With AJAX, you'll need JavaScript. Fortunately, everything you'll need is contained in two files. The first is <tt>ajaxtags-1.2.js</tt> file, while the second is the <tt>prototype-1.3.1.js</tt> file, on which the AJAX tags depend. Just include them in your project and declare the location using the following as an example. It's best to include this in the head. <b>Note: you MUST include the prototype.js file BEFORE the ajaxtags.js file.</b></p><p>Incidentally, the reason why a (bulky) JavaScript source file was chosen versus having each JSP tag generate only what it needs is because it's assumed that most browsers cache external resources like stylesheets, images, and JavaScript files. This should increase performance slightly. Besides, this core JavaScript is generic enough to use for other purposes that the tag library does not yet provide.</p><div class="source"><pre>  &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%=request.getContextPath()%&gt;/js/prototype.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%=request.getContextPath()%&gt;/js/scriptaculous/scriptaculous.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%=request.getContextPath()%&gt;/js/overlibmws/overlibmws.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%=request.getContextPath()%&gt;/js/overlibmws/overlibmws_crossframe.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%=request.getContextPath()%&gt;/js/overlibmws/overlibmws_iframe.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%=request.getContextPath()%&gt;/js/overlibmws/overlibmws_hide.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%=request.getContextPath()%&gt;/js/overlibmws/overlibmws_shadow.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%=request.getContextPath()%&gt;/js/ajax/ajaxtags.js&quot;&gt;&lt;/script&gt;</pre></div></div><div class="section"><h4>Step 6: Define CSS Styles</h4><p>Many tags rely heavily on CSS to help visually represent their function. For example, in the case of the <i>code</i>ajax:autocomplete<i>/code</i> tag, CSS transforms a simple unordered list (i.e., <tt>UL &gt; LI</tt> tags) into a dropdown list.</p><p>While the content is fairly constrained, it is basically up to the user to define the exact CSS s/he would like to use. The example application provides a fairly good starting point (if we do say so ourselves). A sample file is also included in the main project's distribution. Still, you CSS gurus will likely find more visually pleasing routes to success.</p><div class="source"><pre>  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&lt;%=request.getContextPath()%&gt;/css/ajaxtags.css&quot; /&gt;
+  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&lt;%=request.getContextPath()%&gt;/css/displaytag.css&quot; /&gt;</pre></div></div></div><div class="section"><h3>Next: Usage</h3><p>Once everything is set up, all that's left is to pick you tag. See <a href="usage.html">how they're used</a>.</p></div></div>
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2005-2007
+    
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

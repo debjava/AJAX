@@ -1,0 +1,9 @@
+<action path="/getAjaxWorkOrderAction"
+name="InVoiceDetailsForm"
+type="com.timesheet.action.GetWorkOrderValueOfProjectAction"
+input= "invoicedetailsnew.jsp"
+scope="request"
+validate="false">
+<forward name= "success" path= "/invoice.jsp" />
+<forward name= "failed" path= "/invoicedetailsnew.jsp" />
+</action>

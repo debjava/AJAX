@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+<html>
+  <head>
+    <title>AjaxTags - AjaxTags: Usage</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Darren L. Spurgeon" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="" id="bannerLeft">
+    
+            AjaxTags
+    
+            </a>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+            <div class="xleft">
+        Last Published: 06/21/2007
+                      </div>
+            <div class="xright">      <a href="">site under construction</a>
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+                   <h5>Overview</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="index.html">Home</a>
+        </li>
+              
+    <li class="none">
+              <a href="quickstart.html">Quick Start</a>
+        </li>
+              
+    <li class="none">
+              <a href="screenshots.html">Screenshots</a>
+        </li>
+              
+    <li class="none">
+              <a href="faq.html">FAQ</a>
+        </li>
+              
+    <li class="none">
+              <a href="ajaxlinks.html">Ajax Links & Resources</a>
+        </li>
+          </ul>
+          <h5>Reference</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="install.html">Installation</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_0-1_1.html">Migrating to 1.1</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_1-1_2.html">Migrating to 1.2</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_2-1_3.html">Migrating to 1.3</a>
+        </li>
+              
+    <li class="none">
+              <strong>Tag Reference</strong>
+        </li>
+              
+    <li class="none">
+              <a href="advanced.html">Advanced Usage</a>
+        </li>
+          </ul>
+          <h5>Support</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/projects/ajaxtags/">SourceForge Project Page</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/forum/forum.php?forum_id=471271">Forums</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/tracker/?group_id=140499">Issue Tracking</a>
+        </li>
+          </ul>
+          <h5>Downloads</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Binaries</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Source</a>
+        </li>
+              
+    <li class="none">
+              <a href="release-notes.txt">Release Notes</a>
+        </li>
+          </ul>
+          <h5>Project Documentation</h5>
+        <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+              <a href="project-info.html">Project Information</a>
+              </li>
+          </ul>
+                                             
+                        
+                        
+            <a href="http://www.sourceforge.net/" title="sourceforge.net" id="poweredBy">
+                            <img alt="sourceforge.net" src="http://sflogo.sourceforge.net/sflogo.php?group_id=140499&type=1" />
+            </a>
+                                
+                        
+                        
+            <a href="http://maven.apache.org/" title="http://maven.apache.org/" id="poweredBy">
+                            <img alt="http://maven.apache.org/" src="./images/logos/maven-feather.png" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Usage</h2><div class="section"><h3>Common Concepts</h3><div class="section"><h4>Base URL</h4><p>The <tt>baseUrl</tt> property is required of every tag and is used by the tag to make a request to the serverside. The responding resource (e.g., servlet, JSP, etc.) is responsible for returning the response in the appropriate format (plain text, HTML, XML, etc.). The ajax:tabPanel tag is an exception to this rule as it is its child, the ajax:tab tag that contains this property.</p></div><div class="section"><h4>Parameters</h4><div class="section"><h5>Overview</h5><p>Each tag has a common <tt>parameters</tt> property, composed of name-value pairs that eventually get passed to the URL specified in the <tt>baseUrl</tt> property. You may specify multiple name-value pairs by separating them with commas. Within each pair, you can also indicate that you want a certain form field value to be inserted at the time the request is made by surrounding the value with curly brackets.</p><p>Let's look at an example. Assume we want to pass two parameters on the URL, one indicating the make of our automobile and another that is a plain text constant. The value of the make parameter will be inserted at request time. In this case, we assume the makeId form field contains a value of &quot;Honda&quot;.</p><div class="source"><pre>parameters=&quot;make={makeId},q=someConstantValue&quot;</pre></div><p>...will be replaced at request time with...</p><div class="source"><pre>parameters=&quot;make=Honda,q=someConstantValue&quot;</pre></div></div><div class="section"><h5>Implicit Parameters</h5><p>The ajax:htmlContent and ajax:callout tags will accept an implicit parameter in place of the value of the source element. For instance, if you want to include the value of the source element on the querystring when making the AJAX call, simply define the parameters attribute as follows:</p><div class="source"><pre>parameters=&quot;someId={ajaxParameter}&quot;</pre></div></div></div><div class="section"><h4>Post-functions and Error Functions</h4><p>If you've wondered how to either chain AJAX tags together--by having one execute after another has completed--then you'll like this. The <tt>postFunction</tt> attribute allows you do just that. This attribute expects a JavaScript function name to be passed. The AJAX JavaScript will execute the function you define after it has finished its work.</p><p>In addition to post-functions, you may also define functions to be executed when the AJAX request could not be completed (e.g., invalid URL, server exception). You simply enter the name of the user-defined JavaScript function into the optional <tt>errorFunction</tt> tag attribute.</p></div></div><div class="section"><h3>ajax:anchors</h3><p>The anchors tag will convert any HTML anchor tags (&lt;A&gt;) within it's area to be AJAX-enabled. Essentially the href is removed and its contents placed within an onclick event for the anchor, thus forcing the resource to be accessed through AJAX instead. The response will then be loaded in any area on the page you define.</p><div class="source"><pre>&lt;ajax:anchors target=&quot;ajaxFrame&quot; ajaxFlag=&quot;ajaxFrame&quot;&gt;
+  &lt;!-- Ajax this link --&gt;
+  Refresh first area &lt;a href=&quot;${contextPath}/pagearea.jsp&quot; class=&quot;contentLink&quot;&gt;&lt;/a&gt;
+&lt;/ajax:anchors&gt;
+
+&lt;div id=&quot;ajaxFrame&quot;&gt;&lt;/div&gt;</pre></div><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="b"><td align="left">target</td><td align="left">The target region on the page where the AJAX response will be written, often a DIV tag</td><td align="center">yes</td></tr><tr class="a"><td align="left">ajaxFlag</td><td align="left">A true/false flag to indicate whether the rest of the page should be ignored in an AJAX call [default=false]</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h3>ajax:area</h3><p>The area tag lets you wrap a piece of the webpage and force all links and resources to be loaded inside of it instead of refreshing the entire page.</p><div class="source"><pre>&lt;ajax:area id=&quot;ajaxFrame&quot;
+  style=&quot;width:300px; min-height:100px; height:100px;&quot;
+  styleClass=&quot;textArea&quot;
+  ajaxAnchors=&quot;true&quot; ajaxFlag=&quot;ajaxFrame&quot;&gt;
+  This is the first area and should be refreshed only when the first link or
+  the link inside itself is clicked:
+
+  It may include a link to &lt;a href=&quot;${contextPath}/pagearea.jsp&quot;&gt; itself &lt;/a&gt;
+&lt;/ajax:area&gt;</pre></div><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="a"><td align="left">id</td><td align="left">Name of ID used for enclosing DIV tag written by tag</td><td align="center">yes</td></tr><tr class="b"><td align="left">ajaxFlag</td><td align="left">A true/false flag to indicate whether the rest of the page should be ignored in an AJAX call [default=false]</td><td align="center">no</td></tr><tr class="a"><td align="left">style</td><td align="left">Inline CSS style properties</td><td align="center">no</td></tr><tr class="b"><td align="left">styleClass</td><td align="left">CSS class name to use</td><td align="center">no</td></tr><tr class="a"><td align="left">ajaxAnchors</td><td align="left">Whether to rewrite HTML anchor tags with an onclick event</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h3>ajax:autocomplete</h3><p>The autocomplete tag allows one to retrieve a list of probable values from a backend servlet (or other server-side control) and display them in a dropdown beneath an HTML text input field. The user may then use the cursor and ENTER keys or the mouse to make a selection from that list of labels, which is then populated into the text field. This JSP tag also allows for a second field to be populated with the value or ID of the item in the dropdown.</p><div class="source"><pre>&lt;form&gt;
+  Make: &lt;input id=&quot;model&quot; name=&quot;model&quot; type=&quot;text&quot; size=&quot;30&quot; class=&quot;form-autocomplete&quot; /&gt;
+  Model: &lt;input id=&quot;make&quot; name=&quot;make&quot; type=&quot;text&quot; size=&quot;30&quot; /&gt;
+&lt;/form&gt;
+
+&lt;ajax:autocomplete
+  baseUrl=&quot;${pageContext.request.contextPath}/GetModel.view&quot;
+  source=&quot;make&quot;
+  target=&quot;model&quot;
+  parameters=&quot;model={model}&quot;
+  className=&quot;autocomplete&quot;
+  indicator=&quot;throbbing&quot;
+  minimumCharacters=&quot;1&quot; /&gt;</pre></div><p><b>Note: Tag must appear AFTER the web form.</b></p><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="a"><td align="left">var</td><td align="left">Name of the JavaScript object created</td><td align="center">no</td></tr><tr class="b"><td align="left">attachTo</td><td align="left">Name of the JavaScript object to which autocompleter will attach. You must define 'var' for this to work.</td><td align="center">no</td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">URL of server-side action or servlet that processes search and returns list of values used in autocomplete dropdown; expression language (EL) is supported for this field</td><td align="center">yes</td></tr><tr class="b"><td align="left">source</td><td align="left">Text field where label of autocomplete selection will be populated; also the field in which the user types out the search string</td><td align="center">yes</td></tr><tr class="a"><td align="left">target</td><td align="left">Text field where value of autocomplete selection will be populated; you may set this to the same value as the source field</td><td align="center">yes</td></tr><tr class="b"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">yes</td></tr><tr class="a"><td align="left">className</td><td align="left">CSS class name to apply to the popup autocomplete dropdown</td><td align="center">yes</td></tr><tr class="b"><td align="left">indicator</td><td align="left">ID of indicator region that will show during Ajax request call</td><td align="center">no</td></tr><tr class="a"><td align="left">minimumCharacters</td><td align="left">Minimum number of characters needed before autocomplete is executed</td><td align="center">no</td></tr><tr class="b"><td align="left">appendSeparator</td><td align="left">The separator to use for the target field when values are appended [default=space]. If appendValue is not set or is set to &quot;false&quot;, this parameter has no effect.</td><td align="center">no</td></tr><tr class="a"><td align="left">preFunction</td><td align="left">Function to execute before Ajax is begun</td><td align="center">no</td></tr><tr class="b"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="a"><td align="left">errorFunction</td><td align="left">Function to execute if there is a server exception (non-200 HTTP response)</td><td align="center">no</td></tr><tr class="b"><td align="left">parser</td><td align="left">The response parser to implement [default=ResponseHtmlParser]</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h3>ajax:callout</h3><p>The callout tag is an easy way to attach a callout or popup balloon to any HTML element supporting an onclick event. The style of this callout is fairly flexible, but generally has a header/title, a close link ('X'), and the content itself, of course. All of this (since AjaxTags 1.2) is handled by the OverLIBMWS JavaScript library. See <a href="http://www.macridesweb.com/oltest/">http://www.macridesweb.com/oltest/</a> for complete instructions on using OverLIBMWS.</p><div class="source"><pre>&lt;div&gt;
+  &lt;p&gt;
+    The Hitchhiker's Guide to the Galaxy is a science fiction series written by Douglas Adams
+    (1952?2001).  The series follows the adventures of
+    &lt;a href=&quot;#&quot; class=&quot;definition&quot;&gt;Arthur Dent&lt;/a&gt;, a hapless
+    &lt;a href=&quot;#&quot; class=&quot;definition&quot;&gt;Englishman&lt;/a&gt; who escapes the destruction of Earth by an alien
+    race called the &lt;a href=&quot;javascript://nop/&quot; class=&quot;definition&quot;&gt;Vogons&lt;/a&gt; with his friend
+    &lt;a href=&quot;#&quot; class=&quot;definition&quot;&gt;Ford Prefect&lt;/a&gt;, an alien from a small planet somewhere in the
+    vicinity of &lt;a href=&quot;#&quot; class=&quot;definition&quot;&gt;Betelgeuse&lt;/a&gt; and researcher for the eponymous
+    guide.
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;ajax:callout
+  baseUrl=&quot;${pageContext.request.contextPath}/GetInfo.view&quot;
+  sourceClass=&quot;definition&quot;
+  parameters=&quot;q={ajaxCallout}&quot;
+  title=&quot;Definition&quot;
+  overlib=&quot;STICKY,CLOSECLICK,DELAY,250,TIMEOUT,5000,VAUTO,WRAPMAX,240&quot; /&gt;</pre></div><p><b>Note: Tag must appear AFTER the web form.</b></p><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="b"><td align="left">var</td><td align="left">Name of the JavaScript object created</td><td align="center">no</td></tr><tr class="a"><td align="left">attachTo</td><td align="left">Name of the JavaScript object to which callout will attach. You must define 'var' for this to work.</td><td align="center">no</td></tr><tr class="b"><td align="left">baseUrl</td><td align="left">URL of server-side action or servlet that processes a simple command</td><td align="center">yes</td></tr><tr class="a"><td align="left">source</td><td align="left">ID of the element to which the callout will be attached</td><td align="center">either source or sourceClass must be defined</td></tr><tr class="b"><td align="left">sourceClass</td><td align="left">CSS class name of the elements to which the callout will be attached</td><td align="center">either source or sourceClass must be defined</td></tr><tr class="a"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">yes</td></tr><tr class="b"><td align="left">title</td><td align="left">Title for callout's box header. If <tt>useTitleBar==false</tt> and no title is specified, then the <tt>value</tt> attribute of the returned XML will be used as the title.</td><td align="center">no</td></tr><tr class="a"><td align="left">overlib</td><td align="left">Options for OverLib</td><td align="center">no</td></tr><tr class="b"><td align="left">preFunction</td><td align="left">Function to execute before Ajax is begun</td><td align="center">no</td></tr><tr class="a"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="b"><td align="left">errorFunction</td><td align="left">Function to execute if there is a server exception (non-200 HTTP response)</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h3>ajax:displayTag</h3><p>The displayTag is similar to the area tag, but it specifically tailored to the Display Tag. It wraps DisplayTag ajaxing pagination and sorting.</p><div class="source"><pre>&lt;ajax:displayTag id=&quot;displayTagFrame&quot; ajaxFlag=&quot;displayAjax&quot;&gt;
+
+  &lt;display:table name=&quot;service.allCars&quot; class=&quot;displaytag&quot; pagesize=&quot;10&quot; scope=&quot;page&quot;
+    defaultsort=&quot;1&quot; defaultorder=&quot;descending&quot; export=&quot;true&quot; id=&quot;row&quot; excludedParams=&quot;ajax&quot;&gt;
+    &lt;display:column property=&quot;make&quot; title=&quot;Make&quot; sortable=&quot;true&quot; headerClass=&quot;sortable&quot; /&gt;
+    &lt;display:column property=&quot;model&quot; title=&quot;Model&quot; sortable=&quot;true&quot; headerClass=&quot;sortable&quot; /&gt;
+    &lt;display:column title=&quot;Link&quot; media=&quot;html&quot;&gt;
+      &lt;a href=&quot;http://www.${row.make}.com&quot;&gt;${row.make} Web Page&lt;/a&gt;
+    &lt;/display:column&gt;
+    &lt;display:column title=&quot;Link&quot; media=&quot;excel xml&quot;&gt;
+      www.${row.make}.com
+    &lt;/display:column&gt;
+  &lt;/display:table&gt;
+
+&lt;/ajax:displayTag&gt;</pre></div><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="b"><td align="left">id</td><td align="left">Name of ID used for enclosing DIV tag written by tag</td><td align="center">yes</td></tr><tr class="a"><td align="left">ajaxFlag</td><td align="left">A true/false flag to indicate whether the rest of the page should be ignored in an AJAX call [default=false]</td><td align="center">no</td></tr><tr class="b"><td align="left">style</td><td align="left">Inline CSS style properties</td><td align="center">no</td></tr><tr class="a"><td align="left">styleClass</td><td align="left">CSS class name to use</td><td align="center">no</td></tr><tr class="b"><td align="left">pagelinksClass</td><td align="left">CSS class name of the DisplayTag's navigation links [default=&quot;pagelinks&quot;]</td><td align="center">no</td></tr><tr class="a"><td align="left">tableClass</td><td align="left">CSS class name of the DisplayTag's table [default=&quot;displaytag&quot;]</td><td align="center">no</td></tr><tr class="b"><td align="left">columnClass</td><td align="left">The CSS class of the TD within the THEAD of the table that should have their HREFs rewritten [default=&quot;sortable&quot;]</td><td align="center">no</td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">The baseUrl to set as the prefix for any Anchors that will be rewritten; empty by default</td><td align="center">no</td></tr><tr class="b"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="a"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">false</td></tr></tbody></table></div><div class="section"><h3>ajax:htmlContent</h3><p>The HTML content tag allows you to fill a region on the page (often a DIV tag) with any HTML content pulled from another webpage. The AJAX action may be activated by attaching it to an anchor link or form field.</p><p>This tag expects an HTML response instead of XML and the AJAX function will not parse it as XML; it will simply insert the content of the response as is.</p><div class="source"><pre>&lt;div id=&quot;modelDescription&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;htmlContentForm&quot;&gt;
+  &lt;p&gt;Select by ANCHOR link.&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;javascript://nop/&quot; class=&quot;contentLink&quot;&gt;Ford&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;javascript://nop/&quot; class=&quot;contentLink&quot;&gt;Honda&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;javascript://nop/&quot; class=&quot;contentLink&quot;&gt;Mazda&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;ajax:htmlContent
+  baseUrl=&quot;${pageContext.request.contextPath}/htmlcontent.view&quot;
+  sourceClass=&quot;contentLink&quot;
+  target=&quot;modelDescription&quot;
+  parameters=&quot;q={ajaxParameter}&quot; /&gt;</pre></div><p><b>Note: Tag must appear AFTER the web form.</b></p><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="a"><td align="left">var</td><td align="left">Name of the JavaScript object created</td><td align="center">no</td></tr><tr class="b"><td align="left">attachTo</td><td align="left">Name of the JavaScript object to which htmlContent will attach. You must define 'var' for this to work.</td><td align="center">no</td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">URL of server-side action or servlet that processes a simple command</td><td align="center">yes</td></tr><tr class="b"><td align="left">source</td><td align="left">ID of the element to which the event will be attached</td><td align="center">either source or sourceClass must be defined</td></tr><tr class="a"><td align="left">sourceClass</td><td align="left">The CSS class name of the elements to which the event will be attached</td><td align="center">either source or sourceClass must be defined</td></tr><tr class="b"><td align="left">target</td><td align="left">ID of DIV tag or other element that will be filled with the response's HTML</td><td align="center">yes</td></tr><tr class="a"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">yes</td></tr><tr class="b"><td align="left">eventType</td><td align="left">Specifies the event type to attach to the source field(s)</td><td align="center">no</td></tr><tr class="a"><td align="left">preFunction</td><td align="left">Function to execute before Ajax is begun</td><td align="center">no</td></tr><tr class="b"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="a"><td align="left">errorFunction</td><td align="left">Function to execute if there is a server exception (non-200 HTTP response)</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h3>ajax:portlet</h3><p>The portlet tag simulates a <i>a href=&quot;http://www.jcp.org/en/jsr/detail?id=168&quot;</i>JSR-168<i>/a</i> style portlet by allowing you to define a portion of the page that pulls content from another location using Ajax with or without a periodic refresh.</p><p>This tag expects an HTML response instead of XML and the AJAX function will not parse it as XML; it will simply insert the content of the response as is.</p><div class="source"><pre>&lt;ajax:portlet
+  source=&quot;portlet_1&quot;
+  baseUrl=&quot;${pageContext.request.contextPath}/htmlcontent.view?make=ford&quot;
+  classNamePrefix=&quot;portlet&quot;
+  title=&quot;Ford Portlet&quot;
+  imageClose=&quot;${pageContext.request.contextPath}/img/close.png&quot;
+  imageMaximize=&quot;${pageContext.request.contextPath}/img/maximize.png&quot;
+  imageMinimize=&quot;${pageContext.request.contextPath}/img/minimize.png&quot;
+  imageRefresh=&quot;${pageContext.request.contextPath}/img/refresh.png&quot; /&gt;</pre></div><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="a"><td align="left">var</td><td align="left">Name of the JavaScript object created</td><td align="center">no</td></tr><tr class="b"><td align="left">attachTo</td><td align="left">Name of the JavaScript object to which portlet will attach. You must define 'var' for this to work.</td><td align="center">no</td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">URL of server-side action or servlet that processes a simple command</td><td align="center">yes</td></tr><tr class="b"><td align="left">source</td><td align="left">ID of the portlet</td><td align="center">yes</td></tr><tr class="a"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">no</td></tr><tr class="b"><td align="left">classNamePrefix</td><td align="left">CSS class name prefix to use for the portlet's 'Box', 'Tools', 'Refresh', 'Size', 'Close', 'Title', and 'Content' elements</td><td align="center">yes</td></tr><tr class="a"><td align="left">title</td><td align="left">Title for portlet header</td><td align="center">yes</td></tr><tr class="b"><td align="left">imageClose</td><td align="left">Image used for the close icon</td><td align="center">no</td></tr><tr class="a"><td align="left">imageMaximize</td><td align="left">Image used for the maximize icon</td><td align="center">no</td></tr><tr class="b"><td align="left">imageMinimize</td><td align="left">Image used for the minimize icon</td><td align="center">no</td></tr><tr class="a"><td align="left">imageRefresh</td><td align="left">Image used for the refresh icon</td><td align="center">no</td></tr><tr class="b"><td align="left">refreshPeriod</td><td align="left">The time (in seconds) the portlet waits before automatically refreshing its content. If no period is specified, the portlet will not refresh itself automatically, but must be commanded to do so by clicking the refresh image/link (if one is defined). Lastly, the refresh will not occur until after the first time the content is loaded, so if executeOnLoad is set to false, the refresh will not begin until you manually refresh the first time.</td><td align="center">no</td></tr><tr class="a"><td align="left">executeOnLoad</td><td align="left">Indicates whether the portlet's content should be retrieved when the page loads [default=true]</td><td align="center">no</td></tr><tr class="b"><td align="left">expireDays</td><td align="left">Number of days cookie should persist</td><td align="center">no</td></tr><tr class="a"><td align="left">expireHours</td><td align="left">Number of hours cookie should persist</td><td align="center">no</td></tr><tr class="b"><td align="left">expireMinutes</td><td align="left">Number of minutes cookie should persist</td><td align="center">no</td></tr><tr class="a"><td align="left">preFunction</td><td align="left">Function to execute before Ajax is begun</td><td align="center">no</td></tr><tr class="b"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="a"><td align="left">errorFunction</td><td align="left">Function to execute if there is a server exception (non-200 HTTP response)</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h3>ajax:select</h3><p>The select tag allows one to retrieve a list of values from a backend servlet (or other server-side control) and display them in another HTML select box.</p><div class="source"><pre>&lt;form&gt;
+  Make:
+  &lt;select id=&quot;make&quot; name=&quot;make&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Select make&lt;/option&gt;
+    &lt;c:forEach items=&quot;${makes}&quot; var=&quot;make&quot;&gt;
+      &lt;option value=&quot;${make}&quot;&gt;${make}&lt;/option&gt;
+    &lt;/c:forEach&gt;
+  &lt;/select&gt;
+
+  Model:
+  &lt;select id=&quot;model&quot; name=&quot;model&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Select model&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/form&gt;
+
+&lt;ajax:select
+  baseUrl=&quot;${pageContext.request.contextPath}/GetCarModel.view&quot;
+  source=&quot;make&quot;
+  target=&quot;model&quot;
+  parameters=&quot;make={make}&quot;
+  postFunction=&quot;doOtherThings&quot; /&gt;</pre></div><p><b>Note: Tag must appear AFTER the web form.</b></p><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="a"><td align="left">var</td><td align="left">Name of the JavaScript object created</td><td align="center">no</td></tr><tr class="b"><td align="left">attachTo</td><td align="left">Name of the JavaScript object to which select will attach. You must define 'var' for this to work.</td><td align="center">no</td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">URL of server-side action or servlet that processes a simple command</td><td align="center">yes</td></tr><tr class="b"><td align="left">source</td><td align="left">The initial select field that will form the basis for the search via AJAX</td><td align="center">yes</td></tr><tr class="a"><td align="left">target</td><td align="left">Select field where value of AJAX search will be populated</td><td align="center">yes</td></tr><tr class="b"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">no</td></tr><tr class="a"><td align="left">eventType</td><td align="left">Specifies the event type to attach to the source field(s)</td><td align="center">no</td></tr><tr class="b"><td align="left">executeOnLoad</td><td align="left">Indicates whether the target select/dropdown should be populated when the object is initialized (this is essentially when the form loads) [default=false]</td><td align="center">no</td></tr><tr class="a"><td align="left">defaultOptions</td><td align="left">A comma-seperated list of values of options to be marked as selected by default if they exist in the new set of options</td><td align="center">no</td></tr><tr class="b"><td align="left">preFunction</td><td align="left">Function to execute before Ajax is begun</td><td align="center">no</td></tr><tr class="a"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="b"><td align="left">errorFunction</td><td align="left">Function to execute if there is a server exception (non-200 HTTP response)</td><td align="center">no</td></tr><tr class="a"><td align="left">parser</td><td align="left">The response parser to implement [default=ResponseHtmlParser]</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h3>ajax:tabPanel</h3><p>Provides a tabbed page view of content from different resources</p><div class="source"><pre>&lt;ajax:tabPanel
+    panelStyleId=&quot;tabPanel&quot;
+    contentStyleId=&quot;tabContent&quot;
+    currentStyleId=&quot;ajaxCurrentTab&quot;&gt;
+  &lt;ajax:tab caption=&quot;Ford&quot;
+    baseUrl=&quot;${pageContext.request.contextPath}/htmlcontent.view?make=ford&quot;
+    defaultTab=&quot;true&quot;/&gt;
+  &lt;ajax:tab caption=&quot;Honda&quot;
+    baseUrl=&quot;${pageContext.request.contextPath}/htmlcontent.view&quot;
+    parameters=&quot;make=honda&quot;/&gt;
+  &lt;ajax:tab caption=&quot;Mazda&quot;
+    baseUrl=&quot;${pageContext.request.contextPath}/htmlcontent.view&quot;
+    parameters=&quot;make=mazda&quot;/&gt;
+&lt;/ajax:tabPanel&gt;</pre></div><div class="section"><h4>ajax:tabPanel</h4><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="a"><td align="left">var</td><td align="left">Name of the JavaScript object created</td><td align="center">no</td></tr><tr class="b"><td align="left">attachTo</td><td align="left">Name of the JavaScript object to which tabPanel will attach. You must define 'var' for this to work.</td><td align="center">no</td></tr><tr class="a"><td align="left">panelStyleId</td><td align="left">ID of the tab panel</td><td align="center">yes</td></tr><tr class="b"><td align="left">contentStyleId</td><td align="left">ID of the tab panel content</td><td align="center">yes</td></tr><tr class="a"><td align="left">panelStyleClass</td><td align="left">CSS classname of the tab panel</td><td align="center">no</td></tr><tr class="b"><td align="left">contentStyleClass</td><td align="left">CSS classname of the tab panel content</td><td align="center">no</td></tr><tr class="a"><td align="left">currentStyleClass</td><td align="left">CSS classname to use for the active tab</td><td align="center">yes</td></tr><tr class="b"><td align="left">preFunction</td><td align="left">Function to execute before Ajax is begun</td><td align="center">no</td></tr><tr class="a"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="b"><td align="left">errorFunction</td><td align="left">Function to execute if there is a server exception (non-200 HTTP response)</td><td align="center">no</td></tr><tr class="a"><td align="left">parser</td><td align="left">The response parser to implement [default=ResponseHtmlParser]</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h4>ajax:tab</h4><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">The URL to use for the AJAX action, which will return content for this tab</td><td align="center">yes</td></tr><tr class="b"><td align="left">caption</td><td align="left">The caption for this tab</td><td align="center">yes</td></tr><tr class="a"><td align="left">defaultTab</td><td align="left">Indicates whether this tab is the initial one loaded [true</td><td align="center">false]</td></tr><tr class="b"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">no</td></tr></tbody></table></div></div><div class="section"><h3>ajax:toggle</h3><p>The toggle tag uses a single image to represent the display of the ratings with the help of CSS to manage the mouseover/mouseout. Additionally, you may supply the tag with a form field to hold the value of the selected rating.</p><div class="source"><pre>&lt;!-- To hold value of the selected rating; maps to the 'state' attribute --&gt;
+&lt;form id=&quot;toggleForm&quot; action=&quot;.&quot;&gt;
+  &lt;input type=&quot;hidden&quot; id=&quot;raterField&quot; /&gt;
+&lt;/form&gt;
+
+&lt;h4&gt;AJAX Rating System &lt;span style=&quot;font:normal 8pt Verdana;&quot;&gt;[${toggleRating}]&lt;/span&gt;&lt;/h4&gt;
+&lt;ajax:toggle
+  baseUrl=&quot;${pageContext.request.contextPath}/toggle.view&quot;
+  source=&quot;rater1&quot;
+  ratings=&quot;One,Two,Three,Four,Five&quot;
+  defaultRating=&quot;${toggleRating}&quot;
+  containerClass=&quot;star-rating&quot;
+  messageClass=&quot;star-rating-message&quot;
+  selectedClass=&quot;selected&quot;
+  selectedOverClass=&quot;selectedover&quot;
+  selectedLessClass=&quot;selectedless&quot;
+  overClass=&quot;over&quot;
+  onOff=&quot;false&quot;
+  state=&quot;raterField&quot;
+  preFunction=&quot;initProgress&quot;
+  postFunction=&quot;resetProgress&quot;
+  errorFunction=&quot;reportError&quot;
+  /&gt;</pre></div><p><b>Note: Tag must appear AFTER the web form.</b></p><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="b"><td align="left">var</td><td align="left">Name of the JavaScript object created</td><td align="center">no</td></tr><tr class="a"><td align="left">attachTo</td><td align="left">Name of the JavaScript object to which toggle will attach. You must define 'var' for this to work.</td><td align="center">no</td></tr><tr class="b"><td align="left">baseUrl</td><td align="left">URL of server-side action or servlet that processes a simple command from a toggle action; responds with a single option value and label</td><td align="center">yes</td></tr><tr class="a"><td align="left">source</td><td align="left">A unique ID for each toggle tag</td><td align="center">yes</td></tr><tr class="b"><td align="left">ratings</td><td align="left">Comma-delimited list of rating values</td><td align="center">yes</td></tr><tr class="a"><td align="left">defaultRating</td><td align="left">The default rating to use from the 'ratings' list</td><td align="center">yes</td></tr><tr class="b"><td align="left">state</td><td align="left">ID of hidden form field used to hold the current state</td><td align="center">yes</td></tr><tr class="a"><td align="left">onOff</td><td align="left">Whether this is a simple on/off (two-value) rating [default=false]</td><td align="center">no</td></tr><tr class="b"><td align="left">containerClass</td><td align="left">CSS style class for the container wrapping the toggle</td><td align="center">yes</td></tr><tr class="a"><td align="left">messageClass</td><td align="left">CSS style class for the message displayed as you mouseover each toggle image</td><td align="center">no</td></tr><tr class="b"><td align="left">selectedClass</td><td align="left">CSS style class for the rating that's selected</td><td align="center">yes</td></tr><tr class="a"><td align="left">selectedLessClass</td><td align="left">CSS style class for the rating that is less than the selected one as you mouseover</td><td align="center">yes</td></tr><tr class="b"><td align="left">selectedOverClass</td><td align="left">CSS style class for the rating that is greater than the selected one as you mouseover</td><td align="center">yes</td></tr><tr class="a"><td align="left">overClass</td><td align="left">CSS style class for the rating that is greater than the selected one</td><td align="center">yes</td></tr><tr class="b"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">rating=<a name="ajaxParameter">ajaxParameter</a></td></tr><tr class="a"><td align="left">preFunction</td><td align="left">Function to execute before Ajax is begun</td><td align="center">no</td></tr><tr class="b"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="a"><td align="left">errorFunction</td><td align="left">Function to execute if there is a server exception (non-200 HTTP response)</td><td align="center">no</td></tr><tr class="b"><td align="left">parser</td><td align="left">The response parser to implement [default=ResponseHtmlParser]</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h3>ajax:updateField</h3><p>Builds the JavaScript required to update one or more form fields based on the value of another single field.</p><div class="source"><pre>&lt;form&gt;
+  &lt;fieldset&gt;
+  &lt;legend&gt;Velocity Conversion&lt;/legend&gt;
+  &lt;label for=&quot;mph&quot;&gt;Miles/Hour (mph)&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;mph&quot; /&gt;
+  &lt;input id=&quot;action&quot; type=&quot;button&quot; value=&quot;Go&quot;/&gt;
+
+  &lt;label for=&quot;kph&quot;&gt;Kilometers/Hour (kph)&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;kph&quot; /&gt;
+
+  &lt;label for=&quot;mps&quot;&gt;Meters/Second (m/s)&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;mps&quot; /&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+
+&lt;ajax:updateField
+  baseUrl=&quot;${pageContext.request.contextPath}/ConvertMPH.view&quot;
+  source=&quot;mph&quot;
+  target=&quot;kph,mps&quot;
+  action=&quot;action&quot;
+  parameters=&quot;mph={mph}&quot; /&gt;</pre></div><p><b>Note: Tag must appear AFTER the web form.</b></p><table class="bodyTable"><tbody><tr class="a"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="b"><td align="left">var</td><td align="left">Name of the JavaScript object created</td><td align="center">no</td></tr><tr class="a"><td align="left">attachTo</td><td align="left">Name of the JavaScript object to which updateField will attach. You must define 'var' for this to work.</td><td align="center">no</td></tr><tr class="b"><td align="left">baseUrl</td><td align="left">URL of server-side action or servlet that processes a simple command</td><td align="center">yes</td></tr><tr class="a"><td align="left">source</td><td align="left">The form field that will hold the parameter passed to the servlet</td><td align="center">yes</td></tr><tr class="b"><td align="left">target</td><td align="left">A comma-delimited list of form field IDs that will be populated with results</td><td align="center">yes</td></tr><tr class="a"><td align="left">action</td><td align="left">ID of form button or image tag that will fire the onclick event</td><td align="center">yes</td></tr><tr class="b"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">no</td></tr><tr class="a"><td align="left">eventType</td><td align="left">Specifies the event type to attach to the source field(s)</td><td align="center">no</td></tr><tr class="b"><td align="left">preFunction</td><td align="left">Function to execute before Ajax is begun</td><td align="center">no</td></tr><tr class="a"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="b"><td align="left">errorFunction</td><td align="left">Function to execute if there is a server exception (non-200 HTTP response)</td><td align="center">no</td></tr><tr class="a"><td align="left">parser</td><td align="left">The response parser to implement [default=ResponseHtmlParser]</td><td align="center">no</td></tr></tbody></table></div><div class="section"><h3>ajax:tree</h3><p>Builds the JavaScript required to create a tree</p><div class="source"><pre>
+
+&lt;ajax:tree 
+        baseUrl=&quot;${contextPath}/tree.view&quot; 
+        styleId=&quot;cars&quot;
+        parameters=&quot;node={ajaxParameter}&quot;
+        nodeClass=&quot;nodeClass&quot;
+        expandedClass=&quot;expandedNode&quot;
+        collapsedClass=&quot;collapsedNode&quot;
+        treeClass=&quot;tree&quot;&gt;
+&lt;/ajax:tree&gt;</pre></div><p><b>Note: The styleId value will be the first one sent to the baseUrl to get the nodes on the first level</b></p><table class="bodyTable"><tbody><tr class="b"><td align="left"><b>Parameter</b></td><td align="left"><b>Description</b></td><td align="center"><b>Required</b></td></tr><tr class="a"><td align="left">baseUrl</td><td align="left">URL of server-side action or servlet that processes a simple command</td><td align="center">yes</td></tr><tr class="b"><td align="left">action</td><td align="left">ID of form button or image tag that will fire the onclick event</td><td align="center">yes</td></tr><tr class="a"><td align="left">parameters</td><td align="left">A comma-separated list of parameters to pass to the server-side action or servlet</td><td align="center">yes</td></tr><tr class="b"><td align="left">styleId</td><td align="left">The ID of the tree</td><td align="center">yes</td></tr><tr class="a"><td align="left">preFunction</td><td align="left">Function to execute before Ajax is begun</td><td align="center">no</td></tr><tr class="b"><td align="left">postFunction</td><td align="left">Function to execute after Ajax is finished, allowing for a chain of additional functions to execute</td><td align="center">no</td></tr><tr class="a"><td align="left">errorFunction</td><td align="left">Function to execute if there is a server exception (non-200 HTTP response)</td><td align="center">no</td></tr><tr class="b"><td align="left">parser</td><td align="left">The response parser to implement [default=ResponseXmlToHtmlLinkListParser]</td><td align="center">no</td></tr><tr class="a"><td align="left">collapsedClass</td><td align="left">CSS style class for the node's image(when collapsed)</td><td align="center">no</td></tr><tr class="b"><td align="left">expandedClass</td><td align="left">CSS style class for the node's image(when expanded)</td><td align="center">no</td></tr><tr class="a"><td align="left">treeClass</td><td align="left">CSS style class for the unsorted list(each node is hosted on one)</td><td align="center">no</td></tr><tr class="b"><td align="left">nodeClass</td><td align="left">CSS style class for the node's link</td><td align="center">no</td></tr></tbody></table></div></div>
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2005-2007
+    
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

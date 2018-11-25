@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+<html>
+  <head>
+    <title>AjaxTags - FAQ</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="" id="bannerLeft">
+    
+            AjaxTags
+    
+            </a>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+            <div class="xleft">
+        Last Published: 06/21/2007
+                      </div>
+            <div class="xright">      <a href="">site under construction</a>
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+                   <h5>Overview</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="index.html">Home</a>
+        </li>
+              
+    <li class="none">
+              <a href="quickstart.html">Quick Start</a>
+        </li>
+              
+    <li class="none">
+              <a href="screenshots.html">Screenshots</a>
+        </li>
+              
+    <li class="none">
+              <strong>FAQ</strong>
+        </li>
+              
+    <li class="none">
+              <a href="ajaxlinks.html">Ajax Links & Resources</a>
+        </li>
+          </ul>
+          <h5>Reference</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="install.html">Installation</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_0-1_1.html">Migrating to 1.1</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_1-1_2.html">Migrating to 1.2</a>
+        </li>
+              
+    <li class="none">
+              <a href="migration-1_2-1_3.html">Migrating to 1.3</a>
+        </li>
+              
+    <li class="none">
+              <a href="usage.html">Tag Reference</a>
+        </li>
+              
+    <li class="none">
+              <a href="advanced.html">Advanced Usage</a>
+        </li>
+          </ul>
+          <h5>Support</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/projects/ajaxtags/">SourceForge Project Page</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/forum/forum.php?forum_id=471271">Forums</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/tracker/?group_id=140499">Issue Tracking</a>
+        </li>
+          </ul>
+          <h5>Downloads</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Binaries</a>
+        </li>
+              
+    <li class="none">
+              <a href="http://sourceforge.net/project/showfiles.php?group_id=140499">Source</a>
+        </li>
+              
+    <li class="none">
+              <a href="release-notes.txt">Release Notes</a>
+        </li>
+          </ul>
+          <h5>Project Documentation</h5>
+        <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+              <a href="project-info.html">Project Information</a>
+              </li>
+          </ul>
+                                             
+                        
+                        
+            <a href="http://www.sourceforge.net/" title="sourceforge.net" id="poweredBy">
+                            <img alt="sourceforge.net" src="http://sflogo.sourceforge.net/sflogo.php?group_id=140499&type=1" />
+            </a>
+                                
+                        
+                        
+            <a href="http://maven.apache.org/" title="http://maven.apache.org/" id="poweredBy">
+                            <img alt="http://maven.apache.org/" src="./images/logos/maven-feather.png" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="top">FAQ</a></h2><ol type="1"><li><a href="#A">Why is the ajax:autocomplete dropdown not positioned correctly?</a></li><li><a href="#B">The ajax:callout tag requires a class definition.  How do define a class for an element that already has a class assigned?</a></li><li><a href="#C">Can I include special characters in the AJAX XML response?</a></li><li><a href="#D">Are there any plans to add a validation tag?</a></li><li><a href="#E">Why does the ajax:autocomplete tag submit the form when I press Enter to select a value from the list?</a></li><li><a href="#F">Why aren't my tags working with Struts forms?</a></li><li><a href="#G">Can I save having to write the XML on the server side?</a></li><li><a href="#H">Why is Struts Validator breaking with AjaxTags/Prototype?</a></li><li><a href="#I">How can I prevent the response from being cached on IE?</a></li></ol></div><dl><dt><a name="A">Why is the ajax:autocomplete dropdown not positioned correctly?</a></dt><dd>
+        <p>
+          At present the
+          <code>ajax:autocomplete</code>
+          tag writes a
+          <code>DIV</code>
+          HTML element to the page to act as a placeholder for the dropdown or suggest list.
+          Normally, you are free to put the
+          <code>ajax:autocomplete</code>
+          tag anywhere on the page (between the
+          <code>BODY</code>
+          tags).
+       </p>
+        <p>
+          However, if your page contains complex CSS positioning which surrounds the location of the
+          <code>ajax:autocomplete</code>
+          tag, you may get unexpected results. That is, the dropdown won't appear directly beneath
+          the input field.
+       </p>
+        <p>
+          <strong>Solution:</strong>
+          place the
+          <code>ajax:autocomplete</code>
+          tag outside any elements using CSS positioning, or simply the last element before the
+          closing
+          <code>BODY</code>
+          tag. A future release of the tag library may resolve this issue.
+       </p>
+        <p style="font-size: 90%; font-style:italic; text-align: right">
+          Report courtesy of Keith Sherwood (Bright House Networks)
+       </p>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table><hr /></dd><dt><a name="B">The ajax:callout tag requires a class definition.  How do define a class for an element that already has a class assigned?</a></dt><dd>
+        <p>
+          CSS allows you to assign multiple style classes to a single element.  For example:
+       </p>
+          <div class="source"><pre>&lt;![CDATA[&lt;a href=&quot;&quot; class=&quot;linkStyle ajaxStyle otherStyle&quot;&gt;Link to nowhere&lt;/a&gt;]]&gt;</pre></div>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table><hr /></dd><dt><a name="C">Can I include special characters in the AJAX XML response?</a></dt><dd>
+        <p>
+          In short, yes you can.  However, you must remember to properly encode the response sent
+          back to the Ajax client.  We recommend you set the XML encoding to UTF-8 or UTF-16 because
+          to our knowledge, they are the only two encodings mandated by the XML spec.  Also, it is
+          wise to set the page encoding and character set on the response to match that set in the
+          XML file.
+       </p>
+        <p>For more information, see the following:</p>
+        <ul>
+          <li><a href="http://www.w3.org/TR/REC-xml/">XML Spec</a></li>
+          <li><a href="http://java.sun.com/j2ee/1.4/docs/tutorial/doc/WebI18N5.html">J2EE 1.4 Tutorial, Character Sets and Encodings</a></li>
+          <li><a href="http://java.sun.com/j2ee/1.4/docs/tutorial/doc/IntroXML3.html">J2EE 1.4 Tutorial, Generating XML Data</a></li>
+          <li><a href="http://weblogs.java.net/blog/joconner/archive/2005/07/charset_traps.html">John O'Conner's Blog, Charset Pitfalls in JSP/Servlet Containers</a></li>
+       </ul>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table><hr /></dd><dt><a name="D">Are there any plans to add a validation tag?</a></dt><dd>
+        <p>
+          No.  There are currently no plans to support AJAX-based form validation.  As with all open
+          source, if anyone wants to contribute a solution, we're open to that possibility.
+       </p>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table><hr /></dd><dt><a name="E">Why does the ajax:autocomplete tag submit the form when I press Enter to select a value from the list?</a></dt><dd>
+        <p>
+          This is a known issue with the tag's JavaScript.  The way in which the ajax:autocomplete
+          tag binds itself to key events is a bit problematic.  When you use the mouse to make a
+          selection from the suggestion list, everything works properly.  However, if you use the
+          Enter key to make your selection, the enclosing HTML form will submit itself if a submit
+          button is present.  We know it's odd, but we just haven't been able to lick this problem.
+       </p>
+        <p>
+          Fortunately, we have a solution.  Instead of using submit button, simply replace it with a
+          button field and use the onclick event to submit the form.
+       </p>
+        <p>For example:</p>
+        <div class="source"><pre>&lt;![CDATA[&lt;input type=&quot;button&quot; value=&quot;Go&quot; onclick=&quot;this.form.submit()&quot; /&gt;]]&gt;</pre></div>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table><hr /></dd><dt><a name="F">Why aren't my tags working with Struts forms?</a></dt><dd>
+        <p>
+          Don't forget to set the <code>styleId</code> attribute.
+       </p>
+        <div class="source"><pre>&lt;![CDATA[&lt;html:text property=&quot;myFormField&quot; styleId=&quot;myFormField&quot; /&gt;]]&gt;</pre></div>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table><hr /></dd><dt><a name="G">Can I save having to write the XML on the server side?</a></dt><dd>
+        <p>
+          There is a helper class to assist in building the XML if you don't want to do it by
+          hand...see the <a href="advanced.html">Advanced Usage section</a> for more information.
+       </p>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table><hr /></dd><dt><a name="H">Why is Struts Validator breaking with AjaxTags/Prototype?</a></dt><dd>
+        <p>
+          There appears to be a conflict between Struts' client-side validator and the Prototype
+          framework.  Essentially, Prototype extends the JavaScript Object class, which in turn
+          breaks the way Struts Validator handles it's arrays.  There is a workaround, but it has
+          not been verified by the AjaxTags team.  According to one user, you should add the
+          following to every JavaScript validator:
+       </p>
+        <div class="source"><pre>&lt;![CDATA[for (x in oInteger) {
+  if(x == 'extend') // Protoype Array() fix
+  continue; 
+  var field = form[oInteger[x][0]];
+}]]&gt;</pre></div>
+        <p>
+          For a complete discussion of the problem, visit the following
+          <a href="http://sourceforge.net/forum/forum.php?thread_id=1371695&amp;forum_id=471271">forum
+          post</a>.
+       </p>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table><hr /></dd><dt><a name="I">How can I prevent the response from being cached on IE?</a></dt><dd>
+        <p>
+          Several people have reported that their responses are being cached under IE, but not
+          Firefox.  To explicitly tell IE not to cache responses, you need to set a response header
+          as follows in your servlet or JSP:
+       </p>
+        <div class="source"><pre>&lt;![CDATA[response.setHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;);]]&gt;</pre></div>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table></dd></dl>
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2005-2007
+    
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
