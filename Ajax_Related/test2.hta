@@ -1,0 +1,21 @@
+
+<HTML>
+<HEAD>
+<TITLE>First HTA Application</TITLE>
+	<script>
+		function sayHi()
+		{
+			window.open("check1.bat");
+			var val = document.getElementById('t1').value;
+			alert(val);
+			//alert(escape(val));
+		}
+	</script>
+</HEAD>
+
+<BODY>
+
+	Enter value here:<input type="text" name="text1" id="t1" onkeyup="sayHi();">
+
+</BODY>
+</HTML>

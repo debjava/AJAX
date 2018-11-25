@@ -1,0 +1,167 @@
+AJAX in Struts
+**************
+In this posting, I want to explain how I have made use of AJAX in a Struts application
+On my current project, I’m building a Struts-based web application with many input forms. Many of these forms contain two or more dependable html select boxes. This means, when you have two dependable boxes, that the available options in the second selectbox depends on the value selected in the first selectbox. To do this there are three possible solutions:
+
+Use javascript arrays, where each set of options links to an option in the first select-box 
+Use an onchange on the first select box to automatically submit the form to go back to the server, collect the new options for the second box and regenerate the whole page 
+Use Ajax to asynchronously retrieve the new options for the second box 
+The first option is not what we wanted: it means that we have to implement a lot of logic in the html-page, which is visible to the outside world and in common javascript isn’t the easiest language to debug  . The second option is better, but has the big disadvantage that you have to do a complete round trip to the server to collect the new options and after that the whole page is regenerated again where actually only the second box is updated..a lot of overhead..
+
+So we decided to use AJAX to solve our problem of dependend select-boxes.
+
+Because Struts does not have AJAX support yet (wait for Shale..) we have to add it ourselves. Because AJAX is not a framework but just a technique to make webpages more dynamic using Javascript and DHTML, it is quite easy to use it in combination with struts.
+
+First we make a small html form:
+
+<tr>
+  <td><label for="first"><bean:message key="nl.company.first"/></label></td>
+  <td>
+    <!--On change the function retrieveSecondOptions() is called to populate the second box -->
+    <html:select property="first" onchange="retrieveSecondOptions()" styleId="firstBox" styleClass="mandatory">
+      <html:options collection="firstOptions" property="value" labelProperty="label"/>
+    </html:select>    
+  </td>
+</tr>
+<tr>
+  <td><label for="second"><bean:message key="nl.company.second"/></label></td>
+  <td>
+    <html:select property="second" styleId="secondBox" styleClass="mandatory">
+      <html:option value="nothing">-First choose above-</html:option>
+    </html:select>    
+  </td>
+</tr>
+...
+
+Now we have to implement our javascript part:
+
+<script lang="javascript">
+ var req;
+ /*
+  * Get the second options by calling a Struts action
+  */
+ function retrieveSecondOptions(){
+    
+    firstBox = document.getElementById('firstBox');
+    
+    //Nothing selected
+    if(firstBox.selectedIndex==0){
+      return;
+    }
+    selectedOption = firstBox.options[firstBox.selectedIndex].value;
+    //get the (form based) params to push up as part of the get request
+    url="retrieveSecondOptionsAjaxAction.do?selectedOption="+selectedOption;
+  
+    //Do the Ajax call
+    if (window.XMLHttpRequest){ // Non-IE browsers
+      req = new XMLHttpRequest();
+      //A call-back function is define so the browser knows which function to call after the server gives a reponse back
+      req.onreadystatechange = populateSecondBox;
+      try {
+      	req.open("GET", url, true); //was get
+      } catch (e) {
+         alert("Cannot connect to server);
+      }
+      req.send(null);
+    } else if (window.ActiveXObject) { // IE      
+      req = new ActiveXObject("Microsoft.XMLHTTP");
+      if (req) {
+        req.onreadystatechange = populateSecondBox;
+        req.open("GET", url, true);
+        req.send();
+      }
+    }
+  }
+  
+  //Callback function
+  function populateSecondBox(){
+  	document.getElementById('secondBox').options.length = 0;
+
+    if (req.readyState == 4) { // Complete
+      if (req.status == 200) { // OK response
+         textToSplit = req.responseText
+         if(textToSplit == '803'){
+alert("No select option available on the server")
+}
+          //Split the document
+          returnElements=textToSplit.split("||")
+          
+          //Process each of the elements 	
+          for ( var i=0; i<returnelements .length; i++ ){
+             valueLabelPair = returnElements[i].split("|")
+             document.getElementById('secondBox').options[i] = new Option(valueLabelPair[0], valueLabelPair[1]);
+          }
+        }
+      } else {  
+            alert("Bad response by the server");
+        }    
+    }
+    }
+</script>
+
+Finally, we have to implement the Struts Action:
+
+package nl.company.action;
+
+
+import org.apache.log4j.Logger;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import nl.company.*
+
+import java.io.*
+
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class RetrieveSecondOptionsAjaxAction extends Action
+  {
+    /**
+     * This is the main action called from the Struts framework.
+     * @param mapping The ActionMapping used to select this instance.
+     * @param form The optional ActionForm bean for this request.
+     * @param request The HTTP Request we are processing.
+     * @param response The HTTP Response we are processing.
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
+     * @return
+     */
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+        HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException
+      {
+        Logger logger = Logger.getLogger(getClass());
+        logger.info(
+            "==========================================================");
+        logger.info("Starting in RetrieveSecondOptionsAjaxAction");
+
+        String optionSelected = request.getParameter("optionSelected");
+
+        //Check of het soortId wel correct is
+        if (ValidationSupport.isEmptyString(selectedOption))
+          {
+            logger.debug("No selected option supplied");
+
+            PrintWriter out = response.getWriter();
+            out.print("803");
+          }
+        else
+          {
+            List options = getSecondOptions(selectedOption);
+            //Make a String representation where each option is seperated by '||' and a valua and a label by ';'
+            String outLine = makeOutputString(options);
+            out.print(outLine);     
+          }
+      }
+      return null;
+  }

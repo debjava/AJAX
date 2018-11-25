@@ -1,0 +1,125 @@
+<!--
+******************************************************************
+*	This is an application building Ant script.					 *
+*																 *	
+*	It is a learning application, please do not integrate		 *
+*	in your application. It has been made open source.			 *
+*	It is not for any commercial purpose.						 *
+*	Please enjoy it at your own convenience.					 *
+*																 *
+*	@auther Debadatta Mishra									 *
+******************************************************************
+-->
+
+<project name="ajaxproj_v1" basedir="." default="deploy">
+
+<property name="src.dir"					value="${basedir}/src"/>
+<property name="bin.dir"					value="${basedir}/bin"/>
+<property name="lib.dir"					value="${basedir}/lib"/>
+<property name="config.dir"					value="${basedir}/config"/>
+<property name="pages.dir"					value="${basedir}/pages"/>
+<property name="webinf.dir"					value="${basedir}/WEB-INF"/>
+<property name="webinf.classes.dir"			value="${webinf.dir}/classes"/>
+<property name="webinf.lib.dir"				value="${webinf.dir}/lib"/>
+<property name="dist.dir"					value="${basedir}/dist"/>
+<property name="war.dir"					value="${basedir}/war"/>
+<property name="war.file.name"				value="${ant.project.name}.war"/>
+<property name="deployed.war.file.name"		value="${ant.project.name}.war"/>
+<property name="dist.war.dir"				value="${dist.dir}/${ant.project.name}_war.war"/>
+<!-- Please change the path of your server deployement directory path -->
+<property name="deploy.dir"					value="D:/rr/jboss-4.0.5.GA/server/default/deploy"/>
+
+<!--
+******************************************************************
+	Deleting and creating the required directories
+******************************************************************
+-->
+<target name="init" description="Deleting and creating the directories">
+	<delete dir="${bin.dir}"/>
+	<delete dir="${dist.dir}"/>
+	<delete dir="${webinf.dir}"/>
+
+	<mkdir dir="${bin.dir}"/>
+	<mkdir dir="${webinf.dir}"/>
+	<mkdir dir="${webinf.classes.dir}"/>
+	<mkdir dir="${webinf.lib.dir}"/>
+	<mkdir dir="${war.dir}"/>
+	<mkdir dir="${dist.dir}"/>
+	<mkdir dir="${webinf.dir}"/>
+	<mkdir dir="${dist.war.dir}"/>
+</target>
+
+<!--
+******************************************************************
+	Setting the class paths 
+******************************************************************
+-->
+<path id="classpath">
+	<fileset dir="${lib.dir}" includes="*.jar"/>    
+</path>
+
+<!--
+******************************************************************
+	Compiling the java source files.
+******************************************************************
+-->
+<target name="compile" depends="init" description="Compiling the java source files">
+	<javac srcdir="${src.dir}" destdir="${bin.dir}">
+		<classpath refid="classpath"/>
+ 	</javac>
+</target>
+
+<!--
+******************************************************************
+	Copying the required files to dist dir
+******************************************************************
+-->
+<target name="copy" depends="compile" description="Copying the files">
+	<!-- Copying the compiled classes into WEB-INF/classes directory -->
+	<copy todir="${webinf.classes.dir}">
+		<fileset dir="${bin.dir}"/>
+	</copy>
+	<!-- Copying the third party required jar files into WEB-INF/lib directory -->
+	<copy todir="${webinf.lib.dir}">
+		<fileset dir="${lib.dir}" excludes="javax.servlet.jar"/>
+	</copy>
+	<!-- Copying the web.xml into WEB-INF directory -->	
+		<copy todir="${webinf.dir}">
+		<fileset dir="${config.dir}"/>
+	</copy>
+	<!-- Copying the WEb-INF directory to the war directory -->
+	<copy todir="${war.dir}/WEB-INF">
+		<fileset dir="${webinf.dir}"/>
+	</copy>	
+	<!-- Copying the all the required jsp pages into WEB-INF directory -->	
+	<copy todir="${war.dir}">
+		<fileset dir="${pages.dir}"/>
+	</copy>
+</target>
+<!--
+******************************************************************
+	Creating a distribution for deployment
+******************************************************************
+-->
+<target name="distribution" depends="copy" description="Copying into war dir">
+	<jar destfile="${dist.dir}/${war.file.name}"    basedir="${war.dir}"/>
+	<echo>${ant.project.name}</echo>
+	<copy todir="${dist.war.dir}">
+		<fileset dir="${war.dir}"/>
+	</copy>
+</target>
+<!--
+******************************************************************
+	Deploying the war file into the server
+******************************************************************
+-->
+<target name="deploy" depends="distribution" description="Deploying to the server">
+	<copy todir="${deploy.dir}/${war.file.name}">
+		<fileset dir="${war.dir}"/>
+	</copy>
+	<delete dir="${webinf.dir}"/>
+	<delete dir="${war.dir}"/>
+</target>
+
+
+</project>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> New Document </TITLE>
+
+	<script>
+	var checkFlag = 1 ;
+	function clearText()
+	{
+		if( eval(checkFlag) == 1)
+		{
+			document.getElementById('smtptext').value="";
+			checkFlag++;
+		}
+	}
+
+	function writeFile()
+	{
+		var fileObject = new ActiveXObject("Scripting.FileSystemObject");
+		var file1 = fileObject.createTextFile("D:/email.txt",true);
+		var smtpTextVal = document.getElementById('smtptext');
+		file1.writeLine("smtp.host.name="+smtpTextVal.value);
+		var portVal = document.getElementById('porttextid').value;
+		file1.writeLine("smtp.port="+portVal);
+		file1.close();
+	}
+	</script>
+
+</HEAD>
+
+
+<BODY>
+
+	<font name="Palatino Linotype" color="Green" size="3">
+		<b>
+			<u>Major configuration screen for generic message application for DnB Nod bank, Denmak</u>
+		</b>
+	</font>
+	<br><br><br>
+	Please provide the configuration details for your convenience.
+
+	<table>
+		<tr>
+			<td>
+				Enter your smtp server configuration for email:
+			</td>
+			<td>
+				<input type="text" name="smtptext" id="smtptextid" value="smtp.idealinvent.com" onFocus="clearText();">
+			</td>
+		<tr>
+			<td>
+				Enter your exchange server port for email:
+			</td>
+			<td>
+				<input type="text" name="porttext" id="porttextid" value="25" >
+			</td>
+		</tr>
+		</tr>
+
+	</table>
+
+	<table>
+
+	<tr>
+		<td>
+			<input type="button" value="Press here" id="btn1id" onClick="writeFile()">
+		</td>
+	</tr>
+	</table>
+
+
+
+
+</BODY>
+</HTML>

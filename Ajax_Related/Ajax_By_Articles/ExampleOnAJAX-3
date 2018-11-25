@@ -1,0 +1,206 @@
+Article: Harnessing AJAX, XSLTProcessor using Java Servlets
+
+
+
+Summary:
+This article helps you in understanding Ajax XSLTProcessor and how it applies in a Java J2EE Servlet or Portal based environment. We begin with a working example on how you can use the XSLTprocessor() APIs to build a site where components or modules can request their content individually via XML on their own as opposed to the traditional approach where you refresh the entire portal page thereby minimizing the amount of work that an application server needs to do. You can view the technical example and it's source code to see how you can harness this technology. This is a major step in creating applications that persists in the browser while changing only parts of the application that needs to change. Once you review the article, you can download the example that includes sample code to try it out on your application server. The example is released under the GNU General Public License (GPL). So go ahead and see what you can do with AJAX, Java Servlet and Javascript browser based XSLTProcessor. Now on with the article... 
+
+
+What does it do:
+
+With AJAX technology, you can change parts of a webpage with new content from the web server without refreshing the entire page. 
+
+If you are viewing this example at the Aveda Technology, Inc website you can click on "Change Proverb" and see the effect of using XSLTProcessor to dynamically update content.
+
+This is a working example of using AJAX [XSLTProcessor] and Java, JSP technology. The sample code was borrowed from the following article:
+Very Dynamic Web Interfaces
+
+You can download the source here
+Code is released under The GNU General Public License (GPL)
+
+Tags you should understand:
+
+
+XMLHttpRequest() 
+ActiveXObject("Microsoft.XMLHTTP"); 
+processReqChange; 
+
+Here are some important links that might help you unravel this Ajax Technology:
+The XSLT/JavaScript Interface In Gecko
+XULPlanet - XSLTProcessor
+Running XMLHttpRequest with Java
+
+
+
+Directions:
+
+
+Download the ZIP file and unzip it somewhere on your local computer. Edit your server configuration to add an exploded WAR file and point it to the "<YOUR_DIRECTORY>/web". Restart your application server if necessary. And goto the index.jsp file that's in the root directory. 
+Once deployed and you see the page, click on the "Change Proverb" link on upper-left and you should see new proverb's changing without your browser refreshing the page. 
+You've done it!!!! :-) 
+
+
+Understanding the code:
+
+
+
+Client Side
+Lets begin by looking at the code behind the <A> (Anchor) tag. Below is the HTML source behind the anchor tag: 
+
+<A HREF="JavaScript:loadXMLDoc('/getProverb.do');" ALT="Change Proverb">Change Proverb</A> 
+The anchor link basically invokes the method loadXMLDoc and passes the URL to call on the server, namely "/getProverb.do". 
+
+Understanding the JavaScript
+Here is the Java Script that gets called. [NOTE: Please note that the Java Script has been borrowed from this article. So read teh article to gain a better understanding of the Java Script.] But here is the Java Script code that gets invoked. 
+
+var currentPrvb = 0;
+
+function replaceProverb(newProverb)
+{		
+	var p =	document.getElementById('proverb');
+	p.innerHTML = newProverb;
+}
+
+var req;
+
+function loadXMLDoc(url) 
+{
+    // branch for native XMLHttpRequest object
+    if (window.XMLHttpRequest) 
+    {
+        req = new XMLHttpRequest();
+        req.onreadystatechange = processReqChange;
+        req.open("GET", url, true);
+        req.send(null);
+    	// branch for IE/Windows ActiveX version
+    } 
+    else if (window.ActiveXObject) 
+    {
+        req = new ActiveXObject("Microsoft.XMLHTTP");
+        if (req) 
+        {
+            req.onreadystatechange = processReqChange;
+            req.open("GET", url, true);
+            req.send();
+        }
+    }
+}
+
+function processReqChange() 
+{
+    // only if req shows "complete"
+    if (req.readyState == 4) 
+    {
+    // only if "OK"
+    if (req.status == 200) 
+    {
+// ...processing statements go here...
+response  = req.responseXML.documentElement;
+result    = response.getElementsByTagName('result')[0].firstChild.data;
+result = unescape(result);
+replaceProverb(result);
+  		
+    } 
+    else 
+    {
+    	alert("There was a problem retrieving the XML data:\n" + req.statusText);
+    }
+    }
+}		
+		
+
+XML the server sends
+Now lets see what we receive when we call the "/getProverb.do". Click here to see the actual stream being returned. Below is a sample of what might get returned on an URL request. 
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+    <result>
+        He who wants a rose must respect the thorn.&lt;BR&gt;
+        - Persian proverb
+    </result>
+</response>
+
+And yes there is no HTML markup error when I wrote this article. I have highlighted the stuff in bold to illustrate that when I sent XML back from the server, I need to escape characters that will be interpreted by the XML DOM parser. Suppose you sent the < and > tags as is, then the parser will not know how to parse the XML so what I would suggest as a rule of thumb escape all < and > tags and JavaScript has a function called unescape(String); which will unescape the tags back to HTML. You can read more about the Java Script unescape() tag here. 
+
+Javs Servlet Code
+Now lets see how the serverside Java code looks like: 
+
+Code ommited for article. See full code in ZIP.
+
+String[] proverb = {"Proverb1",Proverb2"}
+
+public void doGet(HttpServletRequest request, 
+	HttpServletResponse response) throws ServletException, IOException
+{        
+    //generate a random number between
+    //System.out.println("Here");
+    Random r = new Random();        
+    int proverbID = r.nextInt(proverb.length);
+    response.setContentType("text/xml");
+    response.getOutputStream().println("<?xml version=\"1.0\" 
+    	encoding=\"UTF-8\" standalone=\"yes\"?>");
+    response.getOutputStream().println("<response>");
+    response.getOutputStream().println("<result>" + 
+    	proverb[proverbID] + "</result>");
+    response.getOutputStream().println("</response>");
+    response.getOutputStream().println("\n\n");
+}
+
+And the servlet above sends the XML so there you have the full cycle of what happens from the point the user clicks on the link to fetch a new proverb. And throughout the whole process we never refreshed the entire page and we only refreshed the component or module that needed fresh content. This can be a powerful tool if used correctly in a portal framework. Let see how this new technology can impact what we do as developers! 
+
+
+Implications of AJAX and XSLTProcessor:
+
+
+Dynamic websites and web applications where the round-trip to send data and receive can be thinned down significantly. Sites such as maps.google.com, google suggest and Ta-da Lists all work with this principle. Beaware that thining down doesn't necessarily add upto optimal. Depending on the dynamic component and it's frequency of posting of messages back and fourth, you may actually be increasing the server load. So care must be taken when you change your design to support this type of facility. 
+This technology combined with very good JavaScript based XML Processors such as XML for Javascript can then provide you with ways to manupulate and develop applications that can POST and GET data that is needed without retrieving the whole page. 
+In a portal framework, imagine the possibilty where each portal module having the capability to retrieve it's own content. 
+Imagine applications running within your browser where you post forms dynamically! The possibilities are endless and this should open up a new changes to the way we browse and surf the web. 
+But one of the primary drawbacks is that with this technology, most robots like the Google-bot and Yahoo-bots that surf and index pages for the search engine will no longer see the content, since the content is dynamically fetched. So unless there are hidden links within a page that provide the robot with a full index of the dynamic content, your web page and it's content will not be indexed properly. This means that your page is no longer showing up on the search engine results. So care must be taken to provide the robots the adequate content as necessary. 
+
+If you have any questions please feel free to contact us via the Aveda Technology Website. If you found this article helpful, send me an email. Also if you know places (Java Blogs) that you can post a link to this article that would hopefully help others in locating this article.
+
+
+Created By: Venkatt Guhesan at Aveda Technology, Inc.
+Last Updated: Wednesday, March 30, 2005.
+
+
+
+Happy Coding!!!
+
+
+
+
+Additional Notes:
+
+
+
+Some folks have contacted me asking me some questions on the code so here are my attempts to compile the notes so that they are accessable here:
+
+
+
+Added "request.getContextPath()" to index.jsp so that if someone downloads the ZIP and deploys it to some other context then the code should still work. 
+Folks have complained that the getProverb.do servlet does not get called except the first time it is requested in IE-6. To resolve this do one of the following:
+
+
+1. Write some Javascript logic to create a random number and append it to the URL. For example, variable "rnd" holds a random number value everytime it is called.
+
+1st time it is called ... '/MyAjax2/getProverb.do?rnd=1234'
+2nd time it is called ... '/MyAjax2/getProverb.do?rnd=47'
+and so on...
+
+Here is a link that might help you with that:
+http://www.codeave.com/javascript/code.asp?u_log=7031
+
+2. Append some "HTTP Headers" to prevent caching on the "ProverbServlet.java"="getProverb.do".
+For example, you can add a header to the response stream in this way:
+response.setHeader("HEADER_VARIABLE", "HEADER_VALUE");
+
+Some headers to consider:
+response.setHeader("CACHE-CONTROL", "NO-CACHE");
+response.setHeader("EXPIRES", "Mon, 22 Jul 2002 11:12:01 GMT");
+response.setHeader("PRAGMA", "NO-CACHE");
+
+This will force the browser to not cache the content.
+
+

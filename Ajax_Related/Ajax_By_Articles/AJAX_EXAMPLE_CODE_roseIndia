@@ -1,0 +1,369 @@
+Example of Ajax multiplication program: 
+***************************************
+
+<html>
+     <head>
+          <title>Ajax Multiply Example</title>
+          <script language="Javascript">
+               function postRequest(strURL){
+                    var xmlHttp;
+                    if(window.XMLHttpRequest){ // For Mozilla, Safari, ...
+                         var xmlHttp = new XMLHttpRequest();
+                    }
+                    else if(window.ActiveXObject){ // For Internet Explorer
+                         var xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlHttp.open('POST', strURL, true);
+                    xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xmlHttp.onreadystatechange = function(){
+                         if (xmlHttp.readyState == 4){
+                              updatepage(xmlHttp.responseText);
+                         }
+                    }
+                    xmlHttp.send(strURL);
+               }
+               
+               function updatepage(str){
+                    document.getElementById('result').value = str;
+               }
+               
+               function callMultiply(){
+                    var a = parseInt(document.f1.a.value);
+                    var b = parseInt(document.f1.b.value);
+                    var url = "multiply.php?a=" + a + "&b=" + b + "";
+                    postRequest(url);
+               }
+          </script>
+     </head>
+     
+     <body>
+          <h1 align="center"><font color="#000080">Ajax Example</font></h1>
+          <form name="f1">
+               <input name="a" id="a" value="">
+               <input name="b" id="b" value="">
+               <input name="result" type="text" id="result">
+               <input type="button" value="Multiply" onClick="callMultiply()" name="showmultiply">
+          </form>
+     </body>
+</html>  
+
+Here is the code of the "multiply.php" page:
+
+<?
+     $a=$_GET["a"];
+     $b=$_GET["b"];
+     $mul=$a*$b;
+     echo $mul;
+?> 
+=====================================================================================================================
+Simple Example to print date
+****************************
+<html>
+        <head>
+
+        <title>Ajax Example</title>
+
+        <script language="Javascript">
+
+        function postRequest(strURL) {
+
+	var xmlHttp;
+
+        if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+
+         var xmlHttp = new XMLHttpRequest();
+
+       } else if (window.ActiveXObject) { // IE
+
+         var xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+       }
+
+    xmlHttp.open('POST', strURL, true);
+
+    xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xmlHttp.onreadystatechange = function() {
+
+        if (xmlHttp.readyState == 4) {
+
+            updatepage(xmlHttp.responseText);
+
+        }
+
+    }
+
+    xmlHttp.send(strURL);
+
+        }
+        
+
+        function updatepage(str){
+
+    document.getElementById("result").innerHTML = 
+	"<font color='red' size='5'>" + str + "</font>";;
+
+        }
+
+        function showCurrentTime(){
+
+	var rnd = Math.random();
+
+	var url="time.php?id="+rnd;
+
+	postRequest(url);
+
+        }
+
+        </script>
+
+        </head>
+
+        <body>
+
+        <h1 align="center"><font color="#000080">Ajax Example</font></h1>
+
+        <p><font color="#000080">&nbsp;This very simple Ajax Example retrieves the
+
+        current date and time from server and shows on the form. To view the current
+
+        date and time click on the following button.</font></p>
+
+        <form name="f1">
+
+  <p align="center"><font color="#000080">&nbsp;<input value="   Show Time   " 
+    type="button" onclick='JavaScript:showCurrentTime()' name="showdate"></font></p>
+
+  <div id="result" align="center"></div>
+
+        </form>
+
+        <div id=result></div>
+
+        </body>
+
+        </html>
+        
+ 
+
+When use clicks on the "Show Time" button, the showCurrentTime() is called. The the function showCurrentTime() calls the time.php using Ajax and then updates the time values retrieved from server.
+
+Here is the code of PHP (time.php) file:
+
+<?
+print date("l M dS, Y, H:i:s");
+?> 
+
+=====================================================================================================================
+Ajax Login Program
+******************
+Example of Ajax login Program :
+
+<html>
+<head>
+<script language="javascript">
+function postRequest(strURL){
+var xmlHttp;
+if(window.XMLHttpRequest){ // For Mozilla, Safari, ...
+var xmlHttp = new XMLHttpRequest();
+}
+else if(window.ActiveXObject){ // For Internet Explorer
+var xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlHttp.open('POST', strURL, true);
+xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+xmlHttp.onreadystatechange = function(){
+if (xmlHttp.readyState == 4){
+updatepage(xmlHttp.responseText);
+}
+}
+xmlHttp.send(strURL);
+}
+
+function updatepage(str){
+if(str=="yes"){
+alert("Welcome User");
+}else{
+alert("Invalid Login! Please try again!");
+}
+}
+
+function call_login(){
+var username = window.document.f1.username.value;
+var password = window.document.f1.password.value;
+var url = "login.php?username=" + username + "&password=" +password ;
+postRequest(url);
+} 
+</script>
+</head>
+
+<body>
+<Center>
+
+<form name="f1" onsubmit="return call_login();">
+<table border="0" bgcolor="#CCCCFF" cellspacing="1" cellpadding="3" width="287">
+<tr>
+<td align="left" colspan="2" width="275"><b><font size="5" color="#000080">Login</font></b></td>
+</tr>
+<tr>
+<td align="right" width="81"><b><font color="#000080">User
+Name:</font></b></td>
+<td width="184"><input type="text" name="username" id="user" size="20" value="" /></td>
+</tr>
+<tr>
+<td align="right" width="81"><b><font color="#000080">Password:</font></b></td>
+<td width="184"><input type="password" name="password" size="20" value="" /></td>
+</tr>
+<tr>
+<td colspan="2" align="center" width="275"><input type="button" name="a1" value="Login" onclick="call_login()"></td>
+</tr>
+</table>
+</form>
+
+</center>
+</body>
+</html>
+ 
+
+ 
+
+ Here is the code for login.php page:
+
+<?
+$username=$_GET["username"];
+$password=$_GET["password"];
+if($username=="admin" && $password=="admin"){
+echo "yes";
+}else{
+echo "No";
+}
+?> 
+=====================================================================================================
+Example of  Ajax Registration program:
+**************************************
+
+<html>
+
+      <head>
+
+      <title>Ajax Registratiion program</title>
+
+      <script language="javascript">
+
+      function postRequest(strURL){
+
+var xmlHttp;
+
+if(window.XMLHttpRequest){ // For Mozilla, Safari, ...
+
+var xmlHttp = new XMLHttpRequest();
+
+}
+
+else if(window.ActiveXObject){ // For Internet Explorer
+
+var xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+}
+
+xmlHttp.open('POST', strURL, true);
+
+xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+xmlHttp.onreadystatechange = function(){
+
+if (xmlHttp.readyState == 4){
+
+updatepage(xmlHttp.responseText);
+
+}
+
+}
+
+xmlHttp.send(strURL);
+
+}
+function updatepage(str){
+
+if(str == "no"){
+
+       alert("Invalid Id/password! Please fill Currect Id/password")
+
+}
+                       else{
+
+    alert("welcome for register !");
+
+                        }
+
+                     }
+
+function call_register(){
+
+var login_id =document.reg.uid.value;
+
+                var password=document.reg.passwd.value;
+
+var url = "Register.php?loginid="+login_id+"&password="+password+"";
+
+postRequest(url);
+
+} 
+
+      </script>
+
+      </head>
+
+      <body> 
+
+      <center>
+
+ <form name="reg">
+
+      <table border="1" width="30%">
+
+      <tr>
+
+     <td align="center" colspan="2">  <font face="Monotype" size="5">Registration</font></td>
+
+      </tr>
+
+      <tr>
+
+    <td>  Login id: </td>  <td> <input type="text" name="uid"  size="20"></td>
+
+      </tr>
+
+ <tr> 
+
+    <td> Password: </td><td><input type="password" name="passwd" size="20" /></td>
+
+      </tr>
+
+      <tr>
+
+    <td align="center" colspan="2"> <input type="submit"  value="Register" onClick="return call_register()" 
+
+ style="background-color:#FFE9D2;color:#0000FF; border-color:#99CC33"> </td>
+
+      </tr>
+  </table>
+
+      </form>
+
+      </body>
+      </html>
+ 
+
+Here this code support the Register.php for Ajax Registration program:
+
+<?
+$loginid=$_GET["loginid"];
+$password=$_GET["password"];
+if( $password == "" || $loginid == "" || ($loginid == "" && $password == "") ){
+echo "no";
+}
+else{
+echo "yes";
+}
+?> 

@@ -1,0 +1,21 @@
+<!-- This program displayes how to disable cut,copy and paste
+	 operation in a text field using java script. The following
+	 lines are important to disable the cut,copy and paste.
+
+	 oncut="return false" : to disable the cut operation
+	 oncopy="return false" : to disable the copy operation
+	 onpaste="return false" : to disable the paste operation
+
+-->
+<HTML>
+<HEAD>
+<TITLE>Disabling copy paste</TITLE>
+</HEAD>
+
+<BODY>
+	Try to cut copy,paste in text field
+	<!-- The following line is important to disable cut,copy and paste -->
+	<input type="text" name="text1" value="" 
+	oncut="return false" oncopy="return false" onpaste="return false">
+</BODY>
+</HTML>

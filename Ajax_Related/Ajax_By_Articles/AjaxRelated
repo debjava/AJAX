@@ -1,0 +1,90 @@
+var str=""
+var arr="";
+function responseFromAjax(result)
+{
+	
+	str=result;
+	str = str.replace(/^\s*|\s*$/g,"");
+	
+
+}
+function salary(){
+	
+
+	var employeeNo=document.getElementById('employeeNo').options[document.getElementById('employeeNo').selectedIndex].value;
+      
+    callSalary(employeeNo);
+	var e1=document.getElementById('currecny');
+	var arr = str.split(",");
+	if(str.length==11)
+	{
+		var arr = str.split("~");
+		document.getElementById('date').value=arr[0];
+		document.getElementById('grosssalaryperMonth').value="";
+		document.getElementById('currency').value="";
+	}
+		
+ 
+	else
+	{
+			var arr = str.split("~");
+		
+		document.getElementById('date').value=arr[0];
+        document.getElementById('grosssalaryperMonth').value=arr[1];
+		document.getElementById('currency').value=arr[2];
+	}
+
+}
+function getXMLHTTP()
+{	
+	try
+	{
+		return new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	catch (e2)
+	{
+		return new XMLHttpRequest();
+	}
+}
+function getXMLDocument()
+{
+	try
+	{
+		return new ActiveXObject("Microsoft.XMLDOM");
+	}
+	catch (e2)
+	{
+		return XMLDocument();
+	}
+}
+function   callSalary(employeeNo)
+{
+
+  var actionclass='';
+	
+  actionclass="getSalaryAction.do?employeeNo="+employeeNo;
+ 
+  var xmlRequest =getXMLHTTP();
+  xmlRequest.Open("POST",actionclass,false);
+  xmlRequest.SetRequestHeader("Content-Type", "text/xml; charset:ISO-8859-1;");
+  xmlRequest.Send();
+
+  if(xmlRequest.status!=200)
+  alert(xmlRequest.status + ": " + xmlRequest.statusText + "\n\n" + xmlRequest.responseText);
+
+  var xmlResponse = getXMLDocument();
+  xmlResponse.async = false;
+
+ //alert(xmlRequest.responseXML.xml)
+  
+  //xmlResponse.loadXML(xmlRequest.responseXML.xml);
+  
+  if(xmlResponse.parseError.errorCode != 0)
+  alert("Error in response:\n " + xmlResponse.parseError.errorCode + ":  " + xmlResponse.parseError.reason);
+  else
+  processResponse(xmlRequest.responseText);
+}
+function processResponse(result)
+{
+  responseFromAjax(result);   
+}

@@ -1,0 +1,44 @@
+A Simple HTTP Request Example
+Let's first revise the flow of making an HTTP request in JavaScript, and handling the response. This is just a quick example to refresh your memory. For all the spicy details, see SitePoint's introductory article, AJAX: Usable Interactivity with Remote Scripting.
+
+Our JavaScript will request an HTML document, test.html, which contains the text "I'm a test." We'll then alert() the contents of the test.html file.
+
+<script type="text/javascript" language="javascript"> 
+
+   var http_request = false; 
+
+   function makeRequest(url) { 
+
+       if (window.XMLHttpRequest) { // Mozilla, Safari,... 
+           http_request = new XMLHttpRequest(); 
+       } else if (window.ActiveXObject) { // IE 
+           http_request = new ActiveXObject("Microsoft.XMLHTTP"); 
+       } 
+       http_request.onreadystatechange = alertContents; 
+       http_request.open('GET', url, true); 
+       http_request.send(null); 
+
+   } 
+
+   function alertContents() { 
+
+       if (http_request.readyState == 4) { 
+           if (http_request.status == 200) { 
+               alert(http_request.responseText); 
+           } else { 
+               alert('There was a problem with the request.'); 
+           } 
+       } 
+
+   } 
+</script> 
+<a href="#" onclick="makeRequest('test.html')">Make a request</a>
+
+Here's how this example works:
+
+
+The user clicks the link "Make a request" in the browser. 
+This calls the makeRequest() function with a parameter: the name of an HTML file in the same directory. In this case, it's test.html. 
+The request is made. 
+The onreadystatechange event fires and the execution is passed to alertContents(). 
+alertContents() checks if the response was received and, if it's OK, then alert()s the contents of the test.html file. 

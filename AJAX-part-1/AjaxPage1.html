@@ -1,0 +1,74 @@
+
+<html>
+	<head>
+		<title>Simple Ajax Application</title>
+
+		<script>
+			//Declare a variable for XmlHttpRequest object.
+			var receiveReq = getXmlHttpRequestObject();		
+			/*
+			* First obtain an XmlHttpRequest object
+			* specif to your browser.
+			*/
+			function getXmlHttpRequestObject() 
+			{
+				if (window.XMLHttpRequest) 
+				{
+					//For others except for Microsoft Internet Explorer IE
+					return new XMLHttpRequest(); 
+				}
+				else if(window.ActiveXObject) 
+				{
+					//Object specific to Microsoft Internet Explorer IE
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				else 
+				{
+					alert("Your current browser doesn't support the Ajax application.");
+				}
+			}			
+						
+			//Initiate the asyncronous request.
+
+			/*
+			* This is the main java script function called by the 
+			* corresponding jsp or html file.
+			*/
+			function sayHello() 
+			{
+				//If our XmlHttpRequest object is not in the middle of a request, start the new asyncronous call.
+				if (receiveReq.readyState == 4 || receiveReq.readyState == 0) 
+				{
+					//Setup the connection as a GET call to SayHello.html.
+					//This is an asynchronous request to the server.
+					//receiveReq.open("GET", 'page2.html', true);
+					receiveReq.open("GET", 'temp.txt', true);
+					//Set the function that will be called when the XmlHttpRequest objects state changes.
+					receiveReq.onreadystatechange = handleRequest; 
+					
+					//Make the actual request.
+					receiveReq.send(null);
+				}			
+			}
+			//Called every time our XmlHttpRequest objects state changes.
+			function handleRequest() 
+			{
+				var nametext = document.getElementById('textid');
+				//Check to see if the XmlHttpRequests state is finished.
+				if (receiveReq.readyState == 4) 
+				{
+					//Set the contents of our span element to the result of the asyncronous call.
+					var showval = "Hi "+nametext.value+", ";
+					document.getElementById('span_result').innerHTML = showval+receiveReq.responseText;
+				}
+			}
+			</script>
+	</head>
+	<body>
+		Enter your name:<input type="text" name="nametext" id="textid">
+		<a href="javascript:sayHello();">Say Hello</a><br />
+		<!-- used to display the results of the asyncronous request -->
+		<span id="span_result"></span>
+
+	</body>
+</html>

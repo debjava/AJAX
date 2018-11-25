@@ -1,0 +1,446 @@
+<!--
+	This program is used for the creation of standalone user interface
+	for generic message module.
+
+	Author: Debadatta Mishra
+-->
+<HTML>
+<HEAD>
+<TITLE> Message Configuration </TITLE>
+
+	<script>
+		/*
+		* Function to get the browser information.
+		*/
+		function getBrowser()
+		{
+			if(navigator.appName == "Netscape")
+				return 1;
+			else
+				return 0;
+		}
+
+		var isNS = getBrowser();
+		var EnableRightClick = 0;
+		/*
+		* For Netscape navigator.
+		* capture the mouse events.
+		*/
+		if( isNS )
+		document.captureEvents(Event.MOUSEDOWN || EVENT.MOUSEUP);
+
+		function mishandler()
+		{
+			if(EnableRightClick == 1 )
+			{
+				return true;
+			}
+			else
+				return false;
+		}
+
+		function mousehandler( e )
+		{
+			if( EnableRightClick == 1 )
+				return true;
+			var myevent = (isNS) ? e :event;
+			var eventbutton = (isNS) ? myevent.which : myevent.button;
+			if((eventbutton == 2) || (eventbutton == 3))
+				return false;
+		}
+
+		function keyhandler(e)
+		{
+			var myevent = (isNS) ? e:window.event;
+			if(myevent.keyCode == 96)
+				enableRightClick = 1;
+			return;
+		}
+
+		document.oncontextmenu = mishandler;
+		document.onkeypress = keyhandler;
+		document.onmousedown = mousehandler;
+		document.onmouseup = mousehandler;
+
+	</script>
+	<script>
+
+		var checkFlag = 1 ;
+		function clearText()
+		{
+			if( eval(checkFlag) == 1)
+			{
+				document.getElementById('smtptextid').value="";
+				checkFlag++;
+			}
+			
+		}
+
+		function getFilePath()
+		{
+			var path = unescape(document.location);
+			path = path.substring(8,path.lastIndexOf("/")+1);
+			//alert("File Path===="+path);
+			return path;
+			
+		}
+
+		function storeContents()
+		{
+			var filePath = getFilePath();
+			filePath = filePath+"config";
+			var fileObject = new ActiveXObject("Scripting.FileSystemObject");
+			//For creating email config file
+			createEmailConfig( filePath ,fileObject );
+			//For creating scheduler config
+			createSchedulerConfig( filePath , fileObject );
+			//For creating database config
+			databaseConfig( filePath , fileObject );
+		}
+
+		function createEmailConfig( filePath , fileObject )
+		{
+			var file1 = fileObject.createTextFile(filePath+"/"+"emailconfig.properties",true);
+			var smtpTextVal = document.getElementById('smtptextid').value;
+			var portVal = document.getElementById('porttextid').value;
+			file1.writeLine("smtp.host.name="+smtpTextVal);
+			file1.writeLine("smtp.port="+portVal);
+			file1.close();
+		}
+
+		function createSchedulerConfig( filePath , fileObject )
+		{
+			var file1 = fileObject.createTextFile(filePath+"/"+"schedulerconfig.properties",true);
+			var scheduleTextVal = document.getElementById('scheduletextid').value;
+			var scheduleTimeVal = document.getElementById('scheduletimeid').value;
+			var delayTextVal = document.getElementById('delaytextid').value;
+			var delayTimeVal = document.getElementById('delaytimeid').value;
+			
+			file1.writeLine("scheduletime="+scheduleTextVal);
+			file1.writeLine("scheduletimeunit="+scheduleTimeVal);
+			file1.writeLine("delaytime="+delayTextVal);
+			file1.writeLine("delaytimeunit="+delayTimeVal);
+			file1.close();
+		}
+
+		function databaseConfig( filePath , fileObject )
+		{
+			var file1 = fileObject.createTextFile(filePath+"/"+"dbconfig.properties",true);
+			var dbNameVal = document.getElementById('dbnameid').value;
+			var dbIpVal = document.getElementById('dbiptextid').value;
+			var dbPortVal = document.getElementById('dbporttextid').value;
+			var dbLoginNameVal = document.getElementById('dbnametextid').value;
+			var dbLoginPwdVal = document.getElementById('dbpwdtextid').value;
+			var dbSidVal = document.getElementById('dbsidtextid').value;
+			file1.writeLine("DATABASENAME="+dbNameVal);
+			file1.writeLine("DATABASE_SERVER_PORT="+dbPortVal);
+			file1.writeLine("DATABASE_SERVER_IP="+dbIpVal);
+			file1.writeLine("DATABASE_SID="+dbSidVal);
+			file1.writeLine("USERNAME="+dbLoginNameVal);
+			file1.writeLine("PASSWORD="+dbLoginPwdVal);
+			file1.close();
+		}
+		/*
+		*	This function is used to check the numeric representation of 
+		*	a text field.
+		*/
+		function checkNumerals( obj )
+		{
+			//var keyVal = obj.value;
+			var key ;
+			if( window.event)
+				key = window.event.keyCode;
+			//alert( key );
+			if( key < 48 || key > 57 || key == 32 )
+			{
+				//obj.focus();
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		
+		function validateIP()
+		{
+			/*
+			*	I do not know wheather it is required or not.
+			*/
+		}
+		
+		function setDbValue()
+		{
+			//alert("Hi");
+			var dbName = document.getElementById('dbnameid').value;
+			//alert(dbName);
+			if(dbName == "Oracle")
+				document.getElementById('dbporttextid').value="1521"
+			else if(dbName == "Db2" )
+				document.getElementById('dbporttextid').value="3306"
+		}
+		function validate( obj )
+		{
+			
+
+			if( obj.value == "")
+			{
+				document.getElementById('spid').innerHTML="** Mandatory field/s can not be blank";
+				obj.focus();
+				document.getElementById('saveid').disabled=true;
+			}
+			/*
+			else if( obj.value == "" && key == 0 )
+			{
+				document.getElementById('spid').innerHTML="** Mandatory field/s can not be blank";
+				obj.focus();
+				document.getElementById('saveid').disabled=true;
+			}
+			*/
+						
+		}
+		
+		function getKeyEvent()
+		{
+			var key ;
+			if( window.event)
+				key = window.event.keyCode;
+			return key;
+		}
+
+		function validateDbPort()
+		{
+			//validate the dbPortText field
+			var dbPortTextField = document.getElementById('dbporttextid').value;
+			var key = getKeyEvent();
+			if( dbPortTextField == "" )
+			{	
+				document.getElementById('spid').innerHTML="** Mandatory field/s can not be blank";
+				//obj.focus();
+				document.getElementById('saveid').disabled=true;
+			}
+			else if( dbPortTextField == "" && key == 0 )
+			{
+				document.getElementById('spid').innerHTML="** Mandatory field/s can not be blank";
+				//obj.focus();
+				document.getElementById('saveid').disabled=true;	
+			}
+			else
+			{
+				document.getElementById('spid').innerHTML="";
+				document.getElementById('saveid').disabled=false;
+			}
+
+		}
+
+		function removeErrorMsg(obj)
+		{
+			var key = getKeyEvent();
+			
+			if( obj.value == "")
+			{
+				document.getElementById('spid').innerHTML="** Mandatory field/s can not be blank";
+				//obj.focus();
+				document.getElementById('saveid').disabled=true;
+			}						
+			else if( obj.value == "" && key == 0 )
+			{
+				document.getElementById('spid').innerHTML="** Mandatory field/s can not be blank";
+				//obj.focus();
+				document.getElementById('saveid').disabled=true;	
+			}
+			else
+			{
+				document.getElementById('spid').innerHTML="";
+				document.getElementById('saveid').disabled=false;
+			}
+			
+		}
+
+	</script>
+
+</HEAD>
+
+<BODY>
+
+	<font name="Palatino Linotype" color="Green" size="3">
+		<b>
+			<u> Configuration for generic message application </u>
+		</b>
+	</font>
+	<br><br>
+	Please provide the configuration details.
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b><font color="RED" size="5"><span id="spid"></span></font></b>
+	<br>
+	All <font color="RED" size="2">*</font> mark fields are mandatory.
+	<br><br>
+
+	<!-- Main table creation -->
+	<table>
+			
+		<tr> <!-- First row of the main table -->
+			
+			<td> <!-- First column of the first row of the main table -->
+				
+					<!-- Table for email configuration -->
+					<h2>Email server configuration.</h2>
+				<table><!-- Inner table for email configuration -->
+					<tr>
+						<td>
+							Smtp server address for email: <font color="RED" size="2">*</font>
+						</td>
+						<td>
+							<input type="text" name="smtptext" id="smtptextid" value="smtp.idealinvent.com" onFocus="clearText();"  onBlur="validate(smtptext);" onKeyUp="removeErrorMsg(smtptext);">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Exchange server port for email:<font color="RED" size="2">*</font>
+						</td>
+						<td>
+							<input type="text" name="porttext" id="porttextid" value="25" onKeyPress="return checkNumerals(this);" onBlur="validate(porttext);"
+							onKeyUp="removeErrorMsg(porttext);"
+							>
+						</td>
+					</tr>				
+				</table><!-- End of inner table for email configuration-->
+
+			</td>
+
+			<td>
+				&nbsp;&nbsp;&nbsp;
+			</td>
+
+
+			<td>
+				<!-- Second column of the first row of the main table -->
+					<!-- Table for scheduler configuration -->
+					<h2>Scheduler configuration.</h2>
+			<table><!-- Inner table for scheduler configuration -->
+				<tr>
+					<td>
+						Initial startup time:<font color="RED" size="2">*</font>
+					</td>
+					<td>
+						<input type="text" name="schedleText" id="scheduletextid" value="" onKeyPress="return checkNumerals(this);" onBlur="validate(schedleText);"
+							onKeyUp="removeErrorMsg(schedleText);">
+					</td>
+					<td>
+						<select name="time" id="scheduletimeid">
+							<option value="Seconds">Seconds</option>
+							<option value="Minutes">Minutes</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Delay time:<font color="RED" size="2">*</font>
+					</td>
+					<td>
+						<input type="text" name="delayText" id="delaytextid" value="" onKeyPress="return checkNumerals(this);" onBlur="validate(delayText);" onKeyUp="removeErrorMsg(delayText);">
+							
+					</td>
+					<td>
+						<select name="time" id="delaytimeid">
+							<option value="Seconds">Seconds</option>
+							<option value="Minutes">Minutes</option>
+						</select>
+					</td>
+
+				</tr>
+
+				</table> <!-- End of inner table for scheduler configuration -->
+
+			</td>
+		</tr>
+
+		<tr>
+
+			<td>
+				<h2>Internal database configuration</h2>
+			<table> <!-- Inner table for internal database configuration -->
+				
+				<tr>
+					<td>
+						Database name:<font color="RED" size="2">*</font>
+					</td>
+					<td>
+						<select name="dbname" id="dbnameid" onClick="setDbValue();">
+							<option value="Oracle">Oracle</option>
+							<option value="Db2">Db2</option>
+						</select >
+					</td>
+
+				</tr>
+				<tr>
+					<td>
+						Database IP address:<font color="RED" size="2">*</font>
+					</td>
+					<td>
+						<input type="text" name="dbipnametext" id="dbiptextid" value="" 
+						onBlur="validate(dbipnametext);" onKeyUp="removeErrorMsg(dbipnametext);">
+					</td>
+
+				</tr>
+				<tr>
+					<td>
+						Database port:<font color="RED" size="2">*</font>
+					</td>
+					<td>
+						<input type="text" name="dbporttext" id="dbporttextid" value="1521" 
+						onKeyUp="validateDbPort();">
+					</td>
+			   </tr>
+			   <tr>
+					<td>
+						Database SID:<font color="RED" size="2">*</font>
+					</td>
+					<td>
+						<input type="text" name="dbsidtext" id="dbsidtextid" value="" 
+						onBlur="validate(dbsidtext);" onKeyUp="removeErrorMsg(dbsidtext);">
+					</td>
+					
+			   </tr>
+			   <tr>
+					<td>
+						Database login user name:<font color="RED" size="2">*</font>
+					</td>
+					<td>
+						<input type="text" name="dbnametext" id="dbnametextid" value="" 
+						onBlur="validate(dbnametext);" onKeyUp="removeErrorMsg(dbnametext);">
+					</td>
+
+			 </tr>
+			 <tr>
+				<td>
+					Database login password:<font color="RED" size="2">*</font>
+				</td>
+				<td>
+					<input type="password" name="dbpwdtext" id="dbpwdtextid" value="" 
+					onBlur="validate(dbpwdtext);" onKeyUp="removeErrorMsg(dbpwdtext);">
+				</td>
+			</tr>
+
+				
+			</table><!-- End of inner table for internal database configuration -->
+
+
+			</td>
+
+			<td>
+				&nbsp;&nbsp;&nbsp;
+			</td>
+
+			<td>
+				<input type="submit" value="Save and close" id="saveid" onClick="storeContents();">
+			</td>
+			
+		</tr>
+
+		
+	</table>
+
+
+</BODY>
+</HTML>

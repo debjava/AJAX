@@ -1,0 +1,309 @@
+The first step is to create and configure the XMLHttpRequest object.
+Currently there are two implementations of this object, ActiveXObject is Internet Explorer specific, and XMLHttpRequest works with other browsers. So a check is made before creating the object, like this,
+
+var httpRequest; 
+if (window.ActiveXObject) // for IE 
+{ 
+    httpRequest = new ActiveXObject("Microsoft.XMLHTTP"); 
+} 
+else if (window.XMLHttpRequest) // for other browsers 
+{ 
+    httpRequest = new XMLHttpRequest(); 
+} 
+Now configure the object by setting the HTTP method, GET or POST, the URL of the server side element, like a servlet or cgi script, which this object will communicate with, and the third parameter is a boolean value which decides whether the interaction should be synchronous or asynchronous, where true means asynchronous.
+
+httpRequest.open("GET", url, true); 
+Then set the name of the JavaScript function, which will handle the callback from the server side element.
+
+httpRequest.onreadystatechange = function() {processRequest(); } ; 
+Now make the call,
+
+httpRequest.send(null); 
+Second step is to handle the response from the server which is always in XML form.
+The server element can return the actual data in XML form or the formatted HTML code. This processing is done in the JavaScript function, which is specified as the callback function. The first thing to do in this method is to check the XMLHttpRequest object's readyState, value 4 indicates that the call is complete. Then check for the status, which is the HTTP status code, value 200 means HTTP is successful. Following is how the method looks,
+
+function processRequest() 
+{ 
+    if (httpRequest.readyState == 4) 
+    { 
+        if(httpRequest.status == 200) 
+        { 
+            //process the response 
+        } 
+        else 
+        { 
+            alert("Error loading page\n"+ httpRequest.status +":"+ httpRequest.statusText); 
+        } 
+    }         
+} 
+
+
+The third step is to process the response received.
+The response is stored in responseText of the XMLHttpRequest object. The response is always in the XML form and the object representation of this XML is stored in responseXML of the XMLHttpRequest object. This XML can be parsed in the JavaScript itself using the DOM API to obtain the actual data.
+Following code shows how this is done.
+
+//The method getElementsByTagName, gets the element defined by the given tag 
+var profileXML = httpRequest.responseXML.getElementsByTagName("Profile")[0]; 
+
+//The node value will give you actual data 
+var profileText = profileXML.childNodes[0].nodeValue; 
+
+
+Once we get the actual data, now the last step is to update the HTML.
+The way to do that is by modifying the DOM (Document Object Model) of the HTML page. This can be done within JavaScript using the DOM API. JavaScript can get access to any element in the HTML DOM and modify it after the HML is loaded. This ability to dynamically modify the HTML DOM object within JavaScript plays very important role in AJAX interaction. The document.getElementById(id) method is used to get reference of the element in DOM. Where id, is the ID attribute of the element you want to modify. In this example the element is DIV with the ID attribute "profileSection". 
+Following code shows how to modify this DOM element with the data received,
+
+//Create the Text Node with the data received 
+var profileBody = document.createTextNode(profileText); 
+                       
+//Get the reference of the DIV in the HTML DOM by passing the ID 
+var profileSection = document.getElementById("profileSection"); 
+            
+//Check if the TextNode already exist 
+if(profileSection.childNodes[0]) 
+{ 
+    //If yes then replace the existing node with the new one 
+    profileSection.replaceChild(profileBody, profileSection.childNodes[0]); 
+} 
+else 
+{ 
+    //If not then append the new Text node 
+    profileSection.appendChild(profileBody); 
+} 
+
+
+How does web page interact with this JavaScript
+To tie this interaction with your web page, you need to first identify the part of your web page which will be updated dynamically and mark it with DIV tag and provide it an id, like, 
+
+<div id="profileSection"> 
+
+</div> 
+
+Identify what event will update the marked area, like clicking on a link, mouseover a image etc. trap this events using JavaScript and call the JavaScript function which creates the XMLHttpRequest object. 
+What does server side element need to take care of?
+While sending the response back the server should set the Content-Type to text/xml, since the XMLHttpRequest object will process this type of request. Also you can set the Cache-Control to no- cache to avoid the browser caching the response locally. The server should always send back data in XML format. The data should be a valid XML format and parse able by the JavaScript. If your data contains characters not friendly with the XML parsers, use the CDATA section in your XML.
+
+  
+Example Code:  
+This example shows a combo box filled with all JavaReference author names, and shows their profile below it, when the name is selected using AJAX.
+The JSP page, javareference_authors.jsp, marks the area where author's profile will be displayed using DIV with id profileSection. The jsp page interacts with the AuthorsBean and fills the combo box with author names.
+The ONCHANGE event of the combox calls the getProfile JavaScript function that uses XMLHttpRequest object to call the servlet GetAuthorsProfile with author name as parameter.
+The callback function processRequest, then updates the DIV profileSection with the response received from the Servlet.
+
+
+ 
+About the Author  
+Rahul is a Senior Software Developer with Netscout Systems, Inc in Massachusetts. His expertise lies in the areas of Object Oriented Design and Development in Java, Graphical User Interface, and Networking. He holds a Masters degree in Computer Science from University of Pune, India. He has designed and implemented numerous projects in Java over the years. His projects involve Java Swing, RMI, JDBC, JNI, SNMP, RMON, RMON2, and other java related tools. He currently works on the design of powerful network monitoring systems leveraging Java Technology. He can be reached at rahul@javareference.com.  
+More examples by Rahul Sapkal   
+ 
+Advertisement  
+ 
+ 
+ 
+JSP Page : javareference_authors.jsp 
+--------------------------------------- 
+
+<HTML> 
+<HEAD> 
+<TITLE> 
+    AJAX DEMO : Getting JavaReference Author Profile using Ajax interaction 
+</TITLE> 
+</HEAD> 
+
+<%@ page import="java.util.*" %> 
+<jsp:useBean id="AuthorsBean" scope="session" class="jr.beans.common.AuthorsBean" /> 
+
+<script type="text/javascript"> 
+    var httpRequest; 
+   
+   /** 
+    * This method is called when the author is selected 
+    * It creates XMLHttpRequest object to communicate with the  
+    * servlet  
+    */ 
+    function getProfile(authorSelected) 
+    { 
+        var url = 'http://www.javareference.com/exampledemo/GetAuthorsProfile?author=' + authorSelected; 
+
+        if (window.ActiveXObject) 
+        { 
+            httpRequest = new ActiveXObject("Microsoft.XMLHTTP"); 
+        } 
+        else if (window.XMLHttpRequest) 
+        { 
+            httpRequest = new XMLHttpRequest(); 
+        } 
+         
+        httpRequest.open("GET", url, true); 
+        httpRequest.onreadystatechange = function() {processRequest(); } ; 
+        httpRequest.send(null); 
+   } 
+   
+   /** 
+    * This is the call back method 
+    * If the call is completed when the readyState is 4 
+    * and if the HTTP is successfull when the status is 200 
+    * update the profileSection DIV 
+    */ 
+    function processRequest() 
+    { 
+        if (httpRequest.readyState == 4) 
+        { 
+            if(httpRequest.status == 200) 
+            { 
+                //get the XML send by the servlet 
+                var profileXML = httpRequest.responseXML.getElementsByTagName("Profile")[0]; 
+                 
+                //Update the HTML 
+                updateHTML(profileXML); 
+            } 
+            else 
+            { 
+                alert("Error loading page\n"+ httpRequest.status +":"+ httpRequest.statusText); 
+            } 
+        } 
+    } 
+        
+   /** 
+    * This function parses the XML and updates the  
+    * HTML DOM by creating a new text node is not present 
+    * or replacing the existing text node. 
+    */ 
+    function updateHTML(profileXML) 
+    { 
+        //The node valuse will give actual data 
+        var profileText = profileXML.childNodes[0].nodeValue; 
+            
+        //Create the Text Node with the data received 
+        var profileBody = document.createTextNode(profileText); 
+                       
+        //Get the reference of the DIV in the HTML DOM by passing the ID 
+        var profileSection = document.getElementById("profileSection"); 
+            
+        //Check if the TextNode already exist 
+        if(profileSection.childNodes[0]) 
+        { 
+            //If yes then replace the existing node with the new one 
+            profileSection.replaceChild(profileBody, profileSection.childNodes[0]); 
+        } 
+        else 
+        { 
+            //If not then append the new Text node 
+            profileSection.appendChild(profileBody); 
+        }        
+    } 
+        
+</script> 
+
+<BODY> 
+<% 
+    //get author list 
+    List authors = AuthorsBean.getAllAuthors(); 
+%> 
+
+<TABLE align=left border=0 cellPadding=3 cellSpacing=1 width="100%" > 
+    <TR> 
+        <TD align="center"> 
+            <STRONG>Getting JavaReference Author Profile using Ajax interaction.</STRONG> 
+            <br> 
+        </TD> 
+    </TR> 
+    <TR bgColor="#C6D3E7"> 
+        <TD> 
+            <SELECT id=authors name=authorComboBox ONCHANGE="getProfile(this.options[this.selectedIndex].value)">  
+             <% Iterator it = authors.iterator();                 
+            while(it.hasNext()) 
+            { 
+                String authorName = (String)(it.next()); %> 
+                     
+                <OPTION value='<%=authorName%>' ><%=authorName%></OPTION> 
+            <% 
+            }%>       
+            </SELECT> 
+            &nbsp;&nbsp;&nbsp;<<<&nbsp;Select Author 
+        </TD> 
+    </TR> 
+    <TR bgColor="#FFD0B1"> 
+        <TD> 
+            <div id="profileSection"> 
+                <br><br> 
+            <div> 
+             
+            <script type="text/javascript"> 
+                getProfile(authorComboBox.options[authorComboBox.selectedIndex].value); 
+            </script> 
+             
+        </TD> 
+    </TR> 
+</TABLE>     
+
+</BODY> 
+</HTML> 
+
+
+---------------------------------------------------------------------- 
+
+Servlet : GetAuthorsProfile.java 
+---------------------------------- 
+
+/*  
+* This example is from javareference.com  
+* for more information visit,  
+* http://www.javareference.com  
+*/ 
+
+package jr.exampledemo; 
+  
+import jr.beans.common.AuthorsBean; 
+
+import java.util.*; 
+import java.io.*;  
+import javax.servlet.http.*; 
+
+/** 
+ * This servlet handles the get author profile 
+ * ajax request. It gets the author name as parameter 
+ * queries the AuthorBean for the author profile and 
+ * returns the profile back. 
+ *  
+ * @author Rahul Sapkal(rahul@javareference.com) 
+ */ 
+public class GetAuthorsProfile extends HttpServlet  
+{     
+    /** 
+     * This method is overriden from the base class to handle the 
+     * get request.  
+     */ 
+    protected void doGet(HttpServletRequest requestObj, HttpServletResponse responseObj) 
+                   throws IOException 
+    { 
+        //set the content type 
+        responseObj.setContentType("text/xml"); 
+         
+        responseObj.setHeader("Cache-Control", "no-cache"); 
+         
+        //get the PrintWriter object to write the html page 
+        PrintWriter writer = responseObj.getWriter(); 
+         
+        //get parameters store into the hashmap 
+        HashMap paramsMap = new HashMap(); 
+        Enumeration paramEnum = requestObj.getParameterNames(); 
+        while(paramEnum.hasMoreElements()) 
+        { 
+            String paramName = (String)(paramEnum.nextElement()); 
+            paramsMap.put(paramName, requestObj.getParameter(paramName)); 
+        } 
+        //get the author name passed 
+        String authorName= (String)paramsMap.get("author"); 
+         
+        //creating the author bean 
+        AuthorsBean authBean = new AuthorsBean(); 
+         
+        //get the author profile by quering the AuthorsBean by passing author name 
+         writer.println("<Profile><![CDATA[" + authBean.getAuthorProfile(authorName) + "]]></Profile>"); 
+         
+        //close the write 
+        writer.close();                     
+    }         
+}  
+ 

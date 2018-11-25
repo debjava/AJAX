@@ -1,0 +1,134 @@
+Simple Tutorial on AJAX
+***********************
+Simple Ajax Example
+Ajax is the method of using Javascript, DHTML and the XMLHttpRequest object to perform a GET or POST and return a result without reloading the HTML page. Below is a very simple Ajax example that calls a CGI script that prints out the word sent to the CGI script and the remote user's IP address.
+
+Simple Ajax Demo
+
+HTML page
+This is the HTML page with three JavaScript functions that perform the XMLHttpRequest and subsequent update to the HTML page. (These are Ajax calls)
+
+<html>
+<head>
+<title>Simple Ajax Example</title>
+<script language="Javascript">
+function xmlhttpPost(strURL) {
+    var xmlHttpReq = false;
+    var self = this;
+    // Mozilla/Safari
+    if (window.XMLHttpRequest) {
+        self.xmlHttpReq = new XMLHttpRequest();
+    }
+    // IE
+    else if (window.ActiveXObject) {
+        self.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    self.xmlHttpReq.open('POST', strURL, true);
+    self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    self.xmlHttpReq.onreadystatechange = function() {
+        if (self.xmlHttpReq.readyState == 4) {
+            updatepage(self.xmlHttpReq.responseText);
+        }
+    }
+    self.xmlHttpReq.send(getquerystring());
+}
+
+function getquerystring() {
+    var form     = document.forms['f1'];
+    var word = form.word.value;
+    qstr = 'w=' + escape(word);  // NOTE: no '?' before querystring
+    return qstr;
+}
+
+function updatepage(str){
+    document.getElementById("result").innerHTML = str;
+}
+</script>
+</head>
+<body>
+<form name="f1">
+  <p>word: <input name="word" type="text">  
+  <input value="Go" type="button" onclick='JavaScript:xmlhttpPost("/cgi-bin/simple-ajax-example.cgi")'></p>
+  <div id="result"></div>
+</form>
+</body>
+</html>
+CGI Script
+This is the CGI script that the JavaScript in the HTML page calls. This CGI script could just as easily be written in Python, Ruby, PHP etc.
+
+#!/usr/bin/perl -w
+use CGI;
+
+$query = new CGI;
+
+$secretword = $query->param('w');
+$remotehost = $query->remote_host();
+
+print $query->header;
+print "<p>he secret word is <b>$secretword</b> and your IP is <b>$remotehost</b>.</p>";
+
+
+More Ajax Reference Material
+Most Popular Tools
+Business Card Generator
+Color Palette Generator
+Favicon Maker updated
+IMG2TXT 
+All Tools
+Avatar Generator
+Biorhythms
+Blog Images
+Business Card Generator
+Color Palette Generator
+Color Picker
+Comic Strip Maker
+Crapola Translator
+Favicon Maker updated
+IMG2TXT
+Invent-a-Word
+Rainbow Words
+Ringtone Composer
+ROT13
+Subwords!
+TXT2GIF
+Weather by Zip
+What's Happening
+Word Association
+
+Fun & Games
+Hangman
+Horoscope
+Magic 8 Ball
+Mastermind
+Star Wars Costumes Webcam
+
+Reference
+Ajax Example
+ASCII Table
+Jedi Robe Pattern
+Perl Circus
+Recipes
+Special Characters
+URL Encoded Chars 
+Points of Interest
+Color Hunter
+BeerForDinner.com
+256pixels
+What the Heck
+Frank's Icons
+Witty Profiles
+Legal T-Shirts
+OmniWishList
+RoHS
+10-8 Supply
+tiny advice
+i matter not
+Lunar Babes
+
+Misc
+Archive
+Dev
+Links
+
+Text Link Ads
+

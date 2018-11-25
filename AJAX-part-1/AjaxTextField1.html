@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Ajax example for text field</TITLE>
+
+	<script language="javascript">
+		var xmlRequest = getXMLHttpRequest();
+
+		function getXMLHttpRequest()
+		{
+			if( window.XMLHttpRequest)
+			{
+				//For other browsers
+				return new XMLHttpRequest();
+			}
+			else if( window.ActiveXObject )
+			{
+				//For internet explorer
+				return new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			else
+			{
+				//Browser does not support Ajax
+				alert("Your browser does not support ajax");
+			}
+		}
+		function makeAjaxCall()
+		{
+			if (xmlRequest.readyState == 4 || xmlRequest.readyState == 0) 
+				{
+					//Setup the connection as a GET call to SayHello.html.
+					//This is an asynchronous request to the server.
+					//receiveReq.open("GET", 'page2.html', true);
+					//xmlRequest.open("GET", '', true);
+					//Set the function that will be called when the XmlHttpRequest objects state changes.
+					
+					xmlRequest.onreadystatechange = handleRequest; 
+					
+					//Make the actual request.
+					xmlRequest.send("8888");
+				}			
+		}
+		function handleRequest() 
+			{
+				alert("coming here");
+				var nametext = document.getElementById('nameTextId');
+				//Check to see if the XmlHttpRequests state is finished.
+				var showval = nametext.value+" Mishra";
+					alert( showVal );
+					document.getElementById('text2Id').value= showVal;
+				if (xmlRequest.readyState == 4) 
+				{
+					//Set the contents of our span element to the result of the asyncronous call.
+					var showval = nametext.value+" Mishra";
+					alert( showVal );
+					document.getElementById('text2Id').value= showVal;
+					//document.getElementById('span_result').innerHTML = showval+receiveReq.responseText;
+				}
+			}
+	</script>
+</HEAD>
+
+<BODY>
+	Enter your Name<input type="text" id="nameTextId" value="">
+	<input type="submit" value="Press here" onClick="makeAjaxCall()">
+	<input type="text" readonly="true" id="text2Id" value="">
+
+</BODY>
+</HTML>

@@ -1,0 +1,38 @@
+<head>
+
+<title>AJAX Tutorial: Example 1</title>
+<script language="JavaScript" src="ajax.js"></script>
+
+<script language="JavaScript">
+function doSomethingWithData(str)
+{
+	document.getElementById('MyID').innerHTML = str;
+}
+
+</script>
+	
+</head>
+
+<body>
+	<h1>AJAX Tutorial: Example 1</h1>
+	This example shows how to dynamically retrieve data from a JavaScript file.<br><br>
+	<input type="button" value="Data file 1" onclick="loadScript('Data1.js')" />
+	<input type="button" value="Data file 2" onclick="loadScript('Data2.js')" />
+	<input type="button" value="Data file 3" onclick="loadScript('Data3.js')" />
+	<p>
+	<div id="MyID">&nbsp;</div>
+	</p>
+</ul>
+
+<!--
+	Personal Information
+-->
+		<table>
+			<tr>
+				<td width="350"></td>
+				<td>Developed by <a href="mailTo:debadattamishra@aol.com">Debadatta Mishra</a></td>
+			</tr>
+		</table>
+
+</body>
+</html>

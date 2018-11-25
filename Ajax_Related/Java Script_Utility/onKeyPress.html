@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> Use of onKeyPress </TITLE>
+
+	<script>
+		function show( text1 )
+		{
+			var asciiVal = escape(text1.value);
+			alert(text1.value+"===="+asciiVal);
+		}
+	</script>
+</HEAD>
+
+<BODY>
+
+Please enter some text here:
+<input type="text" name="text1" id="text1id" value="" onKeyPress="show(text1);">
+
+</BODY>
+</HTML>

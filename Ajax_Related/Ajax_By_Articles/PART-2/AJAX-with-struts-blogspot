@@ -1,0 +1,153 @@
+AJAX with Struts Example 
+************************
+
+Purpose:
+This technology will help user to get dynamic data from server without waiting for the page to refresh.
+
+Example:
+
+The following piece of code will explain this with simple example of posting comments to server without waiting for page to refresh.
+
+Let’s first construct an HTML page which sends subject and content to server
+
+Here is the code for html Page
+
+Comment.html
+
+<html>
+<head>
+<title> Simple AJAX Example </title>
+<script src="query.js" type="text/javascript">
+</script>
+</head>
+<body>
+<table width="60%"  border="0" cellspacing="3" cellpadding="0"class="tab-page">                      
+<tr>
+<td colspan="5">
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top" class="blue_medium">Subject</td>
+<td colspan="2" class="blue_small">
+<input name="subject" type="text" id="subject">
+</td>  
+<td> 
+</td>   
+</tr>       
+<tr>     
+<td colspan="2" valign="top" class="blue_medium">Content</td>  
+<td colspan="2" valign="top" class="blue_small">
+<p>              
+<textarea name="content" cols="40" rows="7" id="content">
+</textarea>      
+</p>                 
+</td>         
+<td width="1%"> 
+</td>        
+</tr>        
+<tr>          
+<td> 
+</td>         
+<td> 
+</td>       
+<td colspan="2" class="blue_small">Max 500 Charactes only </td>    
+<td>
+</td>  
+</tr>    
+<tr>       
+<td width="4%">
+</td>         
+<td width="13%">
+</td>            
+<td colspan="2"> </td>    
+<td> </td>    
+</tr>          
+<tr>            
+<td> </td>     
+<td> </td>         
+<td width="30%">
+<input name="Submit2" type="button" onClick="Ajax_query();" value="Submit">
+</td>                  
+<td width="52%"><input name="Submit22" type="reset" value="Reset"></td>                        <td> </td>          
+</tr>               
+</table><div id=” returnMessage”></div></body></html>
+
+The above code will create an html file with inputs, on clicking on submit button will call a JavaScript function Ajax_query() which sends the content to server and processMessage() will get the response from the server and display it to users in the divider id returnMessage.
+
+
+
+query.js
+
+
+function Ajax_query()
+{     
+var subject = document.getElementById("subject").value;   
+var message = document.getElementById("content").value;    
+var div = document.getElementById("processing");   
+div.className="disp";   
+var url="PostMessage.do?subject="+subject+"&messsage="+message;    
+if(url !="")
+{         
+if(window.XMLHttpRequest)
+{// Non-IE browsers    
+req =new XMLHttpRequest();  
+req.onreadystatechange = processMessage; 
+try {  
+req.open("GET", url, true); 
+}
+catch (e)
+{}        
+req.send(null);   
+}        
+elseif(window.ActiveXObject)
+{// IE       
+req =new ActiveXObject("Microsoft.XMLHTTP");    
+if(req)
+{   
+req.onreadystatechange = processMessage;
+req.open("POST", url, true); 
+req.send(null);    
+}        
+}   
+}  
+} 
+function processMessage()
+{    
+if(req.readyState ==4)
+{
+// Completeif(req.status ==200)
+{// OK response                document.getElementById("returnMessage").innerHTML=req.responseText;              document.getElementById("subject").value ="";              document.getElementById("content").value ="";   
+}   
+} 
+}
+
+Struts-config.xml
+
+
+<?xml version="1.0" encoding="ISO-8859-1" ?><!DOCTYPE struts-config PUBLIC        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd"><struts-config>  <form-beans>  </form-beans>  <global-forwards></global-forwards>        <action  path="/PostMessage"  type="com.actions.PostMessage"          scope="request"> </action>  </action-mappings></struts-config>
+
+PostMessage.java
+
+
+package com.actions;import javax.servlet.http.*;
+import org.apache.struts.action.*;
+import java.io.PrintWriter;
+public class PostMessage extends Action
+{ 
+public ActionForward execute(ActionMapping mapping,                             ActionForm form,                             HttpServletRequest request,                             HttpServletResponse response)throws Exception
+{
+if(!chk.IsUesrOnline(request)) 
+{ 
+return mapping.findForward("expired"); 
+}
+PrintWriter out = response.getWriter(); content=(String)request.getParameter("messsage");
+if(content.length()>500  subject.length()>50)
+out.println("Subject  Content Length is too Long");
+if(subject.length()<5  content.length()<10) 
+out.println("Subject  Content Length is too Short"); 
+else 
+out.println(objDAO.addMessage(user_name,subject,content));
+out.flush();
+return(null); 
+}
+}
